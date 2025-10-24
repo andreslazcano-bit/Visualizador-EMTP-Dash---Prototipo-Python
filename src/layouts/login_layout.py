@@ -102,10 +102,6 @@ def create_login_layout():
             ], className="min-vh-100 d-flex align-items-center py-5")
         ], fluid=True),
         
-        # Store para mantener sesión
-        dcc.Store(id="session-store", storage_type="session"),
-        dcc.Store(id="user-profile-store", storage_type="session")
-        
     ], className="login-background")
 
 

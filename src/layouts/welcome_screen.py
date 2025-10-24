@@ -138,10 +138,7 @@ def create_welcome_layout():
     """Crea el layout completo de bienvenida con stores necesarios"""
     
     return html.Div([
-        # Stores para mantener estado
-        dcc.Store(id="session-store", storage_type="session"),
-        
-        # Pantalla de bienvenida
+        # Pantalla de bienvenida (los stores viven en el layout raíz en app_v2)
         create_welcome_screen()
     ])
 

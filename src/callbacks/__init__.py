@@ -1,26 +1,13 @@
 """
-============================================================================
-CALLBACKS PRINCIPALES
-============================================================================
+Paquete de callbacks. Este archivo se deja intencionalmente mínimo.
+
+La versión activa de la app (app_v2.py) registra callbacks específicos
+importando directamente:
+- src.callbacks.auth_callbacks
+- src.callbacks.sidebar_callbacks
+- src.callbacks.theme_callbacks
+
+No hay registro global aquí para evitar dependencias a módulos antiguos.
 """
 
-from dash import Input, Output, State
-from dash.exceptions import PreventUpdate
-
-from .matricula_callbacks import register_matricula_callbacks
-from .docentes_callbacks import register_docentes_callbacks
-from .mapa_callbacks import register_mapa_callbacks
-from .theme_callbacks import register_theme_callbacks, register_tab_callbacks
-
-
-def register_callbacks(app):
-    """Registra todos los callbacks de la aplicación"""
-    
-    # Registrar callbacks de tema y pestañas
-    register_theme_callbacks(app)
-    register_tab_callbacks(app)
-    
-    # Registrar callbacks de módulos existentes
-    register_matricula_callbacks(app)
-    register_docentes_callbacks(app)
-    register_mapa_callbacks(app)
+__all__ = []
