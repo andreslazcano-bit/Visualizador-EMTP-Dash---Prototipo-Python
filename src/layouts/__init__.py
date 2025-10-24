@@ -1,0 +1,3 @@
+"""
+Layouts de la aplicación
+"""

@@ -1,0 +1,1478 @@
+/* ============================================================================
+   VISUALIZADOR EMTP - ESTILOS INSTITUCIONALES
+   Diseño sobrio y profesional para presentación institucional
+   ============================================================================ */
+
+/* Importar fuentes profesionales de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* ========================================================================
+       TIPOGRAFÍA INSTITUCIONAL
+       ======================================================================== */
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --font-secondary: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+    --font-monospace: 'SF Mono', 'Monaco', 'Cascadia Code', 'Courier New', monospace;
+    
+    /* ========================================================================
+       PALETA DE COLORES INSTITUCIONAL - SOBRIA Y PROFESIONAL
+       ======================================================================== */
+    --primary-color: #1e3a8a;        /* Azul institucional profundo */
+    --secondary-color: #475569;      /* Gris pizarra profesional */
+    --tertiary-color: #0f172a;       /* Azul oscuro corporativo */
+    --accent-color: #64748b;         /* Gris azulado neutro */
+    --neutral-color: #f1f5f9;        /* Gris claro suave */
+    
+    /* Grises profesionales */
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e1;
+    --gray-400: #94a3b8;
+    --gray-500: #64748b;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1e293b;
+    --gray-900: #0f172a;
+    
+    /* Colores base */
+    --black: #0f172a;
+    --white: #ffffff;
+    
+    /* Colores funcionales - tonos profesionales */
+    --success-color: #065f46;        /* Verde institucional oscuro */
+    --danger-color: #991b1b;         /* Rojo institucional oscuro */
+    --warning-color: #92400e;        /* Ámbar institucional oscuro */
+    --info-color: #1e40af;           /* Azul información */
+    
+    /* ========================================================================
+       FONDOS Y SUPERFICIES
+       ======================================================================== */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #f1f5f9;
+    --surface: #ffffff;
+    --surface-elevated: #ffffff;
+    --surface-hover: #f8fafc;
+    
+    /* ========================================================================
+       TIPOGRAFÍA Y TEXTO
+       ======================================================================== */
+    --text-primary: #0f172a;         /* Títulos - muy oscuro */
+    --text-secondary: #334155;       /* Texto normal */
+    --text-muted: #64748b;           /* Texto secundario */
+    --text-inverse: #ffffff;         /* Texto sobre fondos oscuros */
+    
+    /* Tamaños de fuente - escala modular */
+    --text-xs: 0.75rem;      /* 12px */
+    --text-sm: 0.875rem;     /* 14px */
+    --text-base: 1rem;       /* 16px */
+    --text-lg: 1.125rem;     /* 18px */
+    --text-xl: 1.25rem;      /* 20px */
+    --text-2xl: 1.5rem;      /* 24px */
+    --text-3xl: 1.875rem;    /* 30px */
+    --text-4xl: 2.25rem;     /* 36px */
+    
+    /* Pesos de fuente */
+    --font-light: 300;
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+    
+    /* ========================================================================
+       BORDES Y DIVISORES
+       ======================================================================== */
+    --border-color: #e2e8f0;         /* Borde sutil */
+    --border-color-dark: #cbd5e1;    /* Borde más visible */
+    --divider-color: #f1f5f9;        /* Divisor muy sutil */
+    
+    --border-radius-sm: 0.25rem;     /* 4px */
+    --border-radius: 0.375rem;       /* 6px */
+    --border-radius-md: 0.5rem;      /* 8px */
+    --border-radius-lg: 0.75rem;     /* 12px */
+    --border-radius-xl: 1rem;        /* 16px */
+    
+    --border-width: 1px;
+    --border-width-thick: 2px;
+    
+    /* ========================================================================
+       ESPACIADO CONSISTENTE
+       ======================================================================== */
+    --spacing-xs: 0.25rem;   /* 4px */
+    --spacing-sm: 0.5rem;    /* 8px */
+    --spacing-md: 1rem;      /* 16px */
+    --spacing-lg: 1.5rem;    /* 24px */
+    --spacing-xl: 2rem;      /* 32px */
+    --spacing-2xl: 3rem;     /* 48px */
+    
+    /* ========================================================================
+       SOMBRAS SUTILES Y PROFESIONALES
+       ======================================================================== */
+    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    
+    /* Alias para compatibilidad */
+    --shadow-light: var(--shadow-sm);
+    --shadow-medium: var(--shadow-md);
+    --shadow-heavy: var(--shadow-lg);
+    
+    /* ========================================================================
+       TRANSICIONES SUAVES
+       ======================================================================== */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================================
+   TEMA OSCURO INSTITUCIONAL
+   ============================================================================ */
+[data-theme="dark"] {
+    /* Colores principales modo oscuro */
+    --primary-color: #3b82f6;        /* Azul más brillante */
+    --secondary-color: #64748b;      /* Gris pizarra */
+    --tertiary-color: #0f172a;       /* Azul muy oscuro */
+    --accent-color: #475569;         /* Gris azulado oscuro */
+    --neutral-color: #1e293b;        /* Gris oscuro */
+    
+    /* Grises modo oscuro */
+    --gray-50: #0f172a;
+    --gray-100: #1e293b;
+    --gray-200: #334155;
+    --gray-300: #475569;
+    --gray-400: #64748b;
+    --gray-500: #94a3b8;
+    --gray-600: #cbd5e1;
+    --gray-700: #e2e8f0;
+    --gray-800: #f1f5f9;
+    --gray-900: #f8fafc;
+    
+    /* Colores funcionales modo oscuro */
+    --success-color: #10b981;
+    --danger-color: #ef4444;
+    --warning-color: #f59e0b;
+    --info-color: #3b82f6;
+    
+    /* Fondos modo oscuro */
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --surface: #1e293b;
+    --surface-elevated: #334155;
+    --surface-hover: #475569;
+    
+    /* Texto modo oscuro */
+    --text-primary: #f8fafc;
+    --text-secondary: #e2e8f0;
+    --text-muted: #94a3b8;
+    --text-inverse: #0f172a;
+    
+    /* Bordes modo oscuro */
+    --border-color: #334155;
+    --border-color-dark: #475569;
+    --divider-color: #1e293b;
+    
+    /* Sombras modo oscuro */
+    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================================================
+   ESTILOS BASE - APLICACIÓN DE TIPOGRAFÍA INSTITUCIONAL
+   ============================================================================ */
+
+/* Reset y base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-size: var(--text-base);
+    font-weight: var(--font-normal);
+    line-height: 1.6;
+    color: var(--text-secondary);
+    background-color: var(--bg-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+/* Aplicación de tema al documento */
+[data-theme="dark"] body {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-secondary) !important;
+}
+
+/* ============================================================================
+   TIPOGRAFÍA - JERARQUÍA CLARA Y PROFESIONAL
+   ============================================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    font-weight: var(--font-semibold);
+    line-height: 1.25;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    font-size: var(--text-4xl);
+    font-weight: var(--font-bold);
+    letter-spacing: -0.03em;
+}
+
+h2 {
+    font-size: var(--text-3xl);
+    font-weight: var(--font-semibold);
+}
+
+h3 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-semibold);
+}
+
+h4 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-medium);
+}
+
+h5 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-medium);
+}
+
+h6 {
+    font-size: var(--text-base);
+    font-weight: var(--font-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+p {
+    margin-bottom: var(--spacing-md);
+    line-height: 1.7;
+}
+
+/* Links con estilo institucional */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    font-weight: var(--font-medium);
+}
+
+a:hover {
+    color: var(--info-color);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+}
+
+/* Texto pequeño */
+small, .text-small {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+}
+
+/* Texto monoespaciado */
+code, pre {
+    font-family: var(--font-monospace);
+    font-size: var(--text-sm);
+}
+
+/* Botón de cambio de tema mejorado */
+.theme-toggle {
+    background: transparent !important;
+    border: 2px solid white !important;
+    color: white !important;
+    border-radius: 50% !important;
+    width: 40px !important;
+    height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.3s ease !important;
+}
+
+.theme-toggle:hover {
+    background: rgba(255,255,255,0.2) !important;
+    border-color: white !important;
+    color: white !important;
+    transform: rotate(180deg) !important;
+}
+
+/* Botón de modo oscuro */
+.theme-toggle-old {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 1050;
+    background-color: var(--surface-elevated);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-medium);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-heavy);
+}
+
+.theme-toggle:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+/* Header personalizado */
+.navbar-custom {
+    background-color: var(--primary-color);
+    box-shadow: var(--shadow-light);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.navbar-custom .navbar-brand {
+    color: white !important;
+    font-weight: 600;
+}
+
+/* Asegurar visibilidad en modo oscuro */
+[data-theme="dark"] .navbar-custom .navbar-brand {
+    color: white !important;
+}
+
+/* Y en modo claro también */
+[data-theme="light"] .navbar-custom .navbar-brand {
+    color: white !important;
+}
+
+/* Cards mejoradas */
+.card {
+    background-color: var(--surface);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-light);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+.card-header {
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--divider-color);
+    color: var(--text-primary);
+}
+
+/* KPI Cards con paleta oficial */
+.kpi-card {
+    background-color: var(--white);
+    border-left: 4px solid var(--primary-color);
+    transition: all 0.3s ease;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-light);
+}
+
+.kpi-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-heavy);
+    border-left-color: var(--secondary-color);
+}
+
+.kpi-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.kpi-label {
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Pestañas modernas con paleta oficial */
+.nav-tabs {
+    border-bottom: 2px solid var(--accent-color);
+    background-color: var(--neutral-color);
+}
+
+/* ============================================================================
+   NAVEGACIÓN - PESTAÑAS INSTITUCIONALES
+   ============================================================================ */
+
+.nav-tabs .nav-link {
+    color: var(--text-secondary);
+    border: none;
+    padding: var(--spacing-md) var(--spacing-lg);
+    margin-right: var(--spacing-xs);
+    transition: all var(--transition-base);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    background: transparent;
+    font-family: var(--font-primary);
+    font-weight: var(--font-medium);
+    font-size: var(--text-sm);
+    letter-spacing: 0.01em;
+}
+
+.nav-tabs .nav-link:hover {
+    color: var(--primary-color);
+    background-color: var(--hover-color);
+    transform: translateY(-1px);
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--primary-color);
+    background-color: var(--surface);
+    border-bottom: 2px solid var(--primary-color);
+    font-weight: var(--font-semibold);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Íconos para pestañas vía CSS */
+.tab-matricula::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f080";
+    margin-right: 0.5rem;
+}
+
+.tab-egresados::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f19d";
+    margin-right: 0.5rem;
+}
+
+.tab-titulacion::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f569";
+    margin-right: 0.5rem;
+}
+
+.tab-establecimientos::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f549";
+    margin-right: 0.5rem;
+}
+
+.tab-docentes::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f51c";
+    margin-right: 0.5rem;
+}
+
+.tab-proyectos::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f542";
+    margin-right: 0.5rem;
+}
+
+/* Sub-pestañas - Navegación secundaria */
+.sub-tabs {
+    background-color: var(--bg-secondary);
+    padding: var(--spacing-sm) 0;
+    border-bottom: var(--border-width) solid var(--divider-color);
+}
+
+.sub-tabs .nav-link {
+    color: var(--text-secondary);
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--text-sm);
+    font-family: var(--font-primary);
+    font-weight: var(--font-regular);
+    border-radius: var(--border-radius-sm);
+    margin: 0 var(--spacing-xs);
+    transition: all var(--transition-base);
+}
+
+.sub-tabs .nav-link:hover {
+    background-color: var(--hover-color);
+    color: var(--text-primary);
+}
+
+.sub-tabs .nav-link.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-weight: var(--font-medium);
+}
+
+/* ============================================================================
+   TEMA OSCURO - NAVEGACIÓN
+   ============================================================================ */
+
+[data-theme="dark"] .sub-tabs .nav-link {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .sub-tabs .nav-link.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+[data-theme="dark"] .nav-tabs .nav-link {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .nav-tabs .nav-link:hover {
+    color: var(--primary-color);
+    background-color: var(--hover-color);
+}
+
+[data-theme="dark"] .nav-tabs .nav-link.active {
+    color: var(--primary-color);
+    background-color: var(--surface);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* ============================================================================
+   TABLAS - DISEÑO LIMPIO Y PROFESIONAL
+   ============================================================================ */
+
+.dash-table-container {
+    max-height: 600px;
+    overflow-y: auto;
+    background-color: var(--surface);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.dash-table-container table {
+    font-family: var(--font-primary);
+    font-size: var(--text-sm);
+}
+
+.dash-table-container th {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    font-weight: var(--font-semibold);
+    padding: var(--spacing-md);
+    border-bottom: var(--border-width-thick) solid var(--divider-color);
+}
+
+.dash-table-container td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--text-secondary);
+    border-bottom: var(--border-width) solid var(--border-color);
+}
+
+.dash-table-container tr:hover {
+    background-color: var(--hover-color);
+}
+
+.dash-spreadsheet-container .dash-spreadsheet-inner {
+    background-color: var(--surface);
+    font-family: var(--font-mono);
+}
+
+/* ============================================================================
+   FORMULARIOS E INPUTS - DISEÑO INSTITUCIONAL
+   ============================================================================ */
+
+/* Dropdowns y Selects */
+.Select-control, .dropdown-menu {
+    border-radius: var(--border-radius);
+    border: var(--border-width) solid var(--border-color);
+    background-color: var(--white);
+    color: var(--gray-900);
+    font-family: var(--font-primary);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    padding: var(--spacing-sm) var(--spacing-md);
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-xs);
+}
+
+.Select-control:hover, .dropdown-menu:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.Select-control:focus, .Select-control.is-focused {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+    outline: none;
+}
+
+/* Dropdown items */
+.dropdown-item, .Select-option {
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--gray-900);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    transition: all var(--transition-base);
+    border-radius: var(--border-radius-sm);
+    margin: 2px 4px;
+}
+
+.dropdown-item:hover, .Select-option:hover {
+    background-color: var(--gray-100);
+    color: var(--gray-900);
+}
+
+.dropdown-item.active, .Select-option.is-selected {
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-weight: 600;
+}
+
+/* Dash Dropdown specific styles */
+.dash-dropdown,
+.dash-dropdown .Select-control,
+.dash-dropdown .Select-value-label {
+    color: var(--gray-900) !important;
+    font-weight: 500 !important;
+}
+
+.dash-dropdown .Select-placeholder {
+    color: var(--gray-600) !important;
+}
+
+.dash-dropdown .Select-menu-outer {
+    background-color: var(--white) !important;
+    border: 1px solid var(--gray-300) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+.dash-dropdown .Select-option {
+    color: var(--gray-900) !important;
+    font-weight: 500 !important;
+}
+
+.dash-dropdown .Select-option.is-focused {
+    background-color: var(--gray-100) !important;
+}
+
+.dash-dropdown .Select-option.is-selected {
+    background-color: var(--primary-color) !important;
+    color: var(--white) !important;
+}
+
+/* Inputs generales */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+textarea {
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-family: var(--font-primary);
+    font-size: var(--text-sm);
+    background-color: var(--surface);
+    color: var(--text-primary);
+    transition: all var(--transition-base);
+}
+
+input:focus, textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+    outline: none;
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+/* ============================================================================
+   BOTONES - DISEÑO INSTITUCIONAL SOBRIO
+   ============================================================================ */
+
+/* Botón base */
+.btn, .btn-custom {
+    font-family: var(--font-primary);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    line-height: 1.5;
+    padding: 0.625rem 1.25rem;
+    border-radius: var(--border-radius);
+    border: var(--border-width) solid transparent;
+    transition: all var(--transition-base);
+    cursor: pointer;
+    text-align: center;
+    letter-spacing: 0.01em;
+    box-shadow: var(--shadow-xs);
+}
+
+.btn:hover, .btn-custom:hover {
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+}
+
+.btn:active, .btn-custom:active {
+    transform: translateY(0);
+}
+
+/* Botón primario - Azul institucional */
+.btn-primary, .btn-primary-custom {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--white);
+    font-weight: var(--font-medium);
+}
+
+.btn-primary:hover, .btn-primary-custom:hover {
+    background-color: #1e40af;  /* Azul más oscuro */
+    border-color: #1e40af;
+    box-shadow: var(--shadow-md);
+}
+
+/* Botón secundario - Gris institucional */
+.btn-secondary, .btn-secondary-custom {
+    background-color: var(--gray-600);
+    border-color: var(--gray-600);
+    color: var(--white);
+    font-weight: var(--font-medium);
+}
+
+.btn-secondary:hover, .btn-secondary-custom:hover {
+    background-color: var(--gray-700);
+    border-color: var(--gray-700);
+}
+
+/* Botón outline - Borde sólido */
+.btn-outline, .btn-outline-custom, .btn-outline-primary-custom {
+    background-color: transparent;
+    border: var(--border-width-thick) solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: var(--font-medium);
+}
+
+.btn-outline:hover, .btn-outline-custom:hover, .btn-outline-primary-custom:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* Botón de éxito */
+.btn-success {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+    color: var(--white);
+}
+
+.btn-success:hover {
+    background-color: #047857;
+    border-color: #047857;
+}
+
+/* Botón de peligro */
+.btn-danger {
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+    color: var(--white);
+}
+
+.btn-danger:hover {
+    background-color: #b91c1c;
+    border-color: #b91c1c;
+}
+
+/* Botón de advertencia */
+.btn-warning {
+    background-color: var(--warning-color);
+    border-color: var(--warning-color);
+    color: var(--white);
+}
+
+.btn-warning:hover {
+    background-color: #78350f;
+    border-color: #78350f;
+}
+
+/* Tamaños de botones */
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: var(--text-xs);
+}
+
+.btn-lg {
+    padding: 0.875rem 1.75rem;
+    font-size: var(--text-base);
+}
+
+/* ============================================================================
+   UTILIDADES DE TEXTO - DISEÑO INSTITUCIONAL
+   ============================================================================ */
+
+/* Display sizes - Títulos grandes */
+.display-6 {
+    font-size: 2.5rem;
+    font-weight: var(--font-semibold);
+    font-family: var(--font-primary);
+    line-height: 1.2;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+}
+
+/* Text utilities */
+.text-muted {
+    color: var(--text-muted) !important;
+    font-size: var(--text-sm);
+    font-family: var(--font-primary);
+}
+
+.lead {
+    font-size: var(--text-lg);
+    font-weight: var(--font-regular);
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+/* ============================================================================
+   CARDS - DISEÑO LIMPIO Y PROFESIONAL
+   ============================================================================ */
+
+.card {
+    background-color: var(--surface);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-lg);
+    transition: all var(--transition-base);
+    margin-bottom: var(--spacing-lg);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-color-dark);
+}
+
+.card-header {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+    padding-bottom: var(--spacing-md);
+    border-bottom: var(--border-width) solid var(--divider-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.card-body {
+    color: var(--text-secondary);
+}
+
+.card-footer {
+    padding-top: var(--spacing-md);
+    border-top: var(--border-width) solid var(--divider-color);
+    margin-top: var(--spacing-md);
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+}
+
+/* Sidebar navigation styles */
+.sidebar {
+    background-color: white;
+    border-right: 1px solid #dee2e6;
+    transition: all 0.3s;
+    min-height: 100vh;
+}
+
+/* Filter label styles for better visibility and contrast */
+.filter-label,
+.filters-sidebar label,
+.filters-sidebar .form-label {
+    color: var(--gray-900) !important;
+    font-weight: 600 !important;
+    font-size: var(--text-sm);
+    opacity: 1 !important;
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Login layout styles */
+.login-background {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+    min-height: 100vh;
+    position: relative;
+}
+
+.login-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.login-background .card {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.95);
+    border: none;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .login-background .card {
+    background-color: rgba(30, 30, 30, 0.95);
+    color: var(--text-color);
+}
+
+/* Auth specific styles */
+.auth-demo-table code {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+/* User info in navbar */
+.navbar-text {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Profile badge */
+.profile-badge {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75em;
+    margin-left: 8px;
+}
+
+/* Gráficos */
+.plotly-graph-div {
+    background-color: var(--surface) !important;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+}
+
+/* Alertas */
+.alert {
+    border: none;
+    border-radius: 0.5rem;
+    border-left: 4px solid;
+}
+
+.alert-info {
+    background-color: var(--bg-tertiary);
+    border-left-color: var(--info-color);
+    color: var(--text-primary);
+}
+
+.alert-warning {
+    background-color: var(--bg-tertiary);
+    border-left-color: var(--warning-color);
+    color: var(--text-primary);
+}
+
+.alert-danger {
+    background-color: var(--bg-tertiary);
+    border-left-color: var(--danger-color);
+    color: var(--text-primary);
+}
+
+/* Mejoras específicas para modo oscuro */
+[data-theme="dark"] .card {
+    background-color: var(--surface);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .card-header {
+    background-color: var(--bg-secondary);
+    border-bottom-color: var(--divider-color);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .kpi-card {
+    background-color: var(--surface);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .kpi-value {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .kpi-label {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .filters-sidebar {
+    background-color: var(--bg-secondary);
+    border-right-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+/* Mejoras adicionales para formularios y tablas en modo oscuro */
+[data-theme="dark"] .Select-control {
+    background-color: var(--surface);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .dash-table-container {
+    background-color: var(--surface);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .dash-spreadsheet-container .dash-spreadsheet-inner {
+    background-color: var(--surface);
+    color: var(--text-primary);
+}
+
+/* Mejoras para texto general */
+[data-theme="dark"] h1, 
+[data-theme="dark"] h2, 
+[data-theme="dark"] h3, 
+[data-theme="dark"] h4, 
+[data-theme="dark"] h5, 
+[data-theme="dark"] h6 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] p, 
+[data-theme="dark"] span, 
+[data-theme="dark"] div {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* Placeholder y texto de ayuda más visible */
+[data-theme="dark"] ::placeholder {
+    color: var(--text-muted);
+    opacity: 0.8;
+}
+
+[data-theme="dark"] .form-text {
+    color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .theme-toggle {
+        bottom: 20px;
+        left: 20px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .nav-tabs .nav-link {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .kpi-card {
+        padding: 1rem;
+    }
+    
+    .kpi-value {
+        font-size: 1.5rem;
+    }
+}
+
+.btn-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Loading spinner */
+._dash-loading {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Footer */
+footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e9ecef;
+}
+
+/* Gráficos */
+.plotly-graph-div {
+    border-radius: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .kpi-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Inicialización del tema */
+:root {
+    color-scheme: light dark;
+}
+
+/* ============================================================================
+   ESTILOS PARA SIDEBAR Y NAVEGACIÓN
+   ============================================================================ */
+
+/* Navegación lateral */
+.nav-main-tab {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-main-tab:hover {
+    background-color: rgba(0, 111, 179, 0.1);
+    transform: translateX(5px);
+}
+
+.nav-main-tab.active {
+    background-color: var(--primary-color);
+    color: white !important;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.sub-nav {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-left: 2px solid transparent;
+}
+
+.sub-nav:hover {
+    background-color: rgba(168, 183, 199, 0.1);
+    border-left-color: var(--accent-color);
+    transform: translateX(3px);
+}
+
+.sub-nav.active {
+    background-color: var(--accent-color);
+    color: white !important;
+    border-left-color: var(--primary-color);
+}
+
+/* Íconos profesionales */
+.nav-icon {
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.nav-icon:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* Mejoras para íconos en modo oscuro */
+[data-theme="dark"] .nav-icon {
+    filter: brightness(1.3) contrast(1.1);
+}
+
+/* Estilos específicos para modo oscuro */
+[data-theme="dark"] .list-group-item {
+    background-color: var(--surface) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .list-group-item:hover {
+    background-color: var(--bg-tertiary) !important;
+    border-color: var(--primary-color) !important;
+}
+
+[data-theme="dark"] .card {
+    background-color: var(--surface) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .card-header {
+    background-color: var(--bg-tertiary) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Dropdowns en modo oscuro */
+[data-theme="dark"] .dropdown-menu {
+    background-color: var(--surface) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .dropdown-item {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .dropdown-item:hover {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--primary-color) !important;
+}
+
+/* Sidebar responsive */
+@media (max-width: 991px) {
+    .sidebar-container {
+        position: fixed;
+        left: -100%;
+        top: 80px;
+        height: calc(100vh - 80px);
+        z-index: 1000;
+        transition: left 0.3s ease;
+    }
+    
+    .sidebar-container.show {
+        left: 0;
+    }
+    
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: none;
+    }
+    
+    .sidebar-overlay.show {
+        display: block;
+    }
+}
+
+/* Filtros mejorados */
+.filter-section {
+    background-color: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.filter-section label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Range slider personalizado */
+.rc-slider {
+    margin: 1rem 0;
+}
+
+.rc-slider-track {
+    background-color: var(--primary-color);
+}
+
+.rc-slider-handle {
+    border-color: var(--primary-color);
+}
+
+.rc-slider-handle:hover {
+    border-color: var(--accent-color);
+}
+
+/* Breadcrumb personalizado */
+.breadcrumb {
+    background-color: transparent;
+    padding: 0.5rem 0;
+}
+
+.breadcrumb-item a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.breadcrumb-item.active {
+    color: var(--text-secondary);
+}
+
+/* Mejoras específicas para modo oscuro - Sidebar */
+[data-theme="dark"] .nav-main-tab {
+    color: var(--text-secondary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .nav-main-tab:hover {
+    background-color: rgba(74, 159, 231, 0.1);
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .nav-main-tab.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+[data-theme="dark"] .sub-nav {
+    color: var(--text-muted);
+    background-color: var(--surface);
+}
+
+[data-theme="dark"] .sub-nav:hover {
+    background-color: rgba(149, 165, 184, 0.1);
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .sub-nav.active {
+    background-color: var(--accent-color);
+    color: var(--white);
+}
+
+[data-theme="dark"] .filter-section {
+    background-color: var(--surface);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .breadcrumb-item a {
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .breadcrumb-item.active {
+    color: var(--text-secondary);
+}
+
+/* ============================================================================
+   CLASES BOOTSTRAP EXTENDIDAS CON PALETA OFICIAL
+   ============================================================================ */
+
+/* Colores de fondo */
+.bg-primary-custom { background-color: var(--primary-color) !important; }
+.bg-secondary-custom { background-color: var(--secondary-color) !important; }
+.bg-tertiary-custom { background-color: var(--tertiary-color) !important; }
+.bg-accent-custom { background-color: var(--accent-color) !important; }
+.bg-neutral-custom { background-color: var(--neutral-color) !important; }
+.bg-purple { background-color: var(--purple) !important; }
+.bg-orange { background-color: var(--orange) !important; }
+.bg-orange-light { background-color: var(--orange-light) !important; }
+.bg-green { background-color: var(--green) !important; }
+
+/* Colores de texto */
+.text-primary-custom { color: var(--primary-color) !important; }
+.text-secondary-custom { color: var(--secondary-color) !important; }
+.text-tertiary-custom { color: var(--tertiary-color) !important; }
+.text-accent-custom { color: var(--accent-color) !important; }
+.text-gray-dark { color: var(--gray-dark) !important; }
+.text-gray-medium { color: var(--gray-medium) !important; }
+.text-purple { color: var(--purple) !important; }
+.text-orange { color: var(--orange) !important; }
+.text-orange-light { color: var(--orange-light) !important; }
+.text-green { color: var(--green) !important; }
+
+/* Colores de borde */
+.border-primary-custom { border-color: var(--primary-color) !important; }
+.border-secondary-custom { border-color: var(--secondary-color) !important; }
+.border-accent-custom { border-color: var(--accent-color) !important; }
+
+/* Botones con paleta personalizada */
+.btn-primary-custom {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary-custom:hover {
+    background-color: #005A93;
+    border-color: #005A93;
+    color: var(--white);
+}
+
+.btn-secondary-custom {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: var(--white);
+}
+
+.btn-secondary-custom:hover {
+    background-color: #FE4B4B;
+    border-color: #FE4B4B;
+    color: var(--white);
+}
+
+.btn-outline-primary-custom {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline-primary-custom:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* Badges personalizados */
+.badge-primary-custom {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.badge-secondary-custom {
+    background-color: var(--secondary-color);
+    color: var(--white);
+}
+
+.badge-success-custom {
+    background-color: var(--green);
+    color: var(--white);
+}
+
+.badge-warning-custom {
+    background-color: var(--orange);
+    color: var(--white);
+}
+
+/* Alertas personalizadas */
+.alert-primary-custom {
+    background-color: rgba(0, 111, 179, 0.1);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.alert-secondary-custom {
+    background-color: rgba(254, 101, 101, 0.1);
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+/* ========================================
+   PANTALLA DE BIENVENIDA
+======================================== */
+.welcome-screen {
+    animation: fadeIn 0.5s ease-in;
+}
+
+.welcome-screen .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.welcome-screen .hover-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2) !important;
+}
+
+.welcome-screen h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.welcome-screen .lead {
+    color: rgba(255,255,255,0.9);
+    font-size: 1.1rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+

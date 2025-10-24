@@ -1,0 +1,60 @@
+# Core Dash
+dash==2.14.2
+dash-bootstrap-components==1.5.0
+dash-auth==2.0.0
+
+# Data Processing
+pandas==2.1.4
+numpy==1.26.2
+polars==0.20.3  # Alternativa más rápida a pandas
+
+# Visualización
+plotly==5.18.0
+folium==0.15.1
+
+# Mapas y Geoespacial
+geopandas==0.14.1
+shapely==2.0.2
+pyproj==3.6.1
+
+# Bases de Datos
+sqlalchemy==2.0.23
+pyodbc==5.0.1  # SQL Server
+psycopg2-binary==2.9.9  # PostgreSQL
+pymysql==1.1.0  # MySQL
+pymongo==4.6.1  # MongoDB (opcional)
+
+# SharePoint Integration
+Office365-REST-Python-Client==2.5.3
+shareplum==0.5.1
+
+# Excel/CSV
+openpyxl==3.1.2
+xlrd==2.0.1
+pyarrow==14.0.2  # Para archivos Parquet
+
+# Autenticación y Seguridad
+bcrypt==4.1.2
+python-dotenv==1.0.0
+pyjwt==2.8.0
+
+# Generación de Reportes
+reportlab==4.0.7  # PDFs
+python-docx==1.1.0  # Word
+jinja2==3.1.2
+
+# Utilidades
+python-dateutil==2.8.2
+pytz==2023.3.post1
+requests==2.31.0
+
+# Cache
+redis==5.0.1
+flask-caching==2.1.0
+
+# Logging
+loguru==0.7.2
+
+# Testing (opcional, ver requirements-dev.txt)
+# pytest==7.4.3
+# pytest-cov==4.1.0
