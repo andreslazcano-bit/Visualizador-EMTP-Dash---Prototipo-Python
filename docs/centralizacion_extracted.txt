@@ -1,0 +1,102 @@
+Plan para la Gestión de Proyectos y Rendiciones
+1. Situación Actual
+Actualmente, los datos de proyectos destinados a establecimientos (con RBD), universidades, sostenedores y otras instituciones se encuentran dispersos en múltiples archivos Excel dentro de SharePoint. Los principales problemas identificados son:
+Actualmente en SharePoint,   se encuentra dentro de la carpeta General de la Secretaria Ejecutiva  EMTP; se ubica la carpeta de gestión 07_Equipo Gestión, en la cual se almacena la información financiera  por tipos de proyectos (estos son los concursos por convenio, año que  ha realizado la Secretaria Ejecutiva Técnica EMTP).  Por ejemplo:  001. Equipamiento EMTP. 
+Al ingresar a la carpeta se visualizan las Planillas excel " Equipamiento EMTP 2020" eestas planillas contienen información financiera de los proyectos, separadas por año, a pesar de ser el mimo tipo de proyecto, los campos dentro de las planillas no son los mismos.
+De esta forma se encuentran definidas las carpetas desde la 001 a 004, por tipo de proyectos, y cada una de ellas contiene información. 
+001 EMTP
+002 EQUIPAMIENTO EMTP
+003 EQUIPAMIENTO SLEP
+004 APOYO SLEP
+ Algunos efectos que ha provocado, primero como se guarda la información financiera y segundo los requisitos que han ido evolucionando de como se muestra la información, no han hecho más que aumentar campos en cada una de ellas más que unificarlos.
+ En este contexto se produce la Inconsistencia de formatos entre archivos y años:
+Datos incompletos, duplicados o incorrectos.
+Falta de alertas sobre vencimiento de rendiciones y revisiones.
+Dificultad para consolidar información y generar reportes comparativos.
+Esto provoca retrasos, errores y pérdida de trazabilidad en la gestión de proyectos.
+2. Objetivos
+El objetivo principal es implementar un sistema integral que permita:
+Centralizar y estandarizar la información de todos los proyectos.
+Automatizar la extracción, transformación y carga de datos (ETL) usando Power Automate (R, Python u otro con ayuda de TI).
+Habilitar dashboards en Power BI (u otro) para monitoreo y análisis por institución, tipo de proyecto, rendiciones y año.
+Generar alertas automáticas sobre rendiciones próximas a vencer, vencidas y revisiones pendientes.
+Mantener compatibilidad con el flujo actual: los usuarios pueden seguir trabajando en sus Excel base mientras el sistema mantiene una base limpia y centralizada.
+3. Fases del Plan
+Se detallan las fases, objetivos, acciones y posibles roles:
+Fase 1: Diagnóstico y Levantamiento
+Objetivo: Conocer el estado actual de las bases de datos 
+Responsable: Practicante
+Acciones:
+Inventariar todas las bases existentes por tipo de institución (RBD, universidades, sostenedores, otros).
+Identificar variables comunes y diferencias entre archivos y años.
+Detectar problemas críticos: datos faltantes, duplicados, inconsistencias y errores en fechas de rendición.
+Revisar cómo se registran fechas clave: inicio de proyecto, rendición y vencimiento. 
+Tareas para Practicante:
+Recopilar información y organizarla en un inventario completo.
+Apoyar en la identificación de variables comunes y discrepancias.
+Documentar problemas encontrados y colaborar en la redacción del reporte de diagnóstico. 
+Entregable:
+Inventario completo de bases con problemas detectados.
+Propuesta de priorización de años a trabajar, considerando:
+Disponibilidad y calidad de la información.
+Complejidad de estandarización por año.
+Relevancia de los años para los análisis actuales.
+Fase 2: Estandarización de Datos
+Objetivo: Crear un modelo unificado que permita clasificar y filtrar proyectos por institución, tipo y año 
+Responsable: Gaba y Practicante
+Acciones:
+Definir un diccionario de datos institucional con variables obligatorias: RBD, nombre de institución, tipo de proyecto, año, monto, fechas de rendición y revisión, responsable, etc.
+Diseñar un modelo de datos unificado para todos los años y tipos de institución.
+Establecer reglas de limpieza y validación: formatos de fecha, consistencia de RBD, validación de montos y duplicados. 
+Tareas para practicante:
+Colaborar en la recopilación de información para el diccionario de datos.
+Revisar y clasificar campos de Excel según categorías definidas.
+Validar formatos y datos básicos, asegurando consistencia inicial.
+Actualizar las BBDD siguiendo el nuevo modelo de datos.
+Entregable:
+Diccionario de datos institucional.
+Esquema del modelo de datos unificado listo para migración (unificar bases por proyectos).
+Fase 3: Piloto
+Objetivo: Validar estandarización y crear primer dashboard.
+Responsable: Por definir
+Acciones (Practicante?):
+Preparar y organizar los archivos Excel para la prueba piloto (considerando 2 años).
+Apoyar en pruebas de carga de datos en Power BI.
+Revisar que las alertas de vencimiento funcionen correctamente para un subconjunto de proyectos.
+Documentar incidencias encontradas durante la prueba.
+Fase 4: Centralización y Automatización
+Objetivo: Consolidar todas las bases y automatizar la carga y alertas. 
+Responsable: Por definir
+Acciones:
+Migrar todas las bases históricas al repositorio central (en principio SharePoint estructurado)
+Automatizar procesos de ETL mediante Power Automate (u otro con ayuda de TI): carga, limpieza y validación de datos nuevos.
+Programar alertas automáticas: rendiciones próximas a vencer, vencidas y revisiones pendientes (enviar correo y teams).
+Establecer permisos y roles según tipo de usuario (responsables de proyecto, supervisores, equipo de control). 
+Otras tareas (¿practicante?):
+Revisar archivos nuevos subidos a SharePoint y asegurar cumplimiento de estructura.
+Supervisar el correcto funcionamiento de flujos ETL y alertas.
+Registrar incidencias, reportarlas y mantener documentación actualizada. 
+Entregable:
+Base centralizada completa y actualizable.
+Sistema de alertas configurado según responsables.
+Integración con Excel base para carga automática y limpieza de datos.
+Fase 5: Gobernanza, Protocolos y Capacitación
+Objetivo: Garantizar sostenibilidad y uso correcto del sistema. 
+Responsable: Equipo Gestión
+Acciones:
+Definir roles y responsabilidades: carga de datos, validación, seguimiento y control de alertas.
+Elaborar manuales de procedimientos y protocolos de actualización.
+Capacitar a los equipos en uso de la plataforma, lectura de dashboards y gestión de alertas.
+Definir procesos de auditoría interna para rendiciones y cumplimiento de plazos. 
+Tareas para practicante:
+Colaborar en la elaboración de manuales y protocolos.
+Apoyar en la capacitación de nuevos usuarios.
+Monitorear alertas y reportar anomalías.
+Mantener registros de auditorías internas y seguimiento de rendiciones. Entregable:
+Manual completo de procedimientos y protocolos.
+Plan de gobernanza implementado y funcional.
+4. Anexo: Flujo esperado de carga de datos
+5. Anexo: Explicación ETL
+Extract (Extraer): Tomar datos de Excel base desde SharePoint.
+Transform (Transformar): Limpiar, validar y unificar datos según reglas establecidas (fechas, RBD, montos, duplicados).
+Load (Cargar): Guardar datos en la base central, listos para dashboards y alertas.

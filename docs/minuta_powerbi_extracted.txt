@@ -1,0 +1,100 @@
+IMPLEMENTACIÓN DE UN SISTEMA DE CENTRALIZACIÓN DE DATOS EN POWER BI 
+Propuesta para la gestión de datos de la SEEMTP
+ANTECEDENTES
+La Secretaría Ejecutiva de Educación Media Técnico Profesional (SEEMTP) gestiona un volumen significativo de datos sobre estudiantes, establecimientos, docentes, recursos asignados por proyectos, la rendición de estos recursos y las especialidades beneficiadas. Sin embargo, la información se encuentra dispersa en distintas fuentes, lo que dificulta su acceso, análisis y uso eficiente en la toma de decisiones.
+Actualmente no existen roles claros para su gestión, además de disponer de información desagregada y no sistematizada, proveniente de diversas fuentes públicas e internas no estandarizadas, entre las cuales se encuentran:
+Caracterización de estudiantes y establecimientos EMTP
+Docentes del sistema EMTP
+Egresados/as y Titulados/as del sistema EMTP
+Egresados/as EMTP que están matriculados/as en la ESUP
+Proyectos de la SEEMTP y asignación de recursos a sostenedores, RBD y sus especialidades
+Rendición de los recursos asignados a la fecha
+Para abordar esta problemática, se plantea la necesidad de desarrollar una plataforma en Power BI que permita la centralización y visualización de los datos de manera eficiente, asegurando su integración y disponibilidad para la toma de decisiones interna.
+OBJETIVOS 
+Implementar un sistema de centralización de datos en Power BI que permita consolidar y visualizar información clave sobre la EMTP, facilitando la toma de decisiones basada en evidencia por parte de la SEEMTP.
+Los objetivos específicos incluyen:
+Integrar en un solo sistema datos provenientes de distintas fuentes.
+Desarrollar dashboards interactivos para la exploración y análisis de información.
+Garantizar la sostenibilidad de la plataforma para la SEEMTP.
+Capacitar a profesionales de la SEEMTP para su uso.
+ALCANCE
+El proyecto abarcará la centralización de datos en las siguientes áreas:
+Matrícula de estudiantes del sistema EMTP y su evolución.
+Titulación en EMTP y su evolución.
+Matrícula de estudiantes egresados/as EMTP que están en la Educación Superior (ESUP) y su evolución.
+Establecimientos educativos que imparten EMTP.
+Docentes que imparten módulos de especialidad en la EMTP.
+Proyectos y recursos asignados y su grado de ejecución en los últimos años.
+Especialidades beneficiadas por proyectos de equipamiento (regular y SLEP).
+Otros datos relevantes para gestión estratégica de la SEEMTP.
+El sistema debe permitir consultas y visualizaciones dinámicas, con acceso restringido según el rol del usuario dentro de la SEEMTP.
+METODOLOGÍA DE IMPLEMENTACIÓN
+Se propone que la implementación se lleve a cabo en cinco fases:
+Diagnóstico y levantamiento de información
+RESPONSABLE: Equipo Políticas
+Carta Gantt con plazos estimados por fase.
+Identificación y caracterización de fuentes de datos (públicas e internas).
+Levantamiento de requerimientos funcionales y técnicos con equipos SEEMTP y contraparte TI.
+Diseño del modelo de datos
+RESPONSABLE: Equipo Políticas, Coordinación y Profesional externo/a, Contraparte TI
+Definición de estructura y relaciones entre bases de datos.
+Establecimiento de protocolos de integración, limpieza y actualización.
+Vinculación con plataformas MINEDUC para estandarización y sostenibilidad.
+Desarrollo en Power BI
+RESPONSABLE: Equipo Políticas y Profesional externo/a
+Construcción del modelo y visualizaciones interactivas.
+Configuración de accesos y roles.
+Testeo de rendimiento, reporte y escalabilidad
+Validación y pruebas
+RESPONSABLE: Equipo Políticas y Profesional externo/a, Contraparte TI
+Revisión con equipos internos de la SEEMTP.
+Pruebas de uso, carga, validación de datos y ajustes necesarios.
+Evaluación de experiencia usuaria.
+Ajustes y optimización del sistema.
+Capacitación y documentación
+RESPONSABLE: Equipo Políticas, Coordinación y Profesional externo/a
+Elaboración de manuales de uso y protocolos de actualización.
+Socialización y capacitación a profesionales de la SEEMTP.
+PERFIL DEL/LA PROFESIONAL EXTERNO/A REQUERIDO
+Experiencia demostrable en desarrollo de reportes y dashboards en Power BI, incluyendo modelado de datos, medidas DAX, relaciones entre tablas y optimización de rendimiento.
+Conocimiento sólido en integración de datos provenientes de múltiples fuentes (Excel, CSV, bases SQL, SharePoint, APIs) y en modelado de datos relacionales y dimensionales.
+Deseable experiencia en el sector educativo o en análisis de datos en educación, especialmente en centralización y estandarización de información de distintos sistemas.
+Capacidad para documentar procesos de carga, transformación y visualización de datos, asegurando replicabilidad y sostenibilidad del sistema.
+PLAZOS Y PRODUCTOS ESPERADOS
+Se estima un plazo de 2 meses para la ejecución del proyecto, con los siguientes entregables:
+Levantamiento y documentación de la información relevante para la centralización del sistema de datos, incluyendo fuentes, variables, perfilamiento de datos y criterios de calidad.
+Modelo de datos validado y normalizado, con relaciones claras y medidas DAX implementadas.
+Dashboards y reportes interactivos en Power BI, configurados para actualizarse automáticamente y con lineamientos de visualización consistentes.
+Protocolos y manuales de uso detallados, incluyendo pautas de actualización de datos, mantenimiento del modelo y capacitación para usuarios internos.
+ANEXO 1: DETALLE DE VISUALIZACIONES ESPERADAS EN POWER BI
+Se espera que el sistema incluya, al menos, los siguientes tableros:
+Matrícula EMTP
+Evolución anual por región, comuna, RBD, especialidad, estudiantes extranjeros, ruralidad y género (últimos 5 años).
+Comparación con matrícula total del sistema escolar y HC (3° y 4° Medio).
+Tasa de retención.
+Egresados EMTP en ESUP
+Tasa de transición a la ESUP (al año de egreso y a los tres años de egreso).
+Áreas y Carreras elegidas, tipo de institución, región, género.
+Comparación por especialidad de egreso, región y género.
+Titulación EMTP
+Número de egresados/as y titulados/as por cohorte (últimos 10 años).
+Tasa de titulación y su evolución por año (% titulados/as respecto de egresados/as al año y a los tres años de egreso).
+Comparación por especialidad, región, género y dependencia.
+Establecimientos EMTP
+Número de establecimientos EMTP por región y comuna.
+Dependencia, SLEP y tipo de administración.
+Número y tipo de especialidades impartidas por establecimiento.
+Evolución de apertura/cierre de especialidades.
+Docentes de EMTP
+Número total de docentes de especialidad por región, comuna y dependencia.
+Distribución por edad, género, tipo de contrato y jornada.
+Titulación pedagógica y formación técnica.
+Estabilidad laboral: permanencia año a año.
+Proyectos SEEMTP
+Asignación de recursos por año, tipo de proyecto, región y RBD.
+Comparativa anual y evolución del monto asignado.
+Nivel de ejecución financiera (ejecutado, pendiente, rendido).
+Especialidades beneficiadas.
+Todos los tableros deben permitir filtros dinámicos y exportación de datos seleccionados.
+ANEXO 2: BRECHAS Y PLAN DE ACCIÓN CON RESPONSABLES
+ANEXO 3: TABLA MAESTRA DE FUENTES DE DATOS

@@ -2,7 +2,76 @@
 
 Esta carpeta contiene documentos técnicos y funcionales del proyecto.
 
-## Índice de documentos
+---
+
+## 🎯 Documentos Principales para Presentación Institucional
+
+### 📄 [PROPUESTA_TECNICA_INTEGRAL.md](PROPUESTA_TECNICA_INTEGRAL.md) ⭐ NUEVO
+**Documento completo para presentación institucional** (20+ páginas)
+
+Integra las propuestas de **centralización de datos** (Fase I) y **visualización interactiva** (Fase II) en un solo documento estructurado.
+
+**Incluye:**
+- Contexto y problemática actual (SharePoint desorganizado + datos fragmentados)
+- Fase I: Centralización de datos (8 semanas, ETL automático, alertas)
+- Fase II: Plataforma de visualización (6 semanas, 6 dashboards interactivos)
+- Arquitectura técnica detallada (Python/Dash, diagramas, código ejemplo)
+- Cronograma y Carta Gantt
+- Presupuesto detallado ($16.7M CLP)
+- Equipo requerido y perfiles
+- Beneficios cuantitativos y cualitativos
+- Anexos técnicos (diccionario de datos, ETL, mockups)
+
+**Audiencia:** Dirección SEEMTP, Coordinación, TI MINEDUC
+
+---
+
+### 📄 [RESUMEN_EJECUTIVO.md](RESUMEN_EJECUTIVO.md) ⭐ NUEVO
+**Versión resumida para reuniones rápidas** (4 páginas)
+
+Perfecto para presentaciones ejecutivas de 15-20 minutos.
+
+**Incluye:**
+- Resumen del problema (Antes vs Después)
+- Solución en 2 fases con cronograma visual
+- Comparativa de impacto (-85% tiempo reportes, -87% errores)
+- Presupuesto resumido
+- Próximos pasos claros
+- FAQs anticipadas
+
+**Audiencia:** Reuniones ejecutivas, aprobaciones rápidas
+
+---
+
+## 📋 Documentos de Origen (Referencia)
+
+### 📄 Centralizacion Proyectos Gestión - Propuesta.docx
+Propuesta original de centralización de datos de proyectos en SharePoint.
+
+**Contenido clave:**
+- Situación actual de datos en carpeta 07_Equipo Gestión
+- Problemas identificados (dispersión, campos inconsistentes)
+- Fases propuestas: diagnóstico, estandarización, piloto, automatización
+- Roles y responsabilidades (practicante, equipo gestión)
+
+### 📄 20250922_Minuta Propuesta de Proyecto Power BI_V3_CON_BRECHAS.docx
+Propuesta original de sistema de visualización (Power BI).
+
+**Contenido clave:**
+- Antecedentes: datos EMTP dispersos
+- Objetivos: centralización y dashboards
+- Alcance: 7 módulos de datos (matrícula, titulación, docentes, proyectos, etc.)
+- Metodología: 5 fases de implementación
+- Perfil profesional externo requerido
+- Visualizaciones esperadas detalladas
+
+> **Nota:** Estos documentos fueron la base para crear **PROPUESTA_TECNICA_INTEGRAL.md**, que los integra y actualiza con la solución técnica actual (Python/Dash en lugar de Power BI).
+
+---
+
+## 🛠️ Índice de Documentos Técnicos del Proyecto
+
+
 
 - ARQUITECTURA.md – Arquitectura general de la aplicación
 - INDICE.md – Índice de documentación y convenciones
