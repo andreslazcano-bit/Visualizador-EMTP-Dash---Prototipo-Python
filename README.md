@@ -7,7 +7,8 @@
 [![Status](https://img.shields.io/badge/Status-Funcional-green.svg)]()
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)]()
 
----
+--- "ngrok ERR_NGROK_8012 (connect refused)": inicia primero la app local (http://localhost:8051) y luego ejecuta `ngrok http 8051` en otra terminal.
+- "Puerto en uso (Address already in use)": liberar con `lsof -ti:8051 | xargs kill -9` o usar otro puerto en `.env` (variable `PORT`).
 
 ## ⚡ Inicio Rápido (3 pasos)
 
@@ -459,10 +460,6 @@ Proyecto bajo Licencia MIT.
 
 ---
 
-<div align="center">
-
-**⭐ Si este proyecto te fue útil, dale una estrella en GitHub ⭐**
-
 </div>
 
 ---
@@ -486,15 +483,5 @@ Este repositorio fue simplificado para centrarse en la versión v2. La documenta
 - “DuplicateIdError: `session-store`”: se consolidó el `dcc.Store(id="session-store")` sólo en `app_v2.py`. No debe aparecer en otros layouts.
 - “ngrok ERR_NGROK_8012 (connect refused)”: inicia primero la app local (http://localhost:8051) y luego ejecuta `ngrok http 8051` en otra terminal.
 - “Puerto en uso (Address already in use)”: liberar con `lsof -ti:8051 | xargs kill -9` o usar otro puerto en `.env` (variable `PORT`).
-
-## 🤝 Contacto
-
-Para preguntas o soporte, contactar al equipo de desarrollo.
-
----
-
-## 📄 Licencia
-
-[Definir licencia según institución]
 
   
