@@ -1,4 +1,4 @@
-# 📊 Visualizador EMTP - Dashboard Python/Dash
+#  Visualizador EMTP - Dashboard Python/Dash
 
 > Sistema de análisis y visualización interactiva de datos del Sistema de Educación Media Técnico-Profesional de Chile
 
@@ -7,12 +7,9 @@
 [![Status](https://img.shields.io/badge/Status-Funcional-green.svg)]()
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)]()
 
---- "ngrok ERR_NGROK_8012 (connect refused)": inicia primero la app local (http://localhost:8051) y luego ejecuta `ngrok http 8051` en otra terminal.
-- "Puerto en uso (Address already in use)": liberar con `lsof -ti:8051 | xargs kill -9` o usar otro puerto en `.env` (variable `PORT`).
+##  Inicio Rápido (3 pasos)
 
-## ⚡ Inicio Rápido (3 pasos)
-
-### 1️⃣ Clonar y preparar entorno
+### 1️ Clonar y preparar entorno
 
 ```bash
 # Clonar repositorio
@@ -29,13 +26,13 @@ source venv/bin/activate
 # venv\Scripts\activate
 ```
 
-### 2️⃣ Instalar dependencias
+### 2️ Instalar dependencias
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3️⃣ Ejecutar aplicación
+### 3️ Ejecutar aplicación
 
 ```bash
 python app_v2.py
@@ -43,7 +40,7 @@ python app_v2.py
 
 **¡Listo!** Abre tu navegador en: **http://localhost:8051**
 
-### 🌐 Compartir temporalmente (opcional)
+###  Compartir temporalmente (opcional)
 
 Si quieres compartir tu aplicación por Internet temporalmente:
 
@@ -58,15 +55,15 @@ Comparte la URL pública que muestra ngrok (ej: `https://xxxx.ngrok-free.app`)
 
 ## � Características Principales
 
-### ✨ Funcionalidades
-- **📊 Visualización Interactiva**: Gráficos dinámicos con Plotly
-- **🔍 Filtros Avanzados**: Por región, especialidad, dependencia, género, zona
-- **👥 Perfiles de Usuario**: Modo Usuario (acceso directo) y Modo Admin (con autenticación)
-- **🌓 Tema Claro/Oscuro**: Cambio de tema visual
-- **� Responsive**: Funciona en desktop, tablet y móvil
-- **� Autenticación Segura**: Sistema de login con bcrypt
+###  Funcionalidades
+- ** Visualización Interactiva**: Gráficos dinámicos con Plotly
+- ** Filtros Avanzados**: Por región, especialidad, dependencia, género, zona
+- ** Perfiles de Usuario**: Modo Usuario (acceso directo) y Modo Admin (con autenticación)
+- ** Tema Claro/Oscuro**: Cambio de tema visual
+- ** Responsive**: Funciona en desktop, tablet y móvil
+- ** Autenticación Segura**: Sistema de login con bcrypt
 
-### 📈 Módulos de Análisis
+###  Módulos de Análisis
 - **Matrícula EMTP**: Evolución, demografía, retención, comparación
 - **Egresados**: Transición a educación superior, empleabilidad
 - **Titulación**: Tasas y tiempos de titulación
@@ -74,7 +71,7 @@ Comparte la URL pública que muestra ngrok (ej: `https://xxxx.ngrok-free.app`)
 - **Docentes**: Perfil profesional y capacitación
 - **Proyectos SEEMTP**: Financiamiento e impacto (solo Admin)
 
-### � Credenciales de Acceso
+###  Credenciales de Acceso
 
 **Modo Usuario**: Acceso directo sin contraseña (funcionalidad limitada)
 
@@ -85,25 +82,25 @@ Comparte la URL pública que muestra ngrok (ej: `https://xxxx.ngrok-free.app`)
 
 ---
 
-## 🏗️ Arquitectura del Proyecto
+##  Arquitectura del Proyecto
 
 ### Estructura de Archivos
 
 ```
 VisualizadorEMTP-Dash/
-├── app_v2.py                    # 🚀 Punto de entrada principal
-├── requirements.txt             # 📦 Dependencias Python
-├── README.md                    # 📖 Documentación
+├── app_v2.py                    #  Punto de entrada principal
+├── requirements.txt             #  Dependencias Python
+├── README.md                    #  Documentación
 │
-├── assets/                      # 🎨 Recursos estáticos
+├── assets/                      #  Recursos estáticos
 │   ├── custom.css              # Estilos personalizados
 │   └── theme.js                # JavaScript para temas
 │
-├── config/                      # ⚙️ Configuración
+├── config/                      #  Configuración
 │   ├── __init__.py
 │   └── settings.py             # Variables de entorno y configuración
 │
-├── data/                        # 📊 Datos
+├── data/                        #  Datos
 │   └── processed/              # CSV con datos simulados
 │       ├── matricula_simulada.csv
 │       ├── egresados_simulados.csv
@@ -112,24 +109,24 @@ VisualizadorEMTP-Dash/
 │       ├── docentes_simulados.csv
 │       └── proyectos_simulados.csv
 │
-├── src/                         # 💻 Código fuente
-│   ├── callbacks/              # 🔄 Lógica de interacción
+├── src/                         #  Código fuente
+│   ├── callbacks/              #  Lógica de interacción
 │   │   ├── auth_callbacks.py   # Autenticación y perfiles
 │   │   ├── sidebar_callbacks.py # Navegación y filtros
 │   │   └── theme_callbacks.py  # Cambio de tema
 │   │
-│   ├── layouts/                # 🖼️ Interfaces visuales
+│   ├── layouts/                #  Interfaces visuales
 │   │   ├── login_layout.py     # Pantalla de login
 │   │   ├── welcome_screen.py   # Pantalla de bienvenida
 │   │   ├── sidebar_layout_clean.py  # Layout principal con sidebar
 │   │   └── real_data_content.py     # Contenido con datos
 │   │
-│   └── utils/                  # 🛠️ Utilidades
+│   └── utils/                  #  Utilidades
 │       ├── auth.py             # Gestión de autenticación
 │       ├── helpers.py          # Funciones auxiliares
 │       └── rate_limiter.py     # Control de acceso
 │
-└── logs/                        # 📝 Logs de la aplicación
+└── logs/                        #  Logs de la aplicación
     └── app.log
 ```
 
@@ -230,10 +227,10 @@ python app_v2.py
 
 Verás un mensaje como:
 ```
-🚀 Iniciando Visualizador EMTP v2.0
-📊 Entorno: development
-🌐 Host: 0.0.0.0:8051
-📁 Datos: Simulados con 36k+ registros
+Iniciando Visualizador EMTP v2.0
+Entorno: development
+Host: 0.0.0.0:8051
+Datos: Simulados con 36k+ registros
 
 Dash is running on http://0.0.0.0:8051/
 ```
@@ -241,45 +238,6 @@ Dash is running on http://0.0.0.0:8051/
 #### 6. Acceder a la aplicación
 
 Abre tu navegador en: **http://localhost:8051**
-
----
-
-## 🌐 Compartir la Aplicación
-
-### Opción 1: Red Local
-
-La aplicación es accesible desde otros dispositivos en tu red local:
-
-```
-http://[TU-IP-LOCAL]:8051
-```
-
-Para conocer tu IP local:
-```bash
-# macOS/Linux
-ifconfig | grep "inet " | grep -v 127.0.0.1
-
-# Windows
-ipconfig | findstr IPv4
-```
-
-### Opción 2: Internet (ngrok)
-
-Para compartir temporalmente por Internet:
-
-1. **Instalar ngrok** ([Descargar](https://ngrok.com/download))
-
-2. **Ejecutar ngrok** (en otra terminal, mientras la app corre):
-```bash
-ngrok http 8051
-```
-
-3. **Compartir la URL pública**:
-```
-Forwarding: https://abcd-1234.ngrok-free.app -> http://localhost:8051
-```
-
-⚠️ **Nota**: La URL de ngrok cambia cada vez que reinicias ngrok. Para URLs permanentes, considera [ngrok Pro](https://ngrok.com/pricing) o un servicio de hosting.
 
 ---
 
@@ -338,11 +296,11 @@ gunicorn app_v2:server -b 0.0.0.0:8051 --workers 4
 
 ---
 
-## � Datos y Fuentes
+## Datos y Fuentes
 
 ### Datos Simulados
 
-La aplicación incluye datos simulados basados en estadísticas reales del sistema EMTP chileno:
+La aplicación incluye datos simulados (por IA) del sistema EMTP chileno:
 
 - **36,411 registros** totales
 - **Período**: 2015-2024 (10 años)
@@ -371,18 +329,18 @@ Para más detalles, consulta `config/settings.py`.
 
 ---
 
-## 🛠️ Solución de Problemas (FAQ)
+## Solución de Problemas (FAQ)
 
 ### Errores Comunes
 
-#### ❌ "ModuleNotFoundError: No module named 'dash'"
+#### "ModuleNotFoundError: No module named 'dash'"
 ```bash
 # Solución: Activar entorno virtual e instalar dependencias
 source venv/bin/activate  # macOS/Linux
 pip install -r requirements.txt
 ```
 
-#### ❌ "Address already in use" / Puerto ocupado
+#### "Address already in use" / Puerto ocupado
 ```bash
 # Solución 1: Liberar el puerto (macOS/Linux)
 lsof -ti:8051 | xargs kill -9
@@ -391,16 +349,9 @@ lsof -ti:8051 | xargs kill -9
 PORT=8052 python app_v2.py
 ```
 
-#### ❌ "DuplicateIdError: 'session-store'"
+#### "DuplicateIdError: 'session-store'"
 **Causa**: Múltiples definiciones del mismo `dcc.Store`  
 **Solución**: Ya está corregido en la versión actual. El store solo existe en `app_v2.py`
-
-#### ❌ ngrok "ERR_NGROK_8012" (conexión rechazada)
-**Causa**: La aplicación no está corriendo  
-**Solución**:
-1. Verifica que `app_v2.py` esté ejecutándose
-2. Abre http://localhost:8051 para confirmar
-3. Luego ejecuta `ngrok http 8051` en otra terminal
 
 #### ❌ "No se muestran datos" / Gráficos vacíos
 **Causa**: Archivos CSV faltantes en `data/processed/`  
@@ -416,7 +367,7 @@ Si el problema persiste:
 
 ---
 
-## 🚀 Roadmap y Próximos Pasos
+## Roadmap y Próximos Pasos
 
 - [ ] Exportación de reportes (PDF/Excel)
 - [ ] Mapas geográficos interactivos
@@ -427,15 +378,14 @@ Si el problema persiste:
 
 ---
 
-## 📚 Recursos
+## Recursos
 
 - **Dash**: https://dash.plotly.com/
 - **Plotly**: https://plotly.com/python/
-- **MINEDUC**: https://www.mineduc.cl/
 
 ---
 
-## 👥 Créditos
+## Créditos
 
 **Desarrollado por**: Andrés Lazcano  
 **Año**: 2025
@@ -446,13 +396,13 @@ Si el problema persiste:
 
 ---
 
-## 📄 Licencia
+## Licencia
 
 Proyecto bajo Licencia MIT.
 
 ---
 
-## 🤝 Contacto
+## Contacto
 
 - **GitHub**: [@andreslazcano-bit](https://github.com/andreslazcano-bit)
 - **Repositorio**: [Visualizador-EMTP-Dash](https://github.com/andreslazcano-bit/Visualizador-EMTP-Dash---Prototipo-Python)
@@ -464,7 +414,7 @@ Proyecto bajo Licencia MIT.
 
 ---
 
-## 🔐 Seguridad
+## Seguridad
 
 - Autenticación con bcrypt
 - Variables de entorno para credenciales
@@ -473,15 +423,7 @@ Proyecto bajo Licencia MIT.
 - Logging de accesos
 
 ---
-## 📝 Documentación
+## Documentación
 Este repositorio fue simplificado para centrarse en la versión v2. La documentación se concentra en este README.
 
 ---
-
-## 🧰 Solución de problemas (FAQ)
-
-- “DuplicateIdError: `session-store`”: se consolidó el `dcc.Store(id="session-store")` sólo en `app_v2.py`. No debe aparecer en otros layouts.
-- “ngrok ERR_NGROK_8012 (connect refused)”: inicia primero la app local (http://localhost:8051) y luego ejecuta `ngrok http 8051` en otra terminal.
-- “Puerto en uso (Address already in use)”: liberar con `lsof -ti:8051 | xargs kill -9` o usar otro puerto en `.env` (variable `PORT`).
-
-  
