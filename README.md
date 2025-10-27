@@ -40,20 +40,9 @@ python app_v2.py
 
 **¡Listo!** Abre tu navegador en: **http://localhost:8051**
 
-###  Compartir temporalmente (opcional)
-
-Si quieres compartir tu aplicación por Internet temporalmente:
-
-```bash
-# En otra terminal (mientras app_v2.py sigue corriendo)
-ngrok http 8051
-```
-
-Comparte la URL pública que muestra ngrok (ej: `https://xxxx.ngrok-free.app`)
-
 ---
 
-## � Características Principales
+## Características Principales
 
 ###  Funcionalidades
 - ** Visualización Interactiva**: Gráficos dinámicos con Plotly
@@ -159,7 +148,7 @@ VisualizadorEMTP-Dash/
 
 ---
 
-## 💻 Guía de Instalación Detallada
+## Guía de Instalación Detallada
 
 ### Requisitos del Sistema
 
@@ -241,7 +230,7 @@ Abre tu navegador en: **http://localhost:8051**
 
 ---
 
-## 🔧 Configuración Avanzada
+## Configuración Avanzada
 
 ### Variables de Entorno
 
@@ -353,7 +342,7 @@ PORT=8052 python app_v2.py
 **Causa**: Múltiples definiciones del mismo `dcc.Store`  
 **Solución**: Ya está corregido en la versión actual. El store solo existe en `app_v2.py`
 
-#### ❌ "No se muestran datos" / Gráficos vacíos
+#### "No se muestran datos" / Gráficos vacíos
 **Causa**: Archivos CSV faltantes en `data/processed/`  
 **Solución**: Los CSVs simulados deberían estar en el repositorio. Si faltan, la app mostrará placeholders.
 
