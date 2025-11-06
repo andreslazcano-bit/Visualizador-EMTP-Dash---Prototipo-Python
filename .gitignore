@@ -48,6 +48,12 @@ venv.bak/
 .env
 .env.local
 .env.*.local
+
+# ============================================================================
+# Datos Grandes (Simulados)
+# ============================================================================
+data/processed/matricula_comunal_simulada.csv
+# Se puede regenerar con: python scripts/generate_comunal_data.py
 *.env
 
 # ============================================================================

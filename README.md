@@ -78,20 +78,31 @@ python app_v2.py
 ## Nuevo: Mapas Geográficos
 
 ### Características de los Mapas
-- **GeoJSON Real**: Utiliza geometría auténtica de Chile desde [fcortes/Chile-GeoJSON](https://github.com/fcortes/Chile-GeoJSON)
-- **Mapas Choropleth**: Regiones coloreadas según intensidad de datos
-- **16 Regiones**: Cobertura completa del territorio nacional
+- **Dos Niveles de Granularidad**:
+  - **Regional**: 16 regiones de Chile con GeoJSON desde [fcortes/Chile-GeoJSON](https://github.com/fcortes/Chile-GeoJSON)
+  - **Comunal**: 345 comunas con shapefile oficial de la Biblioteca del Congreso Nacional de Chile
+- **Mapas Choropleth**: Territorios coloreados según intensidad de datos
 - **Colores Degradados**: Escalas de color institucionales
 - **Interactividad**: Tooltips con información detallada al pasar el cursor
 - **Dos Visualizaciones**:
-  - Mapa de Matrícula EMTP por región
-  - Mapa de Establecimientos por región
+  - Mapa de Matrícula EMTP por territorio
+  - Mapa de Establecimientos por territorio
+- **Selector Dinámico**: Cambia entre vista regional y comunal en tiempo real
 
 ### Tecnología de Mapas
 - **Plotly Choropleth Mapbox**: Visualizaciones geográficas profesionales
 - **OpenStreetMap**: Capa base de mapa
-- **GeoJSON Dinámico**: Carga en tiempo real desde repositorio público
-- **Geometría Realista**: Coastlines, borders y fronteras reales de Chile
+- **GeoJSON Dinámico**: Carga desde GitHub (regiones) y local (comunas)
+- **Geometría Oficial**: 
+  - Regiones: fcortes/Chile-GeoJSON
+  - Comunas: Shapefile oficial BCN (Biblioteca del Congreso Nacional)
+- **GeoPandas**: Procesamiento de datos geoespaciales
+- **142,000+ registros comunales**: Datos simulados distribuidos estadísticamente
+
+### Fuentes de Datos Geográficos
+- **Regiones**: [https://github.com/fcortes/Chile-GeoJSON](https://github.com/fcortes/Chile-GeoJSON)
+- **Comunas**: División Política y Administrativa de Chile, Biblioteca del Congreso Nacional
+- **Datos de Matrícula**: Simulados con distribución estadística realista
 
 ---
 
@@ -110,14 +121,49 @@ VisualizadorEMTP-Dash/
 │   ├── navigation.js           # Script para navegación activa
 │   └── theme.js                # JavaScript para temas
 │
+├── Comunas/                     # Datos geográficos oficiales
+│   └── comunas.shp             # Shapefile BCN (+ archivos auxiliares)
+│
 ├── config/                      # Configuración
 │   ├── __init__.py
 │   └── settings.py             # Variables de entorno
 │
 ├── data/                        # Datos
 │   └── processed/              # CSV con datos simulados
-│       ├── matricula_simulada.csv
+│       ├── matricula_simulada.csv          # Datos regionales
+│       ├── matricula_comunal_simulada.csv  # Datos comunales (142k registros)
 │       ├── egresados_simulados.csv
+│       ├── titulacion_simulada.csv
+│       ├── establecimientos_simulados.csv
+│       ├── docentes_simulados.csv
+│       └── proyectos_simulados.csv
+│
+├── scripts/                     # Scripts de utilidad
+│   ├── generate_comunal_data.py  # Generador de datos comunales
+│   └── test_connections.py
+│
+├── src/                         # Código fuente
+│   ├── callbacks/              # Lógica de interacción
+│   │   ├── auth_callbacks.py   # Autenticación y perfiles
+│   │   ├── sidebar_callbacks.py # Navegación y filtros
+│   │   ├── mapas_callbacks.py  # Cambio de granularidad en mapas
+│   │   └── theme_callbacks.py  # Cambio de tema
+│   │
+│   ├── layouts/                # Interfaces visuales
+│   │   ├── login_layout.py     # Pantalla de login
+│   │   ├── welcome_screen.py   # Pantalla de bienvenida
+│   │   ├── sidebar_layout_clean.py  # Layout principal con sidebar
+│   │   ├── mapas.py            # Layout de mapas geográficos (regional y comunal)
+│   │   └── real_data_content.py     # Contenido con datos
+│   │
+│   └── utils/                  # Utilidades
+│       ├── auth.py             # Gestión de autenticación
+│       ├── helpers.py          # Funciones auxiliares
+│       └── rate_limiter.py     # Control de acceso
+│
+└── logs/                        # Logs de la aplicación
+    └── app.log
+```
 │       ├── titulacion_simulada.csv
 │       ├── establecimientos_simulados.csv
 │       ├── docentes_simulados.csv

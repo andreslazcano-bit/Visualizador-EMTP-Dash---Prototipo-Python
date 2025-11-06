@@ -19,6 +19,9 @@ from src.callbacks.sidebar_callbacks import register_sidebar_callbacks
 from src.callbacks.theme_callbacks import register_theme_callbacks
 from src.callbacks.auth_callbacks import register_auth_callbacks
 
+# Importar callbacks de mapas (usan decorador @callback)
+import src.callbacks.mapas_callbacks  # noqa: F401
+
 # ============================================================================
 # CONFIGURACIÓN DE LOGGING
 # ============================================================================

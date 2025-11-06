@@ -4,6 +4,7 @@ LAYOUT DE MAPA DE CHILE - MATRÍCULA Y ESTABLECIMIENTOS
 ============================================================================
 Visualización geográfica de la distribución de matrícula y establecimientos EMTP
 Usa choroplethmapbox con GeoJSON real de Chile
+Soporta visualización a nivel regional y comunal
 """
 
 import dash_bootstrap_components as dbc
@@ -13,6 +14,8 @@ import plotly.express as px
 import pandas as pd
 import json
 import urllib.request
+import geopandas as gpd
+from pathlib import Path
 
 
 def get_chile_geojson():
@@ -42,6 +45,37 @@ def get_chile_geojson():
         
     except Exception as e:
         print(f"Error cargando GeoJSON: {e}")
+        return None
+
+
+def get_comunas_geojson():
+    """
+    Obtiene el GeoJSON de las comunas de Chile desde el shapefile local
+    Fuente: Biblioteca del Congreso Nacional de Chile
+    """
+    try:
+        # Ruta al shapefile de comunas
+        base_dir = Path(__file__).parent.parent.parent
+        shapefile_path = base_dir / "Comunas" / "comunas.shp"
+        
+        if not shapefile_path.exists():
+            print(f"⚠ Shapefile no encontrado en: {shapefile_path}")
+            return None
+        
+        # Leer shapefile con geopandas
+        gdf = gpd.read_file(shapefile_path)
+        
+        # Filtrar "Zona sin demarcar" (codregion = 0)
+        gdf = gdf[gdf['codregion'] != 0].copy()
+        
+        # Convertir a GeoJSON
+        geojson_data = json.loads(gdf.to_json())
+        
+        print(f"✓ GeoJSON comunal cargado: {len(gdf)} comunas")
+        return geojson_data
+        
+    except Exception as e:
+        print(f"Error cargando GeoJSON comunal: {e}")
         return None
 
 
@@ -240,6 +274,221 @@ def create_establecimientos_map():
     return fig
 
 
+def create_chile_comunas_map():
+    """
+    Crea mapa coroplético de Chile con distribución de matrícula EMTP por comuna
+    Usa datos del shapefile oficial de la Biblioteca del Congreso Nacional
+    """
+    # Cargar GeoJSON de comunas
+    geojson = get_comunas_geojson()
+    
+    if geojson is None:
+        return go.Figure().add_annotation(
+            text="Error cargando datos comunales",
+            xref="paper", yref="paper",
+            x=0.5, y=0.5, showarrow=False,
+            font=dict(size=16, color="#B35A5A")
+        )
+    
+    # Cargar datos comunales desde CSV
+    try:
+        base_dir = Path(__file__).parent.parent.parent
+        data_path = base_dir / "data" / "processed" / "matricula_comunal_simulada.csv"
+        
+        if not data_path.exists():
+            return go.Figure().add_annotation(
+                text="Datos comunales no disponibles",
+                xref="paper", yref="paper",
+                x=0.5, y=0.5, showarrow=False,
+                font=dict(size=16, color="#B35A5A")
+            )
+        
+        # Leer y agregar datos por comuna (suma de todos los años y especialidades)
+        df_full = pd.read_csv(data_path)
+        df = df_full.groupby(['cod_comuna', 'comuna', 'region']).agg({
+            'matricula_total': 'sum'
+        }).reset_index()
+        df.columns = ['cod_comuna', 'Comuna', 'Region', 'Matricula']
+        
+        # Crear figura de choropleth
+        fig = px.choropleth_mapbox(
+            df, 
+            geojson=geojson,
+            locations='cod_comuna',
+            featureidkey="properties.cod_comuna",
+            color='Matricula',
+            color_continuous_scale=[
+                [0.0, '#FFF8DC'],    # Beige claro (mínimo)
+                [0.2, '#FFEAA7'],    # Amarillo suave
+                [0.4, '#DFE6E9'],    # Gris azulado
+                [0.6, '#74B9FF'],    # Azul medio
+                [0.8, '#5A6E79'],    # Gris azul oscuro Shiny
+                [1.0, '#1A2935']     # Azul muy oscuro (máximo)
+            ],
+            hover_name='Comuna',
+            hover_data={
+                'cod_comuna': False,
+                'Region': True,
+                'Matricula': ':,',
+            },
+            labels={
+                'Matricula': 'Matrícula Total',
+                'Region': 'Región'
+            },
+            zoom=3.2,
+            center={"lat": -35, "lon": -71},
+            mapbox_style='open-street-map',
+            opacity=0.7
+        )
+        
+        fig.update_layout(
+            title={
+                'text': 'Distribución de Matrícula EMTP por Comuna',
+                'font': {'size': 18, 'color': '#34536A', 'family': 'Segoe UI, sans-serif'},
+                'x': 0.5,
+                'xanchor': 'center'
+            },
+            margin={"r": 0, "t": 50, "l": 0, "b": 0},
+            height=700,
+            paper_bgcolor='white',
+            coloraxis_colorbar=dict(
+                title="Matrícula",
+                thickness=20,
+                len=0.7,
+                tickformat=','
+            )
+        )
+        
+        return fig
+        
+    except Exception as e:
+        print(f"Error creando mapa comunal: {e}")
+        return go.Figure().add_annotation(
+            text=f"Error: {str(e)}",
+            xref="paper", yref="paper",
+            x=0.5, y=0.5, showarrow=False,
+            font=dict(size=14, color="#B35A5A")
+        )
+
+
+def create_establecimientos_comunas_map():
+    """
+    Crea mapa coroplético de establecimientos por comuna
+    """
+    # Cargar GeoJSON de comunas
+    geojson = get_comunas_geojson()
+    
+    if geojson is None:
+        return go.Figure().add_annotation(
+            text="Error cargando datos comunales",
+            xref="paper", yref="paper",
+            x=0.5, y=0.5, showarrow=False,
+            font=dict(size=16, color="#B35A5A")
+        )
+    
+    # Para este mapa, vamos a contar el número de establecimientos únicos por comuna
+    # basado en los datos comunales (aproximación)
+    try:
+        base_dir = Path(__file__).parent.parent.parent
+        data_path = base_dir / "data" / "processed" / "matricula_comunal_simulada.csv"
+        
+        if not data_path.exists():
+            return go.Figure().add_annotation(
+                text="Datos comunales no disponibles",
+                xref="paper", yref="paper",
+                x=0.5, y=0.5, showarrow=False,
+                font=dict(size=16, color="#B35A5A")
+            )
+        
+        # Leer datos comunales
+        df_full = pd.read_csv(data_path)
+        
+        # Estimar número de establecimientos por comuna
+        # (contando combinaciones únicas de especialidad y dependencia)
+        df = df_full.groupby(['cod_comuna', 'comuna', 'region']).agg({
+            'matricula_total': 'sum',
+            'especialidad': 'nunique',  # Aproximación: distintas especialidades
+            'dependencia': 'nunique'
+        }).reset_index()
+        
+        # Estimación simple: cada combinación especialidad-dependencia podría ser un EE
+        df['Establecimientos'] = (df['especialidad'] * df['dependencia'] / 3).round(0).astype(int)
+        df['Establecimientos'] = df['Establecimientos'].clip(lower=1)  # Mínimo 1
+        
+        df_plot = df[['cod_comuna', 'comuna', 'region', 'Establecimientos', 'matricula_total']].copy()
+        df_plot.columns = ['cod_comuna', 'Comuna', 'Region', 'Establecimientos', 'Matricula']
+        df_plot['Promedio'] = (df_plot['Matricula'] / df_plot['Establecimientos']).round(0)
+        
+        # Crear mapa choropleth
+        fig = px.choropleth_mapbox(
+            df_plot,
+            geojson=geojson,
+            locations='cod_comuna',
+            featureidkey="properties.cod_comuna",
+            color='Establecimientos',
+            color_continuous_scale=[
+                [0.0, '#F5E6FF'],    # Púrpura muy claro
+                [0.2, '#E6CCFF'],    # Púrpura claro
+                [0.4, '#D4A5E8'],    # Púrpura medio
+                [0.6, '#B35A5A'],    # Rojo rosado
+                [0.8, '#8B3A3A'],    # Rojo oscuro
+                [1.0, '#34536A']     # Azul oscuro
+            ],
+            hover_name='Comuna',
+            hover_data={
+                'cod_comuna': False,
+                'Region': True,
+                'Establecimientos': ':,.0f',
+                'Matricula': ':,.0f',
+                'Promedio': ':,.0f'
+            },
+            labels={
+                'Establecimientos': 'N° Establecimientos (est.)',
+                'Matricula': 'Matrícula EMTP',
+                'Promedio': 'Promedio por EE',
+                'Region': 'Región'
+            },
+            mapbox_style='open-street-map',
+            zoom=3.2,
+            center=dict(lat=-35, lon=-71),
+            opacity=0.7
+        )
+        
+        fig.update_layout(
+            title=dict(
+                text='<b>Distribución de Establecimientos EMTP por Comuna (estimado)</b>',
+                font=dict(size=18, color='#2C3E50', family='Arial'),
+                x=0.5,
+                xanchor='center',
+                y=0.98,
+                yanchor='top'
+            ),
+            height=700,
+            margin=dict(l=0, r=0, t=50, b=0),
+            paper_bgcolor='white',
+            plot_bgcolor='white',
+            coloraxis_colorbar=dict(
+                title="<b>N° Est.</b>",
+                thickness=20,
+                len=0.7,
+                x=1.02,
+                tickformat=',',
+                tickfont=dict(size=11)
+            )
+        )
+        
+        return fig
+        
+    except Exception as e:
+        print(f"Error creando mapa comunal de establecimientos: {e}")
+        return go.Figure().add_annotation(
+            text=f"Error: {str(e)}",
+            xref="paper", yref="paper",
+            x=0.5, y=0.5, showarrow=False,
+            font=dict(size=14, color="#B35A5A")
+        )
+
+
 def create_mapas_layout():
     """Crea el layout completo de la pestaña de Mapas"""
     
@@ -254,9 +503,32 @@ def create_mapas_layout():
                     ], className="mb-3", style={"color": "#2C3E50"}),
                     html.P(
                         "Distribución territorial de la matrícula y establecimientos de Educación Media Técnico-Profesional en Chile",
-                        className="text-muted mb-4"
+                        className="text-muted mb-2"
                     )
-                ], width=12)
+                ], width=8),
+                dbc.Col([
+                    # Selector de granularidad
+                    html.Div([
+                        html.Label("Nivel de detalle:", className="text-muted small mb-1"),
+                        dcc.RadioItems(
+                            id='mapa-granularidad',
+                            options=[
+                                {'label': ' Regional (16 regiones)', 'value': 'regional'},
+                                {'label': ' Comunal (345 comunas)', 'value': 'comunal'}
+                            ],
+                            value='regional',
+                            inline=False,
+                            className="",
+                            labelStyle={'display': 'block', 'marginBottom': '5px'},
+                            inputStyle={"marginRight": "8px"}
+                        )
+                    ], style={
+                        'backgroundColor': '#F8F9FA',
+                        'padding': '15px',
+                        'borderRadius': '8px',
+                        'border': '1px solid #DEE2E6'
+                    })
+                ], width=4)
             ]),
             
             # KPIs Resumen
@@ -290,8 +562,8 @@ def create_mapas_layout():
                         dbc.CardBody([
                             html.Div([
                                 html.I(className="fas fa-map fa-2x mb-2", style={"color": "#5A6E79"}),
-                                html.H3("16", className="mb-0", style={"color": "#2C3E50"}),
-                                html.P("Regiones", className="text-muted small mb-0")
+                                html.H3(id='kpi-territorios', children="16", className="mb-0", style={"color": "#2C3E50"}),
+                                html.P(id='kpi-territorios-label', children="Regiones", className="text-muted small mb-0")
                             ], className="text-center")
                         ])
                     ], className="shadow-sm border-0 h-100")
@@ -317,14 +589,18 @@ def create_mapas_layout():
                         dbc.Tab(
                             dbc.Card([
                                 dbc.CardBody([
-                                    dcc.Graph(
-                                        id='mapa-matricula',
-                                        figure=create_chile_map(),
-                                        config={'displayModeBar': True, 'displaylogo': False}
+                                    dcc.Loading(
+                                        id="loading-mapa-matricula",
+                                        type="circle",
+                                        children=dcc.Graph(
+                                            id='mapa-matricula',
+                                            figure=create_chile_map(),
+                                            config={'displayModeBar': True, 'displaylogo': False}
+                                        )
                                     )
                                 ])
                             ], className="border-0 shadow-sm mt-3"),
-                            label="Matrícula por Región",
+                            label="Matrícula por Territorio",
                             tab_id="tab-mapa-matricula",
                             label_style={"color": "#34536A"},
                             active_label_style={"color": "#34536A", "fontWeight": "bold"}
@@ -332,14 +608,18 @@ def create_mapas_layout():
                         dbc.Tab(
                             dbc.Card([
                                 dbc.CardBody([
-                                    dcc.Graph(
-                                        id='mapa-establecimientos',
-                                        figure=create_establecimientos_map(),
-                                        config={'displayModeBar': True, 'displaylogo': False}
+                                    dcc.Loading(
+                                        id="loading-mapa-establecimientos",
+                                        type="circle",
+                                        children=dcc.Graph(
+                                            id='mapa-establecimientos',
+                                            figure=create_establecimientos_map(),
+                                            config={'displayModeBar': True, 'displaylogo': False}
+                                        )
                                     )
                                 ])
                             ], className="border-0 shadow-sm mt-3"),
-                            label="Establecimientos por Región",
+                            label="Establecimientos por Territorio",
                             tab_id="tab-mapa-establecimientos",
                             label_style={"color": "#B35A5A"},
                             active_label_style={"color": "#B35A5A", "fontWeight": "bold"}
@@ -355,7 +635,7 @@ def create_mapas_layout():
                         dbc.CardHeader([
                             html.H5([
                                 html.I(className="fas fa-table me-2"),
-                                "Datos por Región"
+                                "Datos por Territorio"
                             ], className="mb-0")
                         ]),
                         dbc.CardBody([
