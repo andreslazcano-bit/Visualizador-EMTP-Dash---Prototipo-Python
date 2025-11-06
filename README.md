@@ -61,8 +61,12 @@ python app_v2.py
 - **Titulación**: Tasas y tiempos de titulación
 - **Establecimientos**: Distribución geográfica e infraestructura
 - **Docentes**: Perfil profesional y capacitación
-- **Mapas**: Visualización geográfica de matrícula y establecimientos por región
-- **Proyectos SEEMTP**: Financiamiento e impacto (solo Admin)
+- **Mapas Geográficos**: Visualización interactiva con dos subpestañas:
+  - Distribución de Matrícula (con tabla resumen)
+  - Mapa de Establecimientos (con tabla resumen)
+- **Monitoreo y Seguimiento de Proyectos** (solo Admin):
+  - Gestión Administrativa y Financiera (Convenios Activos, Rendiciones)
+  - Fortalecimiento EMTP (Equipamiento Regular, Equipamiento SLEP, Red Futuro Técnico, Apoyo SLEP)
 
 ### Credenciales de Acceso
 
@@ -75,34 +79,85 @@ python app_v2.py
 
 ---
 
-## Nuevo: Mapas Geográficos
+## Nuevo: Sistema de Navegación Jerárquica
+
+### Estructura de 3 Niveles
+
+El sistema implementa una navegación jerárquica avanzada con pestañas anidadas:
+
+**Nivel 1: Secciones Principales**
+- Inicio
+- Matrícula
+- Egresados
+- Titulación
+- Establecimientos
+- Docentes
+- Mapas
+- Monitoreo y Seguimiento de Proyectos (Admin)
+
+**Nivel 2: Subpestañas** (ejemplo: Mapas)
+- Distribución de Matrícula
+- Mapa de Establecimientos
+
+**Nivel 3: Sub-subpestañas** (ejemplo: Monitoreo de Proyectos)
+
+*Gestión Administrativa y Financiera*:
+- Convenios Activos
+- Rendiciones
+
+*Fortalecimiento EMTP*:
+- Equipamiento Regular
+- Equipamiento SLEP
+- Red Futuro Técnico (RFT)
+- Apoyo SLEP
+
+### Beneficios de la Estructura
+- **Organización Clara**: Información agrupada lógicamente
+- **Navegación Intuitiva**: Breadcrumbs y menús desplegables
+- **Escalabilidad**: Fácil agregar nuevas secciones
+- **Rendimiento**: Carga bajo demanda (lazy loading)
+- **Responsive**: Adaptable a diferentes dispositivos
+
+---
+
+## Nuevo: Mapas Geográficos Interactivos
 
 ### Características de los Mapas
+- **Navegación por Pestañas**:
+  - **Distribución de Matrícula**: Visualización de matrícula EMTP por territorio con tabla resumen
+  - **Mapa de Establecimientos**: Distribución de establecimientos educativos con tabla resumen
 - **Dos Niveles de Granularidad**:
   - **Regional**: 16 regiones de Chile con GeoJSON desde [fcortes/Chile-GeoJSON](https://github.com/fcortes/Chile-GeoJSON)
-  - **Comunal**: 345 comunas con shapefile oficial de la Biblioteca del Congreso Nacional de Chile
+  - **Comunal**: 345 comunas con datos detallados
 - **Mapas Choropleth**: Territorios coloreados según intensidad de datos
-- **Colores Degradados**: Escalas de color institucionales
+- **Colores Degradados**: Escalas de color institucionales de 5 puntos
+  - Matrícula: Gradiente azul claro a oscuro (#E8EEF2 → #1e293b)
+  - Establecimientos: Gradiente blanco a rojo oscuro (#FFFFFF → #8B3A3A)
 - **Interactividad**: Tooltips con información detallada al pasar el cursor
-- **Dos Visualizaciones**:
-  - Mapa de Matrícula EMTP por territorio
-  - Mapa de Establecimientos por territorio
-- **Selector Dinámico**: Cambia entre vista regional y comunal en tiempo real
+- **Tablas Resumen Dinámicas**: Se actualizan automáticamente según la granularidad seleccionada
+- **Filtros Integrados**:
+  - **Filtro de Región**: Selector regional en sidebar
+  - **Filtro de Comuna**: Selector comunal dinámico (se actualiza según región seleccionada)
+  - **Granularidad**: Selector para cambiar entre vista regional y comunal
 
 ### Tecnología de Mapas
 - **Plotly Choropleth Mapbox**: Visualizaciones geográficas profesionales
 - **OpenStreetMap**: Capa base de mapa
-- **GeoJSON Dinámico**: Carga desde GitHub (regiones) y local (comunas)
+- **GeoJSON Dinámico**: 
+  - Regiones: Carga desde GitHub (fcortes/Chile-GeoJSON)
+  - Comunas: Carga desde GitHub (fcortes/Chile-GeoJSON)
 - **Geometría Oficial**: 
-  - Regiones: fcortes/Chile-GeoJSON
-  - Comunas: Shapefile oficial BCN (Biblioteca del Congreso Nacional)
+  - 16 regiones con códigos de región (1-16)
+  - 345 comunas con códigos comunales
 - **GeoPandas**: Procesamiento de datos geoespaciales
 - **142,000+ registros comunales**: Datos simulados distribuidos estadísticamente
+- **Caché Inteligente**: @lru_cache para optimizar carga de GeoJSON
 
 ### Fuentes de Datos Geográficos
-- **Regiones**: [https://github.com/fcortes/Chile-GeoJSON](https://github.com/fcortes/Chile-GeoJSON)
-- **Comunas**: División Política y Administrativa de Chile, Biblioteca del Congreso Nacional
-- **Datos de Matrícula**: Simulados con distribución estadística realista
+- **Regiones**: [https://github.com/fcortes/Chile-GeoJSON](https://github.com/fcortes/Chile-GeoJSON) - Regional.geojson
+- **Comunas**: [https://github.com/fcortes/Chile-GeoJSON](https://github.com/fcortes/Chile-GeoJSON) - comunas.geojson
+- **Datos de Matrícula**: 142,289 registros simulados con distribución estadística realista por comuna
+- **Datos de Establecimientos**: Distribución simulada de establecimientos EMTP por región y comuna
 
 ---
 
@@ -121,16 +176,13 @@ VisualizadorEMTP-Dash/
 │   ├── navigation.js           # Script para navegación activa
 │   └── theme.js                # JavaScript para temas
 │
-├── Comunas/                     # Datos geográficos oficiales
-│   └── comunas.shp             # Shapefile BCN (+ archivos auxiliares)
-│
 ├── config/                      # Configuración
 │   ├── __init__.py
 │   └── settings.py             # Variables de entorno
 │
 ├── data/                        # Datos
 │   └── processed/              # CSV con datos simulados
-│       ├── matricula_simulada.csv          # Datos regionales
+│       ├── matricula_simulada.csv          # Datos regionales (36k registros)
 │       ├── matricula_comunal_simulada.csv  # Datos comunales (142k registros)
 │       ├── egresados_simulados.csv
 │       ├── titulacion_simulada.csv
@@ -145,41 +197,15 @@ VisualizadorEMTP-Dash/
 ├── src/                         # Código fuente
 │   ├── callbacks/              # Lógica de interacción
 │   │   ├── auth_callbacks.py   # Autenticación y perfiles
-│   │   ├── sidebar_callbacks.py # Navegación y filtros
-│   │   ├── mapas_callbacks.py  # Cambio de granularidad en mapas
+│   │   ├── sidebar_callbacks.py # Navegación, filtros y contenido
+│   │   ├── mapas_callbacks.py  # Interactividad de mapas
 │   │   └── theme_callbacks.py  # Cambio de tema
 │   │
 │   ├── layouts/                # Interfaces visuales
 │   │   ├── login_layout.py     # Pantalla de login
 │   │   ├── welcome_screen.py   # Pantalla de bienvenida
 │   │   ├── sidebar_layout_clean.py  # Layout principal con sidebar
-│   │   ├── mapas.py            # Layout de mapas geográficos (regional y comunal)
-│   │   └── real_data_content.py     # Contenido con datos
-│   │
-│   └── utils/                  # Utilidades
-│       ├── auth.py             # Gestión de autenticación
-│       ├── helpers.py          # Funciones auxiliares
-│       └── rate_limiter.py     # Control de acceso
-│
-└── logs/                        # Logs de la aplicación
-    └── app.log
-```
-│       ├── titulacion_simulada.csv
-│       ├── establecimientos_simulados.csv
-│       ├── docentes_simulados.csv
-│       └── proyectos_simulados.csv
-│
-├── src/                         # Código fuente
-│   ├── callbacks/              # Lógica de interacción
-│   │   ├── auth_callbacks.py   # Autenticación y perfiles
-│   │   ├── sidebar_callbacks.py # Navegación, filtros y mapas
-│   │   └── theme_callbacks.py  # Cambio de tema
-│   │
-│   ├── layouts/                # Interfaces visuales
-│   │   ├── login_layout.py     # Pantalla de login
-│   │   ├── welcome_screen.py   # Pantalla de bienvenida
-│   │   ├── sidebar_layout_clean.py  # Layout principal con sidebar
-│   │   ├── mapas.py            # Layout de mapas geográficos
+│   │   ├── mapas.py            # Layout de mapas geográficos con tabs
 │   │   └── real_data_content.py     # Contenido con datos
 │   │
 │   └── utils/                  # Utilidades
@@ -361,16 +387,24 @@ gunicorn app_v2:server -b 0.0.0.0:8051 --workers 4
 
 ### Datos Simulados
 
-La aplicación incluye datos simulados (por IA) del sistema EMTP chileno:
+La aplicación incluye datos simulados del sistema EMTP chileno:
 
+**Datos Regionales**:
 - **36,411 registros** totales
 - **Período**: 2015-2024 (10 años)
 - **16 regiones** de Chile
 - **17 especialidades** técnicas
 - **3 tipos de dependencia**: Municipal, Particular Subvencionado, Particular
 
+**Datos Comunales** (para mapas):
+- **142,289 registros** de matrícula
+- **345 comunas** de Chile
+- Distribución estadística realista por territorio
+- Datos sincronizados con códigos oficiales de región y comuna
+
 Los datos se encuentran en `data/processed/` en formato CSV:
-- `matricula_simulada.csv` - Datos de matrícula por año, región y especialidad
+- `matricula_simulada.csv` - Datos de matrícula regionales por año y especialidad
+- `matricula_comunal_simulada.csv` - Datos de matrícula a nivel comunal (para mapas)
 - `egresados_simulados.csv` - Transición a educación superior
 - `titulacion_simulada.csv` - Tasas y tiempos de titulación
 - `establecimientos_simulados.csv` - Infraestructura educativa
@@ -430,30 +464,75 @@ Si el problema persiste:
 
 ## Roadmap y Próximos Pasos
 
+### Funcionalidades Implementadas ✅
+- [x] Mapas geográficos interactivos (regional y comunal)
+- [x] Visualización choropleth con GeoJSON oficial
+- [x] Sistema de pestañas jerárquicas (3 niveles)
+- [x] Filtros dinámicos (región → comuna)
+- [x] Tablas resumen actualizables
+- [x] Paleta de colores institucional
+- [x] Sistema de navegación completo
+- [x] Estructura modular y escalable
+
+### En Desarrollo 🚧
 - [ ] Exportación de reportes (PDF/Excel)
-- [ ] Mapas geográficos interactivos
-- [ ] Comparación entre períodos
-- [ ] Sistema de alertas
-- [ ] API REST
-- [ ] Deployment en la nube
+- [ ] Comparación entre períodos temporales
+- [ ] Sistema de alertas y notificaciones
+- [ ] API REST para integración externa
+- [ ] Dashboard de métricas en tiempo real
+
+### Futuras Mejoras 📋
+- [ ] Deployment en la nube (AWS/Azure)
+- [ ] Integración con bases de datos reales
+- [ ] Visualizaciones predictivas con ML
+- [ ] Sistema de usuarios y roles avanzado
+- [ ] Caché distribuido (Redis)
+- [ ] Tests automatizados (pytest)
 
 ---
 
-## Recursos
+## Recursos y Referencias
 
-- **Dash**: https://dash.plotly.com/
-- **Plotly**: https://plotly.com/python/
+### Documentación Oficial
+- **Dash Framework**: https://dash.plotly.com/
+- **Plotly Graphing**: https://plotly.com/python/
+- **Dash Bootstrap Components**: https://dash-bootstrap-components.opensource.faculty.ai/
+- **Pandas**: https://pandas.pydata.org/
+- **GeoPandas**: https://geopandas.org/
+
+### Datos Geográficos
+- **Chile GeoJSON**: https://github.com/fcortes/Chile-GeoJSON (fcortes)
+  - Regional.geojson (16 regiones)
+  - comunas.geojson (345 comunas)
+
+### Herramientas de Desarrollo
+- **VS Code**: https://code.visualstudio.com/
+- **Git**: https://git-scm.com/
+- **Python**: https://www.python.org/
 
 ---
 
-## Créditos
+## Créditos y Agradecimientos
 
 **Desarrollado por**: Andrés Lazcano  
-**Año**: 2025
+**Año**: 2025  
+**Organización**: Ministerio de Educación de Chile
 
-**Stack tecnológico**:
-- Python 3.12+ • Dash 2.x • Plotly • Pandas
-- Dash Bootstrap • Loguru • bcrypt
+### Stack Tecnológico
+- **Backend**: Python 3.12+
+- **Framework**: Dash 2.x
+- **Visualización**: Plotly 5.18+
+- **UI Components**: Dash Bootstrap Components
+- **Data Processing**: Pandas, GeoPandas
+- **Mapas**: Plotly Choropleth Mapbox
+- **Autenticación**: bcrypt
+- **Logging**: Loguru
+- **Geográficos**: fcortes/Chile-GeoJSON
+
+### Agradecimientos Especiales
+- **fcortes** por los archivos GeoJSON de Chile
+- **Plotly Team** por el excelente framework Dash
+- **Comunidad Python** por las bibliotecas de código abierto
 
 ---
 
