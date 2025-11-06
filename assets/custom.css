@@ -346,7 +346,7 @@ code, pre {
 
 /* Header personalizado */
 .navbar-custom {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color) !important;
     box-shadow: var(--shadow-light);
     border-bottom: 1px solid var(--border-color);
 }
@@ -354,6 +354,36 @@ code, pre {
 .navbar-custom .navbar-brand {
     color: white !important;
     font-weight: 600;
+}
+
+.navbar-custom .navbar-brand i {
+    color: white !important;
+}
+
+.navbar-custom .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.navbar-custom .nav-link:hover {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-custom .btn,
+.navbar-custom button {
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.navbar-custom .btn:hover,
+.navbar-custom button:hover {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.navbar-custom .btn i,
+.navbar-custom button i {
+    color: white !important;
 }
 
 /* Asegurar visibilidad en modo oscuro */
