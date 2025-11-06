@@ -55,6 +55,9 @@ requests==2.31.0
 # Logging
 loguru==0.7.2
 
+# Production Server
+gunicorn==21.2.0  # Para deployment en Render/Railway/Heroku
+
 # Testing (opcional, ver requirements-dev.txt)
 # pytest==7.4.3
 # pytest-cov==4.1.0

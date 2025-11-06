@@ -76,10 +76,9 @@ def create_export_buttons(section_name, subtab=''):
                     "Descargar Excel"
                 ], 
                 id=f"{button_id_base}-excel",
-                color="primary",
                 outline=True,
                 size="md",
-                className="w-100",
+                className="w-100 btn-outline-primary-custom",
                 style={
                     "borderRadius": "8px",
                     "fontWeight": "500",

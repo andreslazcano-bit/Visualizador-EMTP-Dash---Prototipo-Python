@@ -151,8 +151,7 @@ def create_advanced_filters():
                     dbc.Button(
                         [html.I(className="fas fa-eraser me-2"), "Limpiar"],
                         className="btn-outline-primary-custom w-100",
-                        id="clear-filters-btn",
-                        color="outline-primary"
+                        id="clear-filters-btn"
                     )
                 ], width=12)
             ])

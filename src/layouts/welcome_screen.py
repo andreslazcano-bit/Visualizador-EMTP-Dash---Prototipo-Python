@@ -55,9 +55,8 @@ def create_welcome_screen():
                                             html.I(className="fas fa-arrow-right me-2"),
                                             "Acceder"
                                         ], id="btn-modo-usuario", 
-                                           color="primary", 
                                            size="lg", 
-                                           className="w-100")
+                                           className="w-100 btn-primary-custom")
                                     ], className="text-center")
                                 ])
                             ], className="shadow-lg border-0 h-100 hover-card")

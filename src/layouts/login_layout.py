@@ -67,8 +67,7 @@ def create_login_layout():
                                             dbc.Button(
                                                 "Ingresar",
                                                 id="login-button",
-                                                color="primary",
-                                                className="w-100 mb-3",
+                                                className="w-100 mb-3 btn-primary-custom",
                                                 size="lg"
                                             )
                                         ])
@@ -188,4 +187,4 @@ def create_navbar_with_user(user_info):
             # Navegación
             dbc.Nav(nav_items, navbar=True)
         ])
-    ], color="primary", dark=True, className="navbar-custom mb-0")
+    ], dark=True, className="navbar-custom mb-0")
