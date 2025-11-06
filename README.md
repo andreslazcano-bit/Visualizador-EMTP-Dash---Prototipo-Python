@@ -1,4 +1,4 @@
-#  Visualizador EMTP - Dashboard Python/Dash
+# Visualizador EMTP - Dashboard Python/Dash
 
 > Sistema de análisis y visualización interactiva de datos del Sistema de Educación Media Técnico-Profesional de Chile
 
@@ -8,9 +8,9 @@
 [![Status](https://img.shields.io/badge/Status-Funcional-green.svg)]()
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)]()
 
-##  Inicio Rápido (3 pasos)
+## Inicio Rápido (3 pasos)
 
-### 1️⃣ Clonar y preparar entorno
+### 1. Clonar y preparar entorno
 
 ```bash
 # Clonar repositorio
@@ -27,13 +27,13 @@ source venv/bin/activate
 # venv\Scripts\activate
 ```
 
-### 2️⃣ Instalar dependencias
+### 2. Instalar dependencias
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3️⃣ Ejecutar aplicación
+### 3. Ejecutar aplicación
 
 ```bash
 python app_v2.py
@@ -45,26 +45,26 @@ python app_v2.py
 
 ## Características Principales
 
-### ✨ Funcionalidades
-- **📊 Visualización Interactiva**: Gráficos dinámicos con Plotly
-- **🗺️ Mapas Geográficos**: Visualización territorial con GeoJSON real de Chile
-- **🎨 Colores Institucionales**: Paleta basada en diseño Shiny original (#34536A, #B35A5A, #C2A869)
-- **🔍 Filtros Avanzados**: Por región, especialidad, dependencia, género, zona
-- **👥 Perfiles de Usuario**: Modo Usuario (acceso directo) y Modo Admin (con autenticación)
-- **🌓 Tema Claro/Oscuro**: Cambio de tema visual
-- **📱 Responsive**: Funciona en desktop, tablet y móvil
-- **🔐 Autenticación Segura**: Sistema de login con bcrypt
+### Funcionalidades
+- **Visualización Interactiva**: Gráficos dinámicos con Plotly
+- **Mapas Geográficos**: Visualización territorial con GeoJSON real de Chile
+- **Colores Institucionales**: Paleta basada en diseño Shiny original (#34536A, #B35A5A, #C2A869)
+- **Filtros Avanzados**: Por región, especialidad, dependencia, género, zona
+- **Perfiles de Usuario**: Modo Usuario (acceso directo) y Modo Admin (con autenticación)
+- **Tema Claro/Oscuro**: Cambio de tema visual
+- **Responsive**: Funciona en desktop, tablet y móvil
+- **Autenticación Segura**: Sistema de login con bcrypt
 
-### 📚 Módulos de Análisis
-- **📈 Matrícula EMTP**: Evolución, demografía, retención, comparación
-- **🎓 Egresados**: Transición a educación superior, empleabilidad
-- **🏅 Titulación**: Tasas y tiempos de titulación
-- **🏫 Establecimientos**: Distribución geográfica e infraestructura
-- **👨‍🏫 Docentes**: Perfil profesional y capacitación
-- **🗺️ Mapas**: Visualización geográfica de matrícula y establecimientos por región
-- **📋 Proyectos SEEMTP**: Financiamiento e impacto (solo Admin)
+### Módulos de Análisis
+- **Matrícula EMTP**: Evolución, demografía, retención, comparación
+- **Egresados**: Transición a educación superior, empleabilidad
+- **Titulación**: Tasas y tiempos de titulación
+- **Establecimientos**: Distribución geográfica e infraestructura
+- **Docentes**: Perfil profesional y capacitación
+- **Mapas**: Visualización geográfica de matrícula y establecimientos por región
+- **Proyectos SEEMTP**: Financiamiento e impacto (solo Admin)
 
-### 🔑 Credenciales de Acceso
+### Credenciales de Acceso
 
 **Modo Usuario**: Acceso directo sin contraseña (funcionalidad limitada)
 
@@ -75,15 +75,15 @@ python app_v2.py
 
 ---
 
-## 🗺️ Nuevo: Mapas Geográficos
+## Nuevo: Mapas Geográficos
 
 ### Características de los Mapas
-- **✅ GeoJSON Real**: Utiliza geometría auténtica de Chile desde [fcortes/Chile-GeoJSON](https://github.com/fcortes/Chile-GeoJSON)
-- **✅ Mapas Choropleth**: Regiones coloreadas según intensidad de datos
-- **✅ 16 Regiones**: Cobertura completa del territorio nacional
-- **✅ Colores Degradados**: Escalas de color institucionales
-- **✅ Interactividad**: Tooltips con información detallada al pasar el cursor
-- **✅ Dos Visualizaciones**:
+- **GeoJSON Real**: Utiliza geometría auténtica de Chile desde [fcortes/Chile-GeoJSON](https://github.com/fcortes/Chile-GeoJSON)
+- **Mapas Choropleth**: Regiones coloreadas según intensidad de datos
+- **16 Regiones**: Cobertura completa del territorio nacional
+- **Colores Degradados**: Escalas de color institucionales
+- **Interactividad**: Tooltips con información detallada al pasar el cursor
+- **Dos Visualizaciones**:
   - Mapa de Matrícula EMTP por región
   - Mapa de Establecimientos por región
 
@@ -95,26 +95,26 @@ python app_v2.py
 
 ---
 
-##  Arquitectura del Proyecto
+## Arquitectura del Proyecto
 
 ### Estructura de Archivos
 
 ```
 VisualizadorEMTP-Dash/
-├── app_v2.py                    # 🚀 Punto de entrada principal
-├── requirements.txt             # 📦 Dependencias Python
-├── README.md                    # 📖 Documentación
+├── app_v2.py                    # Punto de entrada principal
+├── requirements.txt             # Dependencias Python
+├── README.md                    # Documentación
 │
-├── assets/                      # 🎨 Recursos estáticos
+├── assets/                      # Recursos estáticos
 │   ├── custom.css              # Estilos institucionales Shiny
 │   ├── navigation.js           # Script para navegación activa
 │   └── theme.js                # JavaScript para temas
 │
-├── config/                      # ⚙️ Configuración
+├── config/                      # Configuración
 │   ├── __init__.py
 │   └── settings.py             # Variables de entorno
 │
-├── data/                        # 📊 Datos
+├── data/                        # Datos
 │   └── processed/              # CSV con datos simulados
 │       ├── matricula_simulada.csv
 │       ├── egresados_simulados.csv
@@ -123,25 +123,25 @@ VisualizadorEMTP-Dash/
 │       ├── docentes_simulados.csv
 │       └── proyectos_simulados.csv
 │
-├── src/                         # 💻 Código fuente
-│   ├── callbacks/              # 🔄 Lógica de interacción
+├── src/                         # Código fuente
+│   ├── callbacks/              # Lógica de interacción
 │   │   ├── auth_callbacks.py   # Autenticación y perfiles
 │   │   ├── sidebar_callbacks.py # Navegación, filtros y mapas
 │   │   └── theme_callbacks.py  # Cambio de tema
 │   │
-│   ├── layouts/                # 🖼️ Interfaces visuales
+│   ├── layouts/                # Interfaces visuales
 │   │   ├── login_layout.py     # Pantalla de login
 │   │   ├── welcome_screen.py   # Pantalla de bienvenida
 │   │   ├── sidebar_layout_clean.py  # Layout principal con sidebar
-│   │   ├── mapas.py            # 🗺️ Layout de mapas geográficos
+│   │   ├── mapas.py            # Layout de mapas geográficos
 │   │   └── real_data_content.py     # Contenido con datos
 │   │
-│   └── utils/                  # 🛠️ Utilidades
+│   └── utils/                  # Utilidades
 │       ├── auth.py             # Gestión de autenticación
 │       ├── helpers.py          # Funciones auxiliares
 │       └── rate_limiter.py     # Control de acceso
 │
-└── logs/                        # 📝 Logs de la aplicación
+└── logs/                        # Logs de la aplicación
     └── app.log
 ```
 
