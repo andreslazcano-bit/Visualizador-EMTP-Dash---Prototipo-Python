@@ -4,11 +4,13 @@ CALLBACKS PARA LAYOUT CON SIDEBAR Y DATOS REALES
 ============================================================================
 """
 
-from dash import Input, Output, State, callback_context, html
+from dash import Input, Output, State, callback_context, html, callback
 import dash_bootstrap_components as dbc
 from src.layouts.real_data_content import create_real_kpi_cards, create_real_chart, create_real_table
 from src.layouts.mapas import create_mapas_layout
 from src.utils.helpers import format_chilean
+import pandas as pd
+import os
 
 
 def create_breadcrumb(items):
@@ -185,14 +187,14 @@ def register_sidebar_callbacks(app):
         return [{"display": "none"}] * 2
     
     @app.callback(
-        [Output('sub-proyectos-financiamiento', 'style'),
-         Output('sub-proyectos-impacto', 'style')],
+        [Output('sub-proyectos-administrativa', 'style'),
+         Output('sub-proyectos-fortalecimiento', 'style')],
         [Input('nav-proyectos', 'n_clicks')],
-        [State('sub-proyectos-financiamiento', 'style')],
+        [State('sub-proyectos-administrativa', 'style')],
         prevent_initial_call=True
     )
     def toggle_proyectos_subnav(n_clicks, current_style):
-        """Muestra/oculta las sub-pestañas de proyectos con toggle"""
+        """Muestra/oculta las sub-pestañas de monitoreo y seguimiento de proyectos con toggle"""
         if n_clicks and n_clicks > 0:
             if not current_style or current_style.get("display") == "none":
                 return [{"display": "block"}] * 2
@@ -408,20 +410,20 @@ def register_sidebar_callbacks(app):
         return {}
 
 
-    # Callback específico para proyectos (solo en modo Admin)
+    # Callback específico para monitoreo y seguimiento de proyectos (solo en modo Admin)
     @app.callback(
         [Output('navigation-state', 'data', allow_duplicate=True),
          Output('main-content-area', 'children', allow_duplicate=True),
          Output('breadcrumb-container', 'children', allow_duplicate=True)],
         [Input('nav-proyectos', 'n_clicks'),
-         Input('sub-proyectos-financiamiento', 'n_clicks'),
-         Input('sub-proyectos-impacto', 'n_clicks')],
+         Input('sub-proyectos-administrativa', 'n_clicks'),
+         Input('sub-proyectos-fortalecimiento', 'n_clicks')],
         [State('navigation-state', 'data'),
          State('filters-state', 'data')],
         prevent_initial_call=True
     )
-    def handle_proyectos_navigation(nav_proy, sub_proy_fin, sub_proy_imp, nav_state, filters):
-        """Maneja la navegación de proyectos (solo modo Admin)"""
+    def handle_proyectos_navigation(nav_proy, sub_proy_admin, sub_proy_fort, nav_state, filters):
+        """Maneja la navegación de monitoreo y seguimiento de proyectos (solo modo Admin)"""
         from dash.exceptions import PreventUpdate
         
         ctx = callback_context
@@ -432,21 +434,28 @@ def register_sidebar_callbacks(app):
         
         # Navegación principal a proyectos
         if button_id == 'nav-proyectos':
-            content = create_proyectos_content('recursos', filters)
+            content = create_proyectos_content('administrativa', filters)
             breadcrumb = create_breadcrumb([
                 {"label": "Inicio", "href": "#"},
-                {"label": "Proyectos SEEMTP", "active": True}
+                {"label": "Monitoreo y Seguimiento de Proyectos", "active": True}
             ])
-            return {'active_main': 'nav-proyectos', 'active_sub': 'recursos'}, content, breadcrumb
+            return {'active_main': 'nav-proyectos', 'active_sub': 'administrativa'}, content, breadcrumb
         
         # Sub-navegación para proyectos
         elif button_id.startswith('sub-proyectos-'):
             subtab = button_id.replace('sub-proyectos-', '')
             content = create_proyectos_content(subtab, filters)
+            
+            # Títulos para breadcrumb
+            titulos = {
+                'administrativa': 'Gestión Administrativa y Financiera',
+                'fortalecimiento': 'Fortalecimiento EMTP'
+            }
+            
             breadcrumb = create_breadcrumb([
                 {"label": "Inicio", "href": "#"},
-                {"label": "Proyectos SEEMTP", "href": "#"},
-                {"label": subtab.title(), "active": True}
+                {"label": "Monitoreo y Seguimiento", "href": "#"},
+                {"label": titulos.get(subtab, subtab.title()), "active": True}
             ])
             return {'active_main': 'nav-proyectos', 'active_sub': subtab}, content, breadcrumb
         
@@ -871,37 +880,333 @@ def create_docentes_content(subtab='distribucion', filters=None):
     ])
 
 
-def create_proyectos_content(subtab='recursos', filters=None):
-    """Crea contenido para la sección de proyectos"""
+def create_proyectos_content(subtab='administrativa', filters=None):
+    """Crea contenido para la sección de monitoreo y seguimiento de proyectos con sub-subpestañas"""
     
-    return html.Div([
-        html.H2([
-            html.I(className="fas fa-tasks me-3", style={"color": "var(--primary-color)"}),
-            "Proyectos SEEMTP - Sistema de Educación EMTP"
-        ], className="mb-4"),
+    # Definir contenido según subtab principal
+    if subtab == 'administrativa':
+        # Gestión Administrativa y Financiera con sub-tabs
+        return html.Div([
+            # Encabezado
+            html.H2([
+                html.I(className="fas fa-file-contract me-3", style={"color": "var(--primary-color)"}),
+                "Gestión Administrativa y Financiera"
+            ], className="text-primary-custom mb-1"),
+            html.P("Seguimiento de convenios, rendiciones y gestión financiera", className="text-gray-dark mb-4"),
+            
+            # KPIs
+            create_real_kpi_cards('proyectos', filters),
+            
+            html.Hr(className="my-4"),
+            
+            # Sub-tabs para Gestión Administrativa
+            dbc.Tabs([
+                # Tab: Convenios Activos
+                dbc.Tab([
+                    html.Div([
+                        html.H4([
+                            html.I(className="fas fa-handshake me-2", style={"color": "var(--primary-color)"}),
+                            "Convenios Activos"
+                        ], className="mt-3 mb-3"),
+                        
+                        dbc.Row([
+                            dbc.Col([
+                                dbc.Card([
+                                    dbc.CardHeader("Estado de Convenios por Región", className="bg-light-custom border-0 fw-bold"),
+                                    dbc.CardBody([
+                                        create_real_chart('proyectos', 'bar', 'Convenios por Estado', filters)
+                                    ])
+                                ], className="border-accent-custom shadow-sm mb-4")
+                            ], md=6),
+                            dbc.Col([
+                                dbc.Card([
+                                    dbc.CardHeader("Vigencia de Convenios", className="bg-light-custom border-0 fw-bold"),
+                                    dbc.CardBody([
+                                        create_real_chart('proyectos', 'pie', 'Distribución por Vigencia', filters)
+                                    ])
+                                ], className="border-accent-custom shadow-sm mb-4")
+                            ], md=6)
+                        ]),
+                        
+                        dbc.Row([
+                            dbc.Col([
+                                dbc.Card([
+                                    dbc.CardHeader("Timeline de Convenios", className="bg-light-custom border-0 fw-bold"),
+                                    dbc.CardBody([
+                                        create_real_chart('proyectos', 'line', 'Evolución Temporal de Convenios', filters)
+                                    ])
+                                ], className="border-accent-custom shadow-sm mb-4")
+                            ], md=12)
+                        ]),
+                        
+                        html.H5([
+                            html.I(className="fas fa-table me-2"),
+                            "Detalle de Convenios"
+                        ], className="mt-3 mb-3"),
+                        create_real_table('proyectos', filters)
+                    ], className="p-3")
+                ], label="Convenios Activos", tab_id="tab-convenios",
+                   label_style={"color": "#5A6E79"}, 
+                   active_label_style={"color": "#34536A", "font-weight": "bold"}),
+                
+                # Tab: Rendiciones
+                dbc.Tab([
+                    html.Div([
+                        html.H4([
+                            html.I(className="fas fa-file-invoice-dollar me-2", style={"color": "var(--primary-color)"}),
+                            "Rendiciones"
+                        ], className="mt-3 mb-3"),
+                        
+                        dbc.Row([
+                            dbc.Col([
+                                dbc.Card([
+                                    dbc.CardHeader("Estado de Rendiciones", className="bg-light-custom border-0 fw-bold"),
+                                    dbc.CardBody([
+                                        create_real_chart('proyectos', 'pie', 'Aprobadas vs Pendientes', filters)
+                                    ])
+                                ], className="border-accent-custom shadow-sm mb-4")
+                            ], md=6),
+                            dbc.Col([
+                                dbc.Card([
+                                    dbc.CardHeader("Montos Rendidos por Región", className="bg-light-custom border-0 fw-bold"),
+                                    dbc.CardBody([
+                                        create_real_chart('proyectos', 'bar', 'Montos Rendidos', filters)
+                                    ])
+                                ], className="border-accent-custom shadow-sm mb-4")
+                            ], md=6)
+                        ]),
+                        
+                        dbc.Row([
+                            dbc.Col([
+                                dbc.Card([
+                                    dbc.CardHeader("Cumplimiento de Plazos", className="bg-light-custom border-0 fw-bold"),
+                                    dbc.CardBody([
+                                        create_real_chart('proyectos', 'line', 'Rendiciones en el Tiempo', filters)
+                                    ])
+                                ], className="border-accent-custom shadow-sm mb-4")
+                            ], md=12)
+                        ]),
+                        
+                        html.H5([
+                            html.I(className="fas fa-table me-2"),
+                            "Detalle de Rendiciones"
+                        ], className="mt-3 mb-3"),
+                        create_real_table('proyectos', filters)
+                    ], className="p-3")
+                ], label="Rendiciones", tab_id="tab-rendiciones",
+                   label_style={"color": "#5A6E79"}, 
+                   active_label_style={"color": "#34536A", "font-weight": "bold"})
+            ], id="tabs-administrativa", active_tab="tab-convenios", className="mb-3"),
+            
+            # Botones de exportación
+            create_export_buttons('proyectos', subtab)
+        ])
         
-        create_real_kpi_cards('proyectos', filters),
-        
-        html.Hr(className="my-4"),
-        
-        dbc.Row([
-            dbc.Col([
-                create_real_chart('proyectos', 'bar', 'Inversión por Región', filters)
-            ], md=6),
-            dbc.Col([
-                create_real_chart('proyectos', 'pie', 'Distribución por Tipo de Proyecto', filters)
-            ], md=6)
-        ]),
-        
-        html.H4([
-            html.I(className="fas fa-table me-2", style={"color": "var(--primary-color)"}),
-            "Datos Detallados"
-        ], className="mt-4 mb-3"),
-        create_real_table('proyectos', filters),
-        
-        # Botones de exportación
-        create_export_buttons('proyectos', subtab)
-    ])
+    else:  # fortalecimiento
+        # Fortalecimiento EMTP con sub-tabs
+        return html.Div([
+            # Encabezado
+            html.H2([
+                html.I(className="fas fa-tools me-3", style={"color": "var(--primary-color)"}),
+                "Fortalecimiento EMTP"
+            ], className="text-primary-custom mb-1"),
+            html.P("Indicadores técnicos: Equipamiento, RFT, Apoyo SLEP", className="text-gray-dark mb-4"),
+            
+            # KPIs
+            create_real_kpi_cards('proyectos', filters),
+            
+            html.Hr(className="my-4"),
+            
+            # Sub-tabs para Fortalecimiento
+            dbc.Tabs([
+                # Tab: Equipamiento Regular
+                dbc.Tab([
+                    html.Div([
+                        html.H4([
+                            html.I(className="fas fa-laptop me-2", style={"color": "var(--primary-color)"}),
+                            "Equipamiento Regular"
+                        ], className="mt-3 mb-3"),
+                        
+                        dbc.Row([
+                            dbc.Col([
+                                dbc.Card([
+                                    dbc.CardHeader("Equipamiento Regular por Región", className="bg-light-custom border-0 fw-bold"),
+                                    dbc.CardBody([
+                                        create_real_chart('proyectos', 'bar', 'Distribución Regional', filters)
+                                    ])
+                                ], className="border-accent-custom shadow-sm mb-4")
+                            ], md=6),
+                            dbc.Col([
+                                dbc.Card([
+                                    dbc.CardHeader("Tipo de Equipamiento", className="bg-light-custom border-0 fw-bold"),
+                                    dbc.CardBody([
+                                        create_real_chart('proyectos', 'pie', 'Categorías', filters)
+                                    ])
+                                ], className="border-accent-custom shadow-sm mb-4")
+                            ], md=6)
+                        ]),
+                        
+                        dbc.Row([
+                            dbc.Col([
+                                dbc.Card([
+                                    dbc.CardHeader("Avance de Entrega", className="bg-light-custom border-0 fw-bold"),
+                                    dbc.CardBody([
+                                        create_real_chart('proyectos', 'line', 'Evolución Temporal', filters)
+                                    ])
+                                ], className="border-accent-custom shadow-sm mb-4")
+                            ], md=12)
+                        ]),
+                        
+                        html.H5([
+                            html.I(className="fas fa-table me-2"),
+                            "Detalle de Equipamiento Regular"
+                        ], className="mt-3 mb-3"),
+                        create_real_table('proyectos', filters)
+                    ], className="p-3")
+                ], label="Equipamiento Regular", tab_id="tab-equipamiento-regular",
+                   label_style={"color": "#5A6E79"}, 
+                   active_label_style={"color": "#34536A", "font-weight": "bold"}),
+                
+                # Tab: Equipamiento SLEP
+                dbc.Tab([
+                    html.Div([
+                        html.H4([
+                            html.I(className="fas fa-laptop-code me-2", style={"color": "var(--primary-color)"}),
+                            "Equipamiento SLEP"
+                        ], className="mt-3 mb-3"),
+                        
+                        dbc.Row([
+                            dbc.Col([
+                                dbc.Card([
+                                    dbc.CardHeader("Equipamiento SLEP por Región", className="bg-light-custom border-0 fw-bold"),
+                                    dbc.CardBody([
+                                        create_real_chart('proyectos', 'bar', 'Distribución por SLEP', filters)
+                                    ])
+                                ], className="border-accent-custom shadow-sm mb-4")
+                            ], md=6),
+                            dbc.Col([
+                                dbc.Card([
+                                    dbc.CardHeader("Estado de Implementación", className="bg-light-custom border-0 fw-bold"),
+                                    dbc.CardBody([
+                                        create_real_chart('proyectos', 'pie', 'Avance por Estado', filters)
+                                    ])
+                                ], className="border-accent-custom shadow-sm mb-4")
+                            ], md=6)
+                        ]),
+                        
+                        dbc.Row([
+                            dbc.Col([
+                                dbc.Card([
+                                    dbc.CardHeader("Timeline de Implementación", className="bg-light-custom border-0 fw-bold"),
+                                    dbc.CardBody([
+                                        create_real_chart('proyectos', 'line', 'Cronograma', filters)
+                                    ])
+                                ], className="border-accent-custom shadow-sm mb-4")
+                            ], md=12)
+                        ]),
+                        
+                        html.H5([
+                            html.I(className="fas fa-table me-2"),
+                            "Detalle de Equipamiento SLEP"
+                        ], className="mt-3 mb-3"),
+                        create_real_table('proyectos', filters)
+                    ], className="p-3")
+                ], label="Equipamiento SLEP", tab_id="tab-equipamiento-slep",
+                   label_style={"color": "#5A6E79"}, 
+                   active_label_style={"color": "#34536A", "font-weight": "bold"}),
+                
+                # Tab: Red Futuro Técnico
+                dbc.Tab([
+                    html.Div([
+                        html.H4([
+                            html.I(className="fas fa-network-wired me-2", style={"color": "var(--primary-color)"}),
+                            "Red Futuro Técnico (RFT)"
+                        ], className="mt-3 mb-3"),
+                        html.P([
+                            "Programa de fortalecimiento de la educación técnico profesional a través de redes de colaboración y recursos compartidos."
+                        ], className="text-muted mb-4"),
+                        
+                        dbc.Row([
+                            dbc.Col([
+                                dbc.Card([
+                                    dbc.CardHeader("Avance RFT por Región", className="bg-light-custom border-0 fw-bold"),
+                                    dbc.CardBody([
+                                        create_real_chart('proyectos', 'bar', 'Porcentaje de Avance', filters)
+                                    ])
+                                ], className="border-accent-custom shadow-sm mb-4")
+                            ], md=6),
+                            dbc.Col([
+                                dbc.Card([
+                                    dbc.CardHeader("Establecimientos Participantes", className="bg-light-custom border-0 fw-bold"),
+                                    dbc.CardBody([
+                                        create_real_chart('proyectos', 'pie', 'Cobertura', filters)
+                                    ])
+                                ], className="border-accent-custom shadow-sm mb-4")
+                            ], md=6)
+                        ]),
+                        
+                        dbc.Row([
+                            dbc.Col([
+                                dbc.Card([
+                                    dbc.CardHeader("Evolución Temporal RFT", className="bg-light-custom border-0 fw-bold"),
+                                    dbc.CardBody([
+                                        create_real_chart('proyectos', 'line', 'Progreso en el Tiempo', filters)
+                                    ])
+                                ], className="border-accent-custom shadow-sm mb-4")
+                            ], md=12)
+                        ]),
+                        
+                        html.H5([
+                            html.I(className="fas fa-table me-2"),
+                            "Detalle Red Futuro Técnico"
+                        ], className="mt-3 mb-3"),
+                        create_real_table('proyectos', filters)
+                    ], className="p-3")
+                ], label="Red Futuro Técnico", tab_id="tab-rft",
+                   label_style={"color": "#5A6E79"}, 
+                   active_label_style={"color": "#34536A", "font-weight": "bold"}),
+                
+                # Tab: Apoyo SLEP
+                dbc.Tab([
+                    html.Div([
+                        html.H4([
+                            html.I(className="fas fa-hands-helping me-2", style={"color": "var(--primary-color)"}),
+                            "Apoyo SLEP"
+                        ], className="mt-3 mb-3"),
+                        
+                        dbc.Row([
+                            dbc.Col([
+                                dbc.Card([
+                                    dbc.CardHeader("Distribución por SLEP", className="bg-light-custom border-0 fw-bold"),
+                                    dbc.CardBody([
+                                        create_real_chart('proyectos', 'pie', 'Apoyo por SLEP', filters)
+                                    ])
+                                ], className="border-accent-custom shadow-sm mb-4")
+                            ], md=6),
+                            dbc.Col([
+                                dbc.Card([
+                                    dbc.CardHeader("Tipo de Apoyo", className="bg-light-custom border-0 fw-bold"),
+                                    dbc.CardBody([
+                                        create_real_chart('proyectos', 'bar', 'Categorías de Apoyo', filters)
+                                    ])
+                                ], className="border-accent-custom shadow-sm mb-4")
+                            ], md=6)
+                        ]),
+                        
+                        html.H5([
+                            html.I(className="fas fa-table me-2"),
+                            "Detalle Apoyo SLEP"
+                        ], className="mt-3 mb-3"),
+                        create_real_table('proyectos', filters)
+                    ], className="p-3")
+                ], label="Apoyo SLEP", tab_id="tab-slep",
+                   label_style={"color": "#5A6E79"}, 
+                   active_label_style={"color": "#34536A", "font-weight": "bold"})
+            ], id="tabs-fortalecimiento", active_tab="tab-equipamiento-regular", className="mb-3"),
+            
+            # Botones de exportación
+            create_export_buttons('proyectos', subtab)
+        ])
 
 
 def update_nav_item_classes(active_main, active_sub):
@@ -928,7 +1233,7 @@ def update_nav_item_classes(active_main, active_sub):
         'titulacion': ['tasas', 'tiempo'],
         'establecimientos': ['geografia', 'infraestructura'],
         'docentes': ['perfil', 'capacitacion'],
-        'proyectos': ['financiamiento', 'impacto']
+        'proyectos': ['administrativa', 'fortalecimiento']
     }
     
     classes = {}
@@ -950,3 +1255,44 @@ def update_nav_item_classes(active_main, active_sub):
                 classes[sub_id] = "ps-4 small sub-nav"
     
     return classes
+
+@callback(
+    Output('filter-comuna', 'options'),
+    Output('filter-comuna', 'value'),
+    Input('filter-region', 'value')
+)
+def update_comunas_dropdown(region_seleccionada):
+    """
+    Actualiza las opciones de comuna según la región seleccionada.
+    
+    Args:
+        region_seleccionada: Región seleccionada en el filtro
+        
+    Returns:
+        tuple: (opciones_comunas, valor_por_defecto)
+    """
+    data_path = "data/processed/matricula_comunal_simulada.csv"
+    
+    if not os.path.exists(data_path):
+        return [{'label': 'Todas las comunas', 'value': 'Todas las comunas'}], 'Todas las comunas'
+    
+    try:
+        df = pd.read_csv(data_path)
+        
+        # Si se selecciona "Todas las regiones", mostrar todas las comunas
+        if region_seleccionada == 'Todas las regiones' or not region_seleccionada:
+            comunas = sorted(df['comuna'].unique())
+        else:
+            # Filtrar comunas por región
+            df_region = df[df['region'] == region_seleccionada]
+            comunas = sorted(df_region['comuna'].unique())
+        
+        # Crear opciones
+        opciones = [{'label': 'Todas las comunas', 'value': 'Todas las comunas'}]
+        opciones.extend([{'label': comuna, 'value': comuna} for comuna in comunas])
+        
+        return opciones, 'Todas las comunas'
+        
+    except Exception as e:
+        print(f"⚠️ Error actualizando comunas: {e}")
+        return [{'label': 'Todas las comunas', 'value': 'Todas las comunas'}], 'Todas las comunas'

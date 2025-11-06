@@ -7,10 +7,24 @@ Layout mejorado con navegación lateral y filtros completos
 
 import dash_bootstrap_components as dbc
 from dash import html, dcc
+import pandas as pd
+import os
 
 
 def create_advanced_filters():
     """Crea filtros avanzados para el sistema EMTP"""
+    
+    # Cargar comunas desde el CSV
+    data_path = "data/processed/matricula_comunal_simulada.csv"
+    comunas_list = ["Todas las comunas"]
+    
+    if os.path.exists(data_path):
+        try:
+            df = pd.read_csv(data_path)
+            comunas_unicas = sorted(df['comuna'].unique())
+            comunas_list.extend(comunas_unicas)
+        except Exception as e:
+            print(f"⚠️ Error cargando comunas: {e}")
     
     # Opciones de filtros basadas en datos reales
     regiones = [
@@ -64,6 +78,21 @@ def create_advanced_filters():
                     options=[{'label': region, 'value': region} for region in regiones],
                     value='Todas las regiones',
                     style={'borderColor': '#A8B7C7'}
+                )
+            ], className="mb-3"),
+            
+            # Filtro por Comuna
+            html.Div([
+                html.Label([
+                    html.I(className="fas fa-map-pin me-2", style={"color": "var(--primary-color)"}),
+                    "Comuna:"
+                ], className="filter-label fw-bold mb-2"),
+                dcc.Dropdown(
+                    id='filter-comuna',
+                    options=[{'label': comuna, 'value': comuna} for comuna in comunas_list],
+                    value='Todas las comunas',
+                    style={'borderColor': '#A8B7C7'},
+                    placeholder="Selecciona una comuna..."
                 )
             ], className="mb-3"),
             
@@ -343,31 +372,31 @@ def create_sidebar_navigation_filtered(hidden_sections=None):
             ], id="nav-mapas", n_clicks=0, action=True, className="fw-bold mb-1")
         )
     
-    # Proyectos SEEMTP (oculto para usuario básico)
+    # Monitoreo y Seguimiento de Proyectos (oculto para usuario básico)
     if 'proyectos' not in hidden_sections:
         nav_items.extend([
             dbc.ListGroupItem([
                 html.Div([
                     html.I(className="fas fa-tasks me-2", style={"color": "var(--primary-color)"}),
-                    "Proyectos SEEMTP"
+                    "Monitoreo y Seguimiento de Proyectos"
                 ])
             ], id="nav-proyectos", n_clicks=0, action=True, className="fw-bold mb-1"),
             
             # Sub-pestañas de Proyectos
             dbc.ListGroupItem([
                 html.Div([
-                    html.I(className="fas fa-dollar-sign me-2", style={"color": "var(--text-secondary)"}), 
-                    "Financiamiento"
+                    html.I(className="fas fa-file-contract me-2", style={"color": "var(--text-secondary)"}), 
+                    "Gestión Administrativa y Financiera"
                 ])
-            ], id="sub-proyectos-financiamiento", n_clicks=0, action=True, 
+            ], id="sub-proyectos-administrativa", n_clicks=0, action=True, 
                className="ps-4 small sub-nav", style={"display": "none"}),
             
             dbc.ListGroupItem([
                 html.Div([
-                    html.I(className="fas fa-chart-line me-2", style={"color": "var(--text-secondary)"}), 
-                    "Impacto y Resultados"
+                    html.I(className="fas fa-tools me-2", style={"color": "var(--text-secondary)"}), 
+                    "Fortalecimiento EMTP"
                 ])
-            ], id="sub-proyectos-impacto", n_clicks=0, action=True, 
+            ], id="sub-proyectos-fortalecimiento", n_clicks=0, action=True, 
                className="ps-4 small sub-nav", style={"display": "none"}),
         ])
     
@@ -582,28 +611,28 @@ def create_sidebar_navigation():
                     ])
                 ], id="nav-mapas", n_clicks=0, action=True, className="fw-bold mb-1"),
                 
-                # Proyectos
+                # Monitoreo y Seguimiento de Proyectos
                 dbc.ListGroupItem([
                     html.Div([
                         html.I(className="fas fa-tasks me-2", style={"color": "var(--primary-color)"}),
-                        "Proyectos SEEMTP"
+                        "Monitoreo y Seguimiento de Proyectos"
                     ])
                 ], id="nav-proyectos", n_clicks=0, action=True, className="fw-bold mb-1"),
                 
                 dbc.ListGroupItem([
                     html.Div([
-                        html.I(className="fas fa-coins me-2", style={"color": "var(--text-secondary)"}), 
-                        "Financiamiento"
+                        html.I(className="fas fa-file-contract me-2", style={"color": "var(--text-secondary)"}), 
+                        "Gestión Administrativa y Financiera"
                     ])
-                ], id="sub-proyectos-financiamiento", n_clicks=0, action=True, 
+                ], id="sub-proyectos-administrativa", n_clicks=0, action=True, 
                    className="ps-4 small sub-nav", style={"display": "none"}),
                 
                 dbc.ListGroupItem([
                     html.Div([
-                        html.I(className="fas fa-chart-bar me-2", style={"color": "var(--text-secondary)"}), 
-                        "Impacto y Resultados"
+                        html.I(className="fas fa-tools me-2", style={"color": "var(--text-secondary)"}), 
+                        "Fortalecimiento EMTP"
                     ])
-                ], id="sub-proyectos-impacto", n_clicks=0, action=True, 
+                ], id="sub-proyectos-fortalecimiento", n_clicks=0, action=True, 
                    className="ps-4 small sub-nav", style={"display": "none"})
                 
             ], flush=True)
