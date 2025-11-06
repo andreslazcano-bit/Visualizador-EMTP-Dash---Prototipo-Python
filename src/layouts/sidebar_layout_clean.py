@@ -332,6 +332,17 @@ def create_sidebar_navigation_filtered(hidden_sections=None):
                className="ps-4 small sub-nav", style={"display": "none"}),
         ])
     
+    # Mapas
+    if 'mapas' not in hidden_sections:
+        nav_items.append(
+            dbc.ListGroupItem([
+                html.Div([
+                    html.I(className="fas fa-map-marked-alt me-2", style={"color": "var(--primary-color)"}),
+                    "Mapas"
+                ])
+            ], id="nav-mapas", n_clicks=0, action=True, className="fw-bold mb-1")
+        )
+    
     # Proyectos SEEMTP (oculto para usuario básico)
     if 'proyectos' not in hidden_sections:
         nav_items.extend([
@@ -562,6 +573,14 @@ def create_sidebar_navigation():
                     ])
                 ], id="sub-docentes-capacitacion", n_clicks=0, action=True, 
                    className="ps-4 small sub-nav", style={"display": "none"}),
+                
+                # Mapas
+                dbc.ListGroupItem([
+                    html.Div([
+                        html.I(className="fas fa-map-marked-alt me-2", style={"color": "var(--primary-color)"}),
+                        "Mapas"
+                    ])
+                ], id="nav-mapas", n_clicks=0, action=True, className="fw-bold mb-1"),
                 
                 # Proyectos
                 dbc.ListGroupItem([

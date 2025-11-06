@@ -7,6 +7,7 @@ CALLBACKS PARA LAYOUT CON SIDEBAR Y DATOS REALES
 from dash import Input, Output, State, callback_context, html
 import dash_bootstrap_components as dbc
 from src.layouts.real_data_content import create_real_kpi_cards, create_real_chart, create_real_table
+from src.layouts.mapas import create_mapas_layout
 from src.utils.helpers import format_chilean
 
 
@@ -210,6 +211,7 @@ def register_sidebar_callbacks(app):
          Input('nav-titulacion', 'n_clicks'),
          Input('nav-establecimientos', 'n_clicks'),
          Input('nav-docentes', 'n_clicks'),
+         Input('nav-mapas', 'n_clicks'),
          # Sub-pestañas de Matrícula
          Input('sub-matricula-evolucion', 'n_clicks'),
          Input('sub-matricula-demografia', 'n_clicks'),
@@ -230,7 +232,7 @@ def register_sidebar_callbacks(app):
         [State('navigation-state', 'data'),
          State('filters-state', 'data')]
     )
-    def handle_navigation(nav_inicio, nav_mat, nav_egr, nav_tit, nav_est, nav_doc,
+    def handle_navigation(nav_inicio, nav_mat, nav_egr, nav_tit, nav_est, nav_doc, nav_mapas,
                          sub_mat_evo, sub_mat_dem, sub_mat_ret, sub_mat_comp,
                          sub_egr_trans, sub_egr_emp,
                          sub_tit_tasas, sub_tit_tiempo,
@@ -297,6 +299,14 @@ def register_sidebar_callbacks(app):
                 {"label": "Docentes", "active": True}
             ])
             return {'active_main': 'nav-docentes', 'active_sub': 'distribucion'}, content, breadcrumb
+        
+        elif button_id == 'nav-mapas':
+            content = create_mapas_layout()
+            breadcrumb = create_breadcrumb([
+                {"label": "Inicio", "href": "#"},
+                {"label": "Mapas", "active": True}
+            ])
+            return {'active_main': 'nav-mapas', 'active_sub': None}, content, breadcrumb
         
         # Sub-navegación para matrícula
         elif button_id.startswith('sub-matricula-'):
@@ -892,3 +902,51 @@ def create_proyectos_content(subtab='recursos', filters=None):
         # Botones de exportación
         create_export_buttons('proyectos', subtab)
     ])
+
+
+def update_nav_item_classes(active_main, active_sub):
+    """
+    Genera las clases CSS para los items de navegación según el estado activo
+    
+    Args:
+        active_main: ID del item principal activo (ej: 'nav-matricula')
+        active_sub: Subtab activo (ej: 'evolucion')
+    
+    Returns:
+        dict: Diccionario con clases CSS para cada item de navegación
+    """
+    # Definir todos los items de navegación principales
+    main_items = [
+        'nav-inicio', 'nav-matricula', 'nav-egresados', 'nav-titulacion',
+        'nav-establecimientos', 'nav-docentes', 'nav-mapas', 'nav-proyectos'
+    ]
+    
+    # Definir sub-items por sección
+    sub_items = {
+        'matricula': ['evolucion', 'demografia', 'retencion', 'comparacion'],
+        'egresados': ['transicion', 'empleabilidad'],
+        'titulacion': ['tasas', 'tiempo'],
+        'establecimientos': ['geografia', 'infraestructura'],
+        'docentes': ['perfil', 'capacitacion'],
+        'proyectos': ['financiamiento', 'impacto']
+    }
+    
+    classes = {}
+    
+    # Asignar clases a items principales
+    for item in main_items:
+        if item == active_main:
+            classes[item] = "fw-bold mb-1 active"
+        else:
+            classes[item] = "fw-bold mb-1"
+    
+    # Asignar clases a sub-items
+    for section, subs in sub_items.items():
+        for sub in subs:
+            sub_id = f"sub-{section}-{sub}"
+            if active_main == f"nav-{section}" and active_sub == sub:
+                classes[sub_id] = "ps-4 small sub-nav active"
+            else:
+                classes[sub_id] = "ps-4 small sub-nav"
+    
+    return classes
