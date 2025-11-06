@@ -87,9 +87,8 @@ def create_welcome_screen():
                                             html.I(className="fas fa-lock me-2"),
                                             "Iniciar Sesión"
                                         ], id="btn-modo-admin", 
-                                           color="secondary", 
                                            size="lg", 
-                                           className="w-100")
+                                           className="w-100 btn-secondary-custom")
                                     ], className="text-center")
                                 ])
                             ], className="shadow-lg border-0 h-100 hover-card")
@@ -123,12 +122,12 @@ def create_welcome_screen():
                 dbc.Button([
                     html.I(className="fas fa-check me-2"),
                     "Acceder"
-                ], id="btn-confirm-admin", color="secondary")
+                ], id="btn-confirm-admin", className="btn-secondary-custom")
             ])
         ], id="modal-admin-login", is_open=False, centered=True)
         
     ], className="welcome-screen", style={
-        "background": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        "background": "linear-gradient(135deg, #34536A 0%, #5A6E79 50%, #2A4255 100%)",
         "minHeight": "100vh"
     })
 
