@@ -15,23 +15,25 @@
     --font-monospace: 'SF Mono', 'Monaco', 'Cascadia Code', 'Courier New', monospace;
     
     /* ========================================================================
-       PALETA DE COLORES INSTITUCIONAL - SOBRIA Y PROFESIONAL
+       PALETA DE COLORES INSTITUCIONAL - BASADA EN APP SHINY ORIGINAL
        ======================================================================== */
-    --primary-color: #1e3a8a;        /* Azul institucional profundo */
-    --secondary-color: #475569;      /* Gris pizarra profesional */
-    --tertiary-color: #0f172a;       /* Azul oscuro corporativo */
-    --accent-color: #64748b;         /* Gris azulado neutro */
-    --neutral-color: #f1f5f9;        /* Gris claro suave */
+    --primary-color: #34536A;        /* Azul oscuro principal (Shiny) */
+    --secondary-color: #5A6E79;      /* Gris azulado accent-green (Shiny) */
+    --tertiary-color: #2A4255;       /* Azul más oscuro (primary-dark Shiny) */
+    --accent-color: #B35A5A;         /* Rojo accent (Shiny) */
+    --accent-yellow: #C2A869;        /* Amarillo/dorado accent (Shiny) */
+    --accent-purple: #6E5F80;        /* Púrpura accent (Shiny) */
+    --neutral-color: #F4F6F7;        /* Fondo gris claro (Shiny) */
     
     /* Grises profesionales */
-    --gray-50: #f8fafc;
-    --gray-100: #f1f5f9;
-    --gray-200: #e2e8f0;
-    --gray-300: #cbd5e1;
-    --gray-400: #94a3b8;
-    --gray-500: #64748b;
+    --gray-50: #FAFAFA;
+    --gray-100: #F4F6F7;
+    --gray-200: #ECF0F1;
+    --gray-300: #BDC3C7;
+    --gray-400: #95a5a6;
+    --gray-500: #7F8C8D;
     --gray-600: #475569;
-    --gray-700: #334155;
+    --gray-700: #2C3E50;
     --gray-800: #1e293b;
     --gray-900: #0f172a;
     
@@ -40,10 +42,10 @@
     --white: #ffffff;
     
     /* Colores funcionales - tonos profesionales */
-    --success-color: #065f46;        /* Verde institucional oscuro */
-    --danger-color: #991b1b;         /* Rojo institucional oscuro */
-    --warning-color: #92400e;        /* Ámbar institucional oscuro */
-    --info-color: #1e40af;           /* Azul información */
+    --success-color: #27ae60;        /* Verde éxito */
+    --danger-color: #B35A5A;         /* Rojo institucional (accent Shiny) */
+    --warning-color: #C2A869;        /* Amarillo institucional (Shiny) */
+    --info-color: #34536A;           /* Azul información (primary Shiny) */
     
     /* ========================================================================
        FONDOS Y SUPERFICIES
@@ -58,9 +60,9 @@
     /* ========================================================================
        TIPOGRAFÍA Y TEXTO
        ======================================================================== */
-    --text-primary: #0f172a;         /* Títulos - muy oscuro */
-    --text-secondary: #334155;       /* Texto normal */
-    --text-muted: #64748b;           /* Texto secundario */
+    --text-primary: #2C3E50;         /* Títulos - color Shiny */
+    --text-secondary: #475569;       /* Texto normal */
+    --text-muted: #7F8C8D;           /* Texto secundario (muted Shiny) */
     --text-inverse: #ffffff;         /* Texto sobre fondos oscuros */
     
     /* Tamaños de fuente - escala modular */

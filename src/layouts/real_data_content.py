@@ -163,8 +163,8 @@ def create_real_chart(dataset_name, chart_type="line", title="Gráfico", filters
     if filters:
         df = apply_filters(df, filters)
     
-    # Colores de la paleta oficial
-    color_palette = ['#006FB3', '#FE6565', '#2D717C', '#E0701E', '#6633CC', '#FFA11B']
+    # Colores de la paleta oficial (basada en app Shiny original)
+    color_palette = ['#34536A', '#5A6E79', '#B35A5A', '#C2A869', '#6E5F80']
     
     try:
         if chart_type == "line" and 'año' in df.columns:
