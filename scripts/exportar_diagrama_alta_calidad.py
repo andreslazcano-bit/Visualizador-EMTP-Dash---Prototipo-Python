@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 """
-Script para exportar diagrama Mermaid a PNG usando la API de Mermaid.ink
+Script para exportar diagrama Mermaid a PNG de ALTA CALIDAD usando Kroki API
+Kroki es un servicio que convierte diagramas a imágenes de mejor calidad que Mermaid.ink
 """
 
 import base64
 import urllib.request
 import urllib.parse
+import zlib
 import json
 
-# Código Mermaid del diagrama (sin emojis que causan problemas)
+# Código Mermaid del diagrama (sin emojis para mejor compatibilidad)
 MERMAID_CODE = """
 graph TB
     subgraph USUARIOS["USUARIOS"]
@@ -107,33 +109,22 @@ graph TB
     class GEOJSON geoStyle
 """
 
-def export_mermaid_to_png():
+def export_kroki_svg():
     """
-    Exporta el diagrama Mermaid a PNG usando Mermaid.ink API en alta calidad
+    Exporta el diagrama usando Kroki en formato SVG (vectorial, infinita calidad)
     """
     
-    # Preparar el payload para la API
-    payload = {
-        "code": MERMAID_CODE,
-        "mermaid": {
-            "theme": "default"
-        }
-    }
+    # Comprimir y codificar el diagrama
+    compressed = zlib.compress(MERMAID_CODE.encode('utf-8'), 9)
+    encoded = base64.urlsafe_b64encode(compressed).decode('ascii')
     
-    # Codificar en base64
-    graphbytes = MERMAID_CODE.encode("utf8")
-    base64_bytes = base64.b64encode(graphbytes)
-    base64_string = base64_bytes.decode("ascii")
+    # URL de Kroki para SVG
+    url = f"https://kroki.io/mermaid/svg/{encoded}"
     
-    # URL de la API de Mermaid.ink con parámetros de alta calidad
-    # Opciones: width, height, backgroundColor, scale
-    url = f"https://mermaid.ink/img/{base64_string}?type=png&width=2400&height=1800&scale=3"
-    
-    print(f"🔗 URL del diagrama (ALTA CALIDAD - 2400x1800, escala 3x): {url}\n")
-    print("📥 Descargando imagen PNG en alta resolución...")
+    print(f"🔗 URL del diagrama SVG (VECTORIAL - calidad infinita): {url}\n")
+    print("📥 Descargando imagen SVG...")
     
     try:
-        # Descargar la imagen
         headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
         }
@@ -142,42 +133,91 @@ def export_mermaid_to_png():
         with urllib.request.urlopen(req) as response:
             image_data = response.read()
             
-            # Guardar la imagen
-            output_file = "docs/Arquitectura_Vision_General.png"
+            # Guardar SVG
+            output_file = "docs/Arquitectura_Vision_General.svg"
             with open(output_file, 'wb') as f:
                 f.write(image_data)
             
-            print(f"✅ Imagen exportada exitosamente: {output_file}")
+            print(f"✅ SVG exportado exitosamente: {output_file}")
             print(f"📊 Tamaño: {len(image_data) / 1024:.2f} KB")
-            print(f"\n💡 Puedes abrir la imagen con: open {output_file}")
+            print(f"💡 SVG es formato vectorial - se ve perfecto a cualquier tamaño")
             
             return True
             
-    except urllib.error.HTTPError as e:
-        print(f"❌ Error HTTP {e.code}: {e.reason}")
-        print(f"\n📋 Intenta copiar esta URL en tu navegador:")
-        print(f"{url}")
-        return False
-        
     except Exception as e:
         print(f"❌ Error: {e}")
-        print(f"\n📋 URL del diagrama para abrir en navegador:")
-        print(f"{url}")
+        return False
+
+def export_kroki_png():
+    """
+    Exporta el diagrama usando Kroki en formato PNG de alta resolución
+    """
+    
+    # Comprimir y codificar el diagrama
+    compressed = zlib.compress(MERMAID_CODE.encode('utf-8'), 9)
+    encoded = base64.urlsafe_b64encode(compressed).decode('ascii')
+    
+    # URL de Kroki para PNG
+    url = f"https://kroki.io/mermaid/png/{encoded}"
+    
+    print(f"\n🔗 URL del diagrama PNG (ALTA RESOLUCIÓN): {url}\n")
+    print("📥 Descargando imagen PNG de alta calidad...")
+    
+    try:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
+        }
+        req = urllib.request.Request(url, headers=headers)
+        
+        with urllib.request.urlopen(req) as response:
+            image_data = response.read()
+            
+            # Guardar PNG de alta calidad
+            output_file = "docs/Arquitectura_Vision_General_HQ.png"
+            with open(output_file, 'wb') as f:
+                f.write(image_data)
+            
+            print(f"✅ PNG de alta calidad exportado: {output_file}")
+            print(f"📊 Tamaño: {len(image_data) / 1024:.2f} KB")
+            
+            return True
+            
+    except Exception as e:
+        print(f"❌ Error: {e}")
         return False
 
 if __name__ == "__main__":
-    print("=" * 70)
-    print("  EXPORTAR DIAGRAMA DE ARQUITECTURA A PNG")
+    print("=" * 80)
+    print("  EXPORTAR DIAGRAMA DE ARQUITECTURA EN ALTA CALIDAD")
     print("  Visualizador EMTP - Dash")
-    print("=" * 70)
+    print("=" * 80)
     print()
     
-    export_mermaid_to_png()
+    # Exportar SVG (mejor calidad, vectorial)
+    print("🎯 Opción 1: SVG (Formato Vectorial - Calidad Infinita)")
+    print("-" * 80)
+    success_svg = export_kroki_svg()
+    
+    # Exportar PNG de alta calidad
+    print("\n🎯 Opción 2: PNG (Alta Resolución)")
+    print("-" * 80)
+    success_png = export_kroki_png()
     
     print()
-    print("=" * 70)
-    print("  Alternativas si no funciona:")
-    print("  1. Abre https://mermaid.live")
-    print("  2. Copia el código del diagrama desde ARQUITECTURA_VISION_GENERAL.md")
-    print("  3. Click en 'Actions' → 'PNG' para descargar")
-    print("=" * 70)
+    print("=" * 80)
+    if success_svg:
+        print("✅ RECOMENDACIÓN: Usa el archivo SVG para presentaciones")
+        print("   - Se ve perfecto a cualquier tamaño (zoom infinito)")
+        print("   - Abre con: open docs/Arquitectura_Vision_General.svg")
+        print("   - Compatible con PowerPoint, Keynote, navegadores web")
+    
+    if success_png:
+        print("\n✅ Alternativa: PNG de alta calidad también disponible")
+        print("   - Abre con: open docs/Arquitectura_Vision_General_HQ.png")
+    
+    print()
+    print("💡 Para insertar en PowerPoint/Keynote:")
+    print("   1. Abre el archivo SVG")
+    print("   2. Arrastra a la presentación")
+    print("   3. Redimensiona sin perder calidad")
+    print("=" * 80)
