@@ -303,6 +303,13 @@ Lunes a Viernes, 9:00 - 17:00
 
 Este proyecto está bajo la Licencia MIT. Ver archivo [LICENSE](LICENSE) para más detalles.
 
+## Autoría
+
+**Desarrollado por:** [Andrés Lazcano](https://github.com/andreslazcano-bit)  
+**Con colaboración de:** GitHub Copilot (GPT-4o) y Claude 3.5 Sonnet
+
+Este proyecto combina experiencia humana en análisis de datos educacionales con asistencia de IA para arquitectura de software, documentación técnica y optimización de código.
+
 ## Agradecimientos
 
 - Ministerio de Educación de Chile - Por los datos del sistema EMTP
