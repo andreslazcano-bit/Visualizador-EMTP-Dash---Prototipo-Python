@@ -97,6 +97,14 @@ class Settings:
     JWT_EXPIRATION_HOURS: int = int(os.getenv('JWT_EXPIRATION_HOURS', 24))
     
     # ========================================================================
+    # GESTIÓN DE SESIONES
+    # ========================================================================
+    SESSION_TIMEOUT_MINUTES: int = int(os.getenv('SESSION_TIMEOUT_MINUTES', 30))
+    SESSION_WARNING_MINUTES: int = int(os.getenv('SESSION_WARNING_MINUTES', 5))
+    MAX_SESSION_DURATION_HOURS: int = int(os.getenv('MAX_SESSION_DURATION_HOURS', 8))
+    SESSION_CLEANUP_INTERVAL_MINUTES: int = int(os.getenv('SESSION_CLEANUP_INTERVAL_MINUTES', 15))
+    
+    # ========================================================================
     # LOGGING
     # ========================================================================
     LOG_LEVEL: str = os.getenv('LOG_LEVEL', 'INFO')

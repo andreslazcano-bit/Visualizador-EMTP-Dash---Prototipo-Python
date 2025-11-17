@@ -6,6 +6,7 @@ CALLBACKS DE AUTENTICACIÓN Y SELECCIÓN DE MODO
 
 from dash import Input, Output, State, callback_context, html, dcc, no_update
 import dash_bootstrap_components as dbc
+from datetime import datetime
 from src.utils.auth import AuthManager, USER_PROFILES, DEMO_USERS
 from src.utils.user_management import user_manager
 from src.utils.audit import audit_logger
@@ -86,6 +87,7 @@ def register_auth_callbacks(app):
         if n_clicks:
             user_session = {
                 'authenticated': True,
+                'last_activity': datetime.utcnow().isoformat(),
                 'user_info': {
                     'username': 'usuario',
                     'profile': 'usuario', 
@@ -119,6 +121,7 @@ def register_auth_callbacks(app):
                 # Autenticación exitosa
                 admin_session = {
                     'authenticated': True,
+                    'last_activity': datetime.utcnow().isoformat(),
                     'user_info': user_info
                 }
                 return (

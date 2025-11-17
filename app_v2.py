@@ -75,6 +75,44 @@ server = app.server
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     dcc.Store(id='session-store', storage_type='session'),
+    
+    # Interval para verificar timeout de sesión (cada 60 segundos)
+    dcc.Interval(
+        id='session-check-interval',
+        interval=60 * 1000,  # 60 segundos
+        n_intervals=0
+    ),
+    
+    # Modal de timeout de sesión
+    dbc.Modal([
+        dbc.ModalHeader(dbc.ModalTitle("Sesión Expirada")),
+        dbc.ModalBody([
+            html.Div(id='session-timeout-message'),
+        ]),
+        dbc.ModalFooter([
+            dbc.Button("Volver al Inicio", id="btn-timeout-return", color="primary")
+        ])
+    ], id='modal-session-timeout', is_open=False, backdrop='static', keyboard=False),
+    
+    # Modal de re-autenticación para admin
+    dbc.Modal([
+        dbc.ModalHeader(dbc.ModalTitle("Re-autenticación Requerida")),
+        dbc.ModalBody([
+            html.P("Tu sesión ha expirado por inactividad. Por favor, ingresa tu contraseña para continuar."),
+            dbc.Input(
+                id='reauth-password-input',
+                type='password',
+                placeholder='Contraseña',
+                className='mb-2'
+            ),
+            html.Div(id='reauth-message')
+        ]),
+        dbc.ModalFooter([
+            dbc.Button("Volver al Inicio", id="btn-reauth-cancel", color="secondary", className="me-2"),
+            dbc.Button("Continuar", id="btn-reauth-confirm", color="primary")
+        ])
+    ], id='modal-reauth', is_open=False, backdrop='static', keyboard=False),
+    
     html.Div(id='app-content', children=[create_login_layout()])
 ])
 
@@ -89,10 +127,12 @@ register_theme_callbacks(app)
 from src.callbacks.user_management_callbacks import register_user_management_callbacks
 from src.callbacks.audit_callbacks import register_audit_callbacks
 from src.callbacks.export_callbacks import register_export_callbacks
+from src.callbacks.session_callbacks import register_session_callbacks
 
 register_user_management_callbacks(app)
 register_audit_callbacks(app)
 register_export_callbacks(app)
+register_session_callbacks(app)
 
 # ============================================================================
 # EJECUCIÓN
