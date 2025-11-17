@@ -1,203 +1,203 @@
-# 📚 Índice de Documentación - Visualizador EMTP
+# 📚 Índice de Documentación - Visualizador EMTP v2.0
 
-**Versión:** 2.0  
+**Versión:** 2.0.0  
 **Última Actualización:** 17 de Noviembre 2025
 
-Este documento sirve como índice central para toda la documentación del proyecto.
+Este documento sirve como índice central para toda la documentación técnica del proyecto.
 
 ---
 
 ## 📋 Índice General
 
-### 📘 Para Dirección y Jefaturas
-- [**Presentación Ejecutiva**](PRESENTACION_JEFATURA_ASPECTOS_CLAVE.md) - Aspectos clave para decisiones estratégicas
-  - 📄 [Versión Word](PRESENTACION_JEFATURA_ASPECTOS_CLAVE.docx) (42 KB)
-- [**Resumen del Proyecto**](../RESUMEN_PROYECTO.md) - Vista general del Visualizador EMTP
-- [**Roadmap**](ROADMAP.md) - Plan de desarrollo y próximas funcionalidades
+### 🏗️ Arquitectura y Diseño
+
+| Documento | Descripción | Páginas |
+|-----------|-------------|---------|
+| [**Arquitectura Detallada**](ARQUITECTURA_DETALLADA.md) | Diseño completo del sistema, componentes y tecnologías | ~30 |
+| [**Arquitectura - Visión General**](ARQUITECTURA_VISION_GENERAL.md) | Vista de alto nivel del sistema | ~12 |
+| [**Diagramas de Flujos**](DIAGRAMA_FLUJOS_ARQUITECTURA.md) | Flujos de datos y componentes | ~25 |
+| Diagramas Visuales | `*.svg`, `*.png`, `*_HQ.png` | Visual |
+
+### 🔧 Manuales para TI
+
+| Documento | Descripción | Páginas |
+|-----------|-------------|---------|
+| [**Manual de Despliegue**](MANUAL_DESPLIEGUE.md) ⭐ | Instalación y configuración paso a paso | ~25 |
+| [**Manual de Mantenimiento**](MANUAL_MANTENIMIENTO.md) ⭐ | Operaciones, backups, troubleshooting | ~35 |
+
+### 📊 Sistemas Implementados
+
+| Documento | Descripción | Páginas |
+|-----------|-------------|---------|
+| [**Sistema de Usuarios y Auditoría**](SISTEMA_USUARIOS_AUDITORIA.md) | Gestión de usuarios + logs de auditoría | ~30 |
+| [**Actualización Automática**](ACTUALIZACION_AUTOMATICA.md) | Sistema de actualización semanal de datos | ~18 |
+| [**Integración Completada**](INTEGRACION_COMPLETADA.md) | Estado del proyecto v2.0 | ~22 |
+
+### 📖 Navegación
+
+| Documento | Descripción |
+|-----------|-------------|
+| [**README.md**](README.md) | Guía de navegación de la documentación |
+| [**INDICE.md**](INDICE.md) | Este archivo - índice general |
 
 ---
 
-### 🔧 Para TI (Despliegue y Mantenimiento)
-- [**Manual de Despliegue**](MANUAL_DESPLIEGUE.md) ⭐ **ESENCIAL**
-  - Instalación paso a paso (sin necesidad de conocimientos Python)
-  - Configuración del servidor
-  - Primera ejecución
-  - Configuración como servicio (Linux/Windows)
-  - Troubleshooting
-
-- [**Manual de Mantenimiento**](MANUAL_MANTENIMIENTO.md) ⭐ **ESENCIAL**
-  - Verificaciones diarias/semanales/mensuales
-  - Procedimientos de backup y restauración
-  - Gestión de usuarios desde terminal
-  - Monitoreo de logs
-  - Rotación de logs
-  - Actualización del sistema
-  - Errores comunes y soluciones
-  - Procedimientos de emergencia
-
-- [**Guía Rápida**](GUIA_RAPIDA.md) ⭐ **REFERENCIA RÁPIDA**
-  - Comandos esenciales
-  - Troubleshooting rápido
-  - Checklists de mantenimiento
-  - Contactos de emergencia
-
----
-
-### 👥 Para Usuarios Finales (Secretaría, Analistas)
-- [**Manual de Usuario**](MANUAL_USUARIO.md) ⭐ **ESENCIAL**
-  - Acceso al sistema
-  - Navegación básica
-  - Uso de dashboards
-  - Aplicación de filtros
-  - Exportación de datos
-  - Funciones de administrador (gestión de usuarios + auditoría)
-  - Preguntas frecuentes
-
-- [**Guía Rápida**](GUIA_RAPIDA.md)
-  - Tareas comunes en 5 pasos
-  - Atajos de teclado
-  - Contactos de soporte
-
----
-
-### 🏗️ Para Desarrolladores
-- [**Arquitectura del Sistema**](ARQUITECTURA.md)
-  - Diseño técnico completo
-  - Componentes principales
-  - Flujo de datos
-  - Stack tecnológico
-
-- [**Sistema de Usuarios y Auditoría**](SISTEMA_USUARIOS_AUDITORIA.md)
-  - Implementación técnica
-  - Estructura de base de datos
-  - Callbacks y componentes
-  - Código de ejemplo
-
-- [**Integración Completada**](INTEGRACION_COMPLETADA.md) ⭐ **NUEVO**
-  - Resumen de todos los componentes integrados
-  - Archivos creados/modificados
-  - Pruebas realizadas
-  - Estado del proyecto
-  - Próximos pasos
-
-- [**Migración de Datos**](MIGRACION_DATOS.md)
-  - Proceso de migración desde RDS
-  - Scripts de conversión
-  - Conexión a SQL Server
-
-- [**Actualización Automática**](ACTUALIZACION_AUTOMATICA.md)
-  - Sistema de actualización semanal
-  - Configuración de cron jobs
-  - Validación de datos
-
----
-
-## 📁 Estructura de Carpetas
+## 📁 Estructura de Documentación
 
 ```
 docs/
-├── INDICE.md                              ← Este archivo
+├── 📐 ARQUITECTURA (3 docs + 3 diagramas)
+│   ├── ARQUITECTURA_DETALLADA.md
+│   ├── ARQUITECTURA_VISION_GENERAL.md
+│   ├── DIAGRAMA_FLUJOS_ARQUITECTURA.md
+│   ├── Arquitectura_Vision_General.svg        (recomendado)
+│   ├── Arquitectura_Vision_General.png
+│   └── Arquitectura_Vision_General_HQ.png
 │
-├── 📊 DIRECCIÓN Y JEFATURAS
-│   ├── PRESENTACION_JEFATURA_ASPECTOS_CLAVE.md
-│   ├── PRESENTACION_JEFATURA_ASPECTOS_CLAVE.docx
-│   ├── ROADMAP.md
-│   └── ../RESUMEN_PROYECTO.md
+├── � MANUALES TI (2 docs)
+│   ├── MANUAL_DESPLIEGUE.md                   ⭐ Instalación
+│   └── MANUAL_MANTENIMIENTO.md                ⭐ Operaciones
 │
-├── 🔧 TI (OPERACIONES)
-│   ├── MANUAL_DESPLIEGUE.md              ← Instalación
-│   ├── MANUAL_MANTENIMIENTO.md           ← Día a día
-│   └── GUIA_RAPIDA.md                    ← Referencia rápida
+├── 📊 SISTEMAS (3 docs)
+│   ├── SISTEMA_USUARIOS_AUDITORIA.md
+│   ├── ACTUALIZACION_AUTOMATICA.md
+│   └── INTEGRACION_COMPLETADA.md
 │
-├── 👥 USUARIOS FINALES
-│   ├── MANUAL_USUARIO.md                 ← Uso del sistema
-│   └── GUIA_RAPIDA.md                    ← Tareas comunes
-│
-└── 🏗️ DESARROLLADORES
-    ├── ARQUITECTURA.md                   ← Diseño técnico
-    ├── SISTEMA_USUARIOS_AUDITORIA.md     ← Gestión usuarios + auditoría
-    ├── INTEGRACION_COMPLETADA.md         ← Estado del proyecto
-    ├── MIGRACION_DATOS.md                ← Migración de datos
-    └── ACTUALIZACION_AUTOMATICA.md       ← Updates semanales
+└── 📖 NAVEGACIÓN (2 docs)
+    ├── README.md
+    └── INDICE.md                              ← Este archivo
 ```
 
 ---
 
 ## 🎯 Guía de Lectura por Rol
 
-### Si eres **Director o Jefe**:
-1. Leer [PRESENTACION_JEFATURA_ASPECTOS_CLAVE.md](PRESENTACION_JEFATURA_ASPECTOS_CLAVE.md)
-2. Revisar [ROADMAP.md](ROADMAP.md) para conocer el plan futuro
+### 👨‍💻 Si eres **Desarrollador**:
 
-### Si eres **Administrador de TI** (y debes instalar el sistema):
-1. ⭐ **LEER PRIMERO:** [MANUAL_DESPLIEGUE.md](MANUAL_DESPLIEGUE.md)
-2. Configurar servidor siguiendo los pasos
-3. Tener a mano [GUIA_RAPIDA.md](GUIA_RAPIDA.md) para consultas rápidas
-4. Luego leer [MANUAL_MANTENIMIENTO.md](MANUAL_MANTENIMIENTO.md) para operaciones diarias
+**Orden de lectura recomendado:**
 
-### Si eres **Administrador de TI** (y debes mantener el sistema):
-1. ⭐ **LEER PRIMERO:** [MANUAL_MANTENIMIENTO.md](MANUAL_MANTENIMIENTO.md)
-2. Configurar backups automáticos
-3. Revisar checklists en [GUIA_RAPIDA.md](GUIA_RAPIDA.md)
-4. Tener a mano contactos de soporte
+1. **Primero**: [README.md](../README.md) (raíz del proyecto)
+2. **Luego**: [ARQUITECTURA_VISION_GENERAL.md](ARQUITECTURA_VISION_GENERAL.md)
+3. **Profundizar**: [ARQUITECTURA_DETALLADA.md](ARQUITECTURA_DETALLADA.md)
+4. **Entender flujos**: [DIAGRAMA_FLUJOS_ARQUITECTURA.md](DIAGRAMA_FLUJOS_ARQUITECTURA.md)
+5. **Sistemas específicos**:
+   - [SISTEMA_USUARIOS_AUDITORIA.md](SISTEMA_USUARIOS_AUDITORIA.md)
+   - [ACTUALIZACION_AUTOMATICA.md](ACTUALIZACION_AUTOMATICA.md)
+6. **Estado actual**: [INTEGRACION_COMPLETADA.md](INTEGRACION_COMPLETADA.md)
 
-### Si eres **Usuario Final** (Secretaría, Analista):
-1. ⭐ **LEER PRIMERO:** [MANUAL_USUARIO.md](MANUAL_USUARIO.md)
-2. Practicar con el sistema (modo usuario sin login)
-3. Consultar [GUIA_RAPIDA.md](GUIA_RAPIDA.md) para tareas específicas
-4. Contactar soporte si tienes dudas
+**Tiempo estimado**: 3-4 horas para leer toda la documentación
 
-### Si eres **Administrador del Sistema** (gestión de usuarios):
-1. Leer sección "Funciones de Administrador" en [MANUAL_USUARIO.md](MANUAL_USUARIO.md)
-2. Practicar creación de usuarios
-3. Revisar auditoría semanalmente
+---
 
-### Si eres **Desarrollador** (continuarás el proyecto):
-1. Leer [ARQUITECTURA.md](ARQUITECTURA.md)
-2. Revisar [INTEGRACION_COMPLETADA.md](INTEGRACION_COMPLETADA.md)
-3. Estudiar [SISTEMA_USUARIOS_AUDITORIA.md](SISTEMA_USUARIOS_AUDITORIA.md)
-4. Revisar código fuente en `src/`
+### 🔧 Si eres **Administrador de TI** (Despliegue):
+
+**Para instalar el sistema:**
+
+1. ⭐ **LEER PRIMERO**: [MANUAL_DESPLIEGUE.md](MANUAL_DESPLIEGUE.md)
+2. Seguir los pasos de instalación
+3. Configurar como servicio (Linux/Windows)
+4. **Luego leer**: [MANUAL_MANTENIMIENTO.md](MANUAL_MANTENIMIENTO.md)
+5. Configurar backups automáticos
+6. Configurar actualización semanal ([ACTUALIZACION_AUTOMATICA.md](ACTUALIZACION_AUTOMATICA.md))
+
+**Tiempo estimado**: 2 horas (lectura + instalación)
+
+---
+
+### 🛠️ Si eres **Administrador de TI** (Mantenimiento):
+
+**Para mantener el sistema funcionando:**
+
+1. ⭐ **LEER PRIMERO**: [MANUAL_MANTENIMIENTO.md](MANUAL_MANTENIMIENTO.md)
+2. Configurar checklists de verificación (diaria/semanal/mensual)
+3. Revisar sección de troubleshooting
+4. Tener a mano procedimientos de backup y restauración
+
+**Tareas semanales**:
+- Verificar logs de auditoría
+- Revisar espacio en disco
+- Verificar actualización automática de datos
+
+**Tiempo estimado**: 30 minutos/semana
+
+---
+
+### 📊 Si trabajas en **Gestión de Proyecto**:
+
+**Para entender el proyecto:**
+
+1. [README.md](../README.md) - Vista general
+2. [INTEGRACION_COMPLETADA.md](INTEGRACION_COMPLETADA.md) - Estado actual
+3. Diagramas visuales (SVG/PNG) para presentaciones
+
+**Para presentaciones**:
+- Usar `Arquitectura_Vision_General_HQ.png` (alta calidad, 345 KB)
+- Ver [ARQUITECTURA_VISION_GENERAL.md](ARQUITECTURA_VISION_GENERAL.md) para explicaciones
 
 ---
 
 ## 📏 Estadísticas de Documentación
 
-| Tipo | Archivos | Páginas Aprox. |
-|------|----------|----------------|
-| **Dirección** | 3 | 50 |
-| **TI** | 3 | 66 |
-| **Usuarios** | 2 | 36 |
-| **Desarrolladores** | 5 | 80 |
-| **TOTAL** | 13 | ~230 |
+| Categoría | Documentos | Tamaño Total | Páginas Aprox. |
+|-----------|------------|--------------|----------------|
+| **Arquitectura** | 6 (3 MD + 3 imágenes) | ~500 KB | ~70 páginas |
+| **Manuales TI** | 2 | ~29 KB | ~60 páginas |
+| **Sistemas** | 3 | ~45 KB | ~70 páginas |
+| **Navegación** | 2 | ~14 KB | ~10 páginas |
+| **TOTAL** | **13 archivos** | **~588 KB** | **~210 páginas** |
 
 ---
 
-## 🔄 Actualizaciones Recientes
+## 🔄 Historial de Versiones
 
-### Noviembre 2025 (v2.0)
-- ✅ Agregado sistema de gestión de usuarios
-- ✅ Agregado sistema de auditoría
-- ✅ Creados manuales de despliegue y mantenimiento
-- ✅ Creado manual de usuario completo
-- ✅ Creada guía rápida de referencia
-- ✅ Documentación de sostenibilidad para TI
+### v2.0.0 (Noviembre 2025) - Release Actual ✅
+- ✅ Sistema de gestión de usuarios (SQLite + bcrypt)
+- ✅ Sistema de auditoría (logs JSONL)
+- ✅ 3 perfiles de usuario (Usuario, Analista, Admin)
+- ✅ Actualización automática de datos
+- ✅ Documentación técnica completa (13 docs)
+- ✅ Manuales de despliegue y mantenimiento
+- ✅ Arquitectura modular con Dash callbacks
+- ✅ Dockerización (Dockerfile + docker-compose.yml)
+
+### v1.0.0 (Octubre 2025)
+- ✅ Dashboard interactivo con Dash/Plotly
+- ✅ 6 módulos principales (Matrícula, Egresados, etc.)
+- ✅ Mapas geográficos interactivos
+- ✅ Sistema de filtros avanzados
+- ✅ Tema claro/oscuro
 
 ---
 
-## 📞 Contactos para Documentación
+## � Enlaces Útiles
 
-### Consultas sobre Manuales de Usuario
-**Secretaría EMTP**  
-📧 secretaria.emtp@mineduc.cl
+### Repositorio y Código
+- **GitHub**: [Visualizador-EMTP-Dash](https://github.com/andreslazcano-bit/Visualizador-EMTP-Dash---Prototipo-Python)
+- **README Principal**: [README.md](../README.md)
+- **Guía de Contribución**: [CONTRIBUTING.md](../CONTRIBUTING.md)
+- **Licencia**: [LICENSE](../LICENSE) (MIT)
 
-### Consultas Técnicas (TI)
-**Soporte TI**  
-📧 ti@mineduc.cl  
-📞 +56 2 XXXX XXXX
+### Archivos de Configuración
+- **Docker**: [Dockerfile](../Dockerfile), [docker-compose.yml](../docker-compose.yml)
+- **Dependencias**: [requirements.txt](../requirements.txt)
+- **Configuración**: [.env.example](../.env.example)
 
-### Consultas de Desarrollo
-**Desarrollador Original**  
-📧 andres.lazcano@mineduc.cl  
+---
+
+## 📞 Soporte y Contacto
+
+### Consultas Técnicas
+**Desarrollador Principal**  
+📧 andres.lazcano@mineduc.cl
+
+### Reportar Issues
+**GitHub Issues**: [Crear nuevo issue](https://github.com/andreslazcano-bit/Visualizador-EMTP-Dash---Prototipo-Python/issues)
+
+---
+
+**Mantenedor**: Andrés Lazcano  
+**Licencia**: MIT  
+**Última Revisión**: 17 de Noviembre 2025  
 📞 +56 9 XXXX XXXX
 
 ---
