@@ -23,6 +23,7 @@ Este documento sirve como índice central para toda la documentación técnica d
 | [**Manual de Despliegue**](MANUAL_DESPLIEGUE.md) | Instalación y configuración paso a paso | ~25 |
 | [**Manual de Mantenimiento**](MANUAL_MANTENIMIENTO.md) | Operaciones, backups, troubleshooting | ~35 |
 | [**Guía de Sostenibilidad**](GUIA_SOSTENIBILIDAD.md) | Plan de sostenibilidad y transición a TI | ~40 |
+| [**Checklist de Transición**](CHECKLIST_TRANSICION.md) | Checklist práctico para transición a TI | ~12 |
 
 ### Sistemas Implementados
 

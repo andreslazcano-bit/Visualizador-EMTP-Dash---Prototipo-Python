@@ -22,6 +22,7 @@ Esta carpeta contiene la documentación técnica oficial del proyecto.
 | `MANUAL_DESPLIEGUE.md` | Instalación y configuración del sistema | 11 KB |
 | `MANUAL_MANTENIMIENTO.md` | Operaciones y mantenimiento | 18 KB |
 | `GUIA_SOSTENIBILIDAD.md` | Plan de sostenibilidad y transición a TI | 24 KB |
+| `CHECKLIST_TRANSICION.md` | Checklist práctico para transición a TI | 7 KB |
 
 ### Sistemas Implementados
 
