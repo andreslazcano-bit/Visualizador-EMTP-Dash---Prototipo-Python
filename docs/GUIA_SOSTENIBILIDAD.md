@@ -168,27 +168,119 @@ UPDATE users SET password_hash = '<nuevo_hash>' WHERE username = 'usuario';
 **Probabilidad:** Media  
 **Impacto:** Alto (dashboards con datos desactualizados)
 
-**Mitigación Actual:**
-- Script `actualizar_datos_semanal.py` documentado
-- Logs detallados en `logs/app.log`
-- Cron job configurado para ejecución automática
+**Estado Actual:** ⚠️ **PENDIENTE DE DEFINIR CON TI MINEDUC**
 
-**Mitigación Adicional Recomendada:**
+**Situación:**
+- SQLite se usa **SOLO** para gestión de usuarios de la aplicación (admin, analista, usuario)
+- Los datos SIGE/MINEDUC se cargan desde archivos CSV/Parquet en `data/processed/`
+- Actualmente NO hay conexión automática a fuentes de datos del MINEDUC
+
+**✅ ACTUALIZACIÓN IMPORTANTE (Noviembre 2025):**
+
+Según información de expertos del MINEDUC:
+- **SIGE corre sobre SQL Server** (réplicas o DataMart institucional)
+- **TI NO da acceso al transaccional**, pero SÍ a réplicas para análisis
+- **La Opción 5 (SQL Server) es la MÁS PROBABLE** (80% probabilidad)
+- Otras divisiones ya usan este método
+- Proceso estándar: Usuario read-only en servidor de réplicas
+
+**Opciones Disponibles (ordenadas por probabilidad):**
+
+**⭐ Opción 5: SQL Server - Réplica del SIGE (MÁS PROBABLE - 80%)**
 ```python
-# scripts/verificar_actualizacion.py
-import smtplib
-from datetime import datetime
-import os
+# Conexión a réplica SQL Server (NO al transaccional)
+import pyodbc
 
-def verificar_datos():
-    archivo = 'data/processed/matricula_completa.csv'
-    edad = (datetime.now() - datetime.fromtimestamp(os.path.getmtime(archivo))).days
-    
-    if edad > 8:  # Más de 8 días sin actualizar
-        enviar_alerta(f"Datos desactualizados: {edad} días")
-
-# Ejecutar diariamente con cron
+def conectar_replica_sige():
+    conn = pyodbc.connect(
+        f"DRIVER={{ODBC Driver 17 for SQL Server}};"
+        f"SERVER=SQL-SIGE-REPLICA.mineduc.cl;"  # Servidor de réplicas
+        f"DATABASE=SIGE_DataMart;"
+        f"UID=readonly_emtp;"
+        f"PWD={password}"
+    )
+    return conn
 ```
+- ✅ **Es el estándar** del Gobierno de Chile
+- ✅ TI ya tiene experiencia otorgando estos accesos
+- ✅ Datos actualizados según frecuencia de réplica
+- ⚠️ Requiere solicitud formal (2-4 semanas)
+- 📄 **Ver:** `docs/PENDIENTE_ACTUALIZACION_DATOS.md` para solicitud completa
+
+**Opción 2: SharePoint/OneDrive (Alternativa - 60%)**
+```python
+# Si TI prefiere no dar acceso a BD
+from office365.sharepoint.client_context import ClientContext
+
+def descargar_desde_sharepoint():
+    ctx = ClientContext(site_url).with_credentials(credentials)
+    file = ctx.web.get_file_by_server_relative_url('/datos/matricula.csv')
+    file.download(open('data/raw/matricula.csv', 'wb'))
+```
+- ✅ Automático completamente
+- ✅ Institucional, respaldado por MINEDUC
+- ⚠️ Requiere credenciales de servicio
+- ⚠️ Requiere coordinar con TI MINEDUC
+
+**Opción 3: SFTP/FTP del MINEDUC (Si está disponible)**
+```python
+# Si MINEDUC tiene servidor FTP con datos
+import paramiko
+
+def descargar_desde_ftp():
+    ssh = paramiko.SSHClient()
+    ssh.connect('ftp.mineduc.cl', username='user', password='pass')
+    sftp = ssh.open_sftp()
+    sftp.get('/datos/matricula_2025.csv', 'data/raw/matricula_2025.csv')
+```
+- ✅ Estándar y confiable
+- ⚠️ Requiere credenciales FTP
+- ⚠️ Requiere que MINEDUC mantenga servidor FTP
+
+**Opción 1: Manual (Temporal - Solo mientras se aprueba SQL Server)**
+- Usar solo 1-3 meses mientras TI procesa solicitud
+- TI descarga CSVs semanalmente
+
+**Decisión Requerida:**
+
+**🎯 ACCIÓN INMEDIATA RECOMENDADA:**
+
+1. **Enviar solicitud formal a TI MINEDUC**
+   - Usar plantilla en `docs/PENDIENTE_ACTUALIZACION_DATOS.md`
+   - Solicitar: "Usuario read-only en réplica SQL Server del SIGE"
+   - Especificar: Vistas de matrícula, egresados, establecimientos EMTP
+   - Plazo esperado: 2-4 semanas
+
+2. **Mientras se procesa solicitud:**
+   - Mantener proceso manual temporal
+   - Preparar código de conexión SQL Server
+   - Identificar vistas/tablas necesarias
+
+3. **Tras recibir credenciales:**
+   - Implementar script de extracción automática (4-6 horas)
+   - Probar en desarrollo (1 semana)
+   - Activar cron job semanal
+   - Monitorear primera semana
+
+**Documentación completa:**
+- 📄 `docs/PENDIENTE_ACTUALIZACION_DATOS.md` (20 páginas)
+  - Solicitud formal lista para enviar
+  - Código de implementación completo
+  - Preguntas para reunión con TI
+  - Contexto real del MINEDUC
+   - Configurar credenciales seguras
+   - Implementar logging y alertas
+   - Documentar proceso completo
+
+**Mitigación Temporal (Mientras se define):**
+- Script `actualizar_datos_semanal.py` procesa archivos en `data/raw/`
+- TI coloca archivos manualmente cada semana
+- Logs detallados en `logs/app.log`
+- Alerta si datos >8 días sin actualizar (implementar)
+
+**Responsable de Definición:** Jefatura EMTP + TI MINEDUC  
+**Fecha Límite Recomendada:** Antes del despliegue en producción  
+**Criticidad:** 🔴 Alta - Afecta utilidad del sistema
 
 ### Riesgo 2: Cambios en Fuente de Datos
 

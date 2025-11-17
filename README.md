@@ -168,6 +168,8 @@ Para despliegue en producción, consultar la documentación completa:
 ### Manuales para TI
 - [Manual de Despliegue](docs/MANUAL_DESPLIEGUE.md) - Instalación completa
 - [Manual de Mantenimiento](docs/MANUAL_MANTENIMIENTO.md) - Operaciones día a día
+- [Guía de Sostenibilidad](docs/GUIA_SOSTENIBILIDAD.md) - Plan de sostenibilidad y transición
+- [⚠️ Pendiente: Actualización Datos](docs/PENDIENTE_ACTUALIZACION_DATOS.md) - Integración con MINEDUC
 
 ### Sistemas Implementados
 - [Sistema de Usuarios y Auditoría](docs/SISTEMA_USUARIOS_AUDITORIA.md) - Implementación técnica

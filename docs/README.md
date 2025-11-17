@@ -64,6 +64,9 @@ Esta carpeta contiene la documentación técnica oficial del proyecto.
    - `MANUAL_MANTENIMIENTO.md` - Backups, logs, troubleshooting
    - `ACTUALIZACION_AUTOMATICA.md` - Configuración de cron jobs
 
+3. **⚠️ Temas Pendientes**:
+   - `PENDIENTE_ACTUALIZACION_DATOS.md` - Integración con MINEDUC (5 opciones)
+
 ### Para Gestión de Proyecto
 
 1. **Visión general**:
@@ -74,7 +77,7 @@ Esta carpeta contiene la documentación técnica oficial del proyecto.
 
 **Última actualización**: Noviembre 2025  
 **Versión del proyecto**: v2.0.0  
-**Total documentos**: 13 archivos (568 KB)
+**Total documentos**: 14 archivos (~582 KB)
 
 ### Documentación Completa
 
