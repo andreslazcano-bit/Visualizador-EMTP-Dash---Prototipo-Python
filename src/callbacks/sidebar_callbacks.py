@@ -9,6 +9,7 @@ import dash_bootstrap_components as dbc
 from src.layouts.real_data_content import create_real_kpi_cards, create_real_chart, create_real_table
 from src.layouts.mapas import create_mapas_layout
 from src.utils.helpers import format_chilean
+from src.utils.audit import audit_logger
 import pandas as pd
 import os
 
@@ -20,17 +21,24 @@ def create_breadcrumb(items):
 
 def create_export_buttons(section_name, subtab=''):
     """
-    Crea botones de exportación para PDF y CSV
+    Crea botones de exportación para PDF, CSV y Excel con componentes de descarga
     
     Args:
         section_name: Nombre de la sección (matricula, egresados, etc.)
         subtab: Sub-pestaña actual (opcional)
     """
+    from dash import dcc
+    
     button_id_base = f"export-{section_name}"
     if subtab:
         button_id_base += f"-{subtab}"
     
     return html.Div([
+        # Componentes de descarga (invisibles)
+        dcc.Download(id=f"{button_id_base}-csv-download"),
+        dcc.Download(id=f"{button_id_base}-excel-download"),
+        html.Div(id=f"{button_id_base}-pdf-alert", style={"display": "none"}),
+        
         html.Hr(className="my-4"),
         dbc.Row([
             dbc.Col([
@@ -234,7 +242,8 @@ def register_sidebar_callbacks(app):
          Input('sub-docentes-perfil', 'n_clicks'),
          Input('sub-docentes-capacitacion', 'n_clicks')],
         [State('navigation-state', 'data'),
-         State('filters-state', 'data')]
+         State('filters-state', 'data'),
+         State('session-store', 'data')]
     )
     def handle_navigation(nav_inicio, nav_mat, nav_egr, nav_tit, nav_est, nav_doc, nav_mapas,
                          nav_gestion, nav_audit,
@@ -243,7 +252,7 @@ def register_sidebar_callbacks(app):
                          sub_tit_tasas, sub_tit_tiempo,
                          sub_est_geo, sub_est_infra,
                          sub_doc_perfil, sub_doc_cap,
-                         nav_state, filters):
+                         nav_state, filters, session_data):
         """Maneja la navegación entre secciones"""
         
         ctx = callback_context
@@ -256,6 +265,45 @@ def register_sidebar_callbacks(app):
             return {'active_main': 'nav-inicio', 'active_sub': None}, content, breadcrumb
         
         button_id = ctx.triggered[0]['prop_id'].split('.')[0]
+        
+        # Obtener username para auditoría
+        username = 'desconocido'
+        if session_data and 'username' in session_data:
+            username = session_data.get('username', 'desconocido')
+        
+        # Mapeo de IDs de botones a nombres de dashboards
+        dashboard_map = {
+            'nav-inicio': 'inicio',
+            'nav-matricula': 'matricula',
+            'nav-egresados': 'egresados',
+            'nav-titulacion': 'titulacion',
+            'nav-establecimientos': 'establecimientos',
+            'nav-docentes': 'docentes',
+            'nav-mapas': 'mapas',
+            'nav-gestion-usuarios': 'gestion_usuarios',
+            'nav-auditoria': 'auditoria'
+        }
+        
+        # Registrar vista de dashboard si es navegación principal
+        if button_id in dashboard_map:
+            dashboard_name = dashboard_map[button_id]
+            audit_logger.log_view_dashboard(
+                username=username,
+                dashboard=dashboard_name
+            )
+            print(f"📝 Auditoría: {username} visualizó {dashboard_name}")
+        # Para sub-pestañas, registrar con detalles
+        elif button_id.startswith('sub-'):
+            parts = button_id.split('-')
+            if len(parts) >= 3:
+                dashboard_name = parts[1]  # Ej: 'matricula', 'egresados'
+                subtab = parts[2]  # Ej: 'evolucion', 'transicion'
+                audit_logger.log_view_dashboard(
+                    username=username,
+                    dashboard=dashboard_name,
+                    details={'subtab': subtab}
+                )
+                print(f"📝 Auditoría: {username} visualizó {dashboard_name}/{subtab}")
         
         # Navegación principal
         if button_id == 'nav-inicio':

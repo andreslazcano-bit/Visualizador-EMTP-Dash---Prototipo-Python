@@ -5,7 +5,7 @@ CALLBACKS PARA MAPAS GEOGRÁFICOS
 Maneja la interacción con los mapas de Chile (regional y comunal)
 """
 
-from dash import Input, Output, callback
+from dash import Input, Output, State, callback
 from src.layouts.mapas import (
     create_chile_map, 
     create_establecimientos_map,
@@ -14,6 +14,7 @@ from src.layouts.mapas import (
     create_tabla_resumen_matricula,
     create_tabla_resumen_establecimientos
 )
+from src.utils.audit import audit_logger
 
 
 @callback(
@@ -27,19 +28,33 @@ from src.layouts.mapas import (
     ],
     [
         Input('mapa-granularidad', 'value')
+    ],
+    [
+        State('session-store', 'data')
     ]
 )
-def update_mapas_granularidad(granularidad):
+def update_mapas_granularidad(granularidad, session_data):
     """
     Actualiza los mapas y tablas según la granularidad seleccionada (regional o comunal)
     
     Args:
         granularidad: 'regional' o 'comunal'
+        session_data: Datos de sesión del usuario
         
     Returns:
         tuple: (fig_matricula, fig_establecimientos, num_territorios, label_territorios, tabla_mat, tabla_est)
     """
     print(f"🗺️  Callback de mapas ejecutado con granularidad: {granularidad}")
+    
+    # Registrar vista de dashboard
+    if session_data and 'username' in session_data:
+        username = session_data.get('username', 'desconocido')
+        audit_logger.log_view_dashboard(
+            username=username,
+            dashboard='mapas',
+            details={'granularidad': granularidad}
+        )
+        print(f"📝 Auditoría: {username} visualizó mapas ({granularidad})")
     
     if granularidad == 'comunal':
         # Mapas comunales

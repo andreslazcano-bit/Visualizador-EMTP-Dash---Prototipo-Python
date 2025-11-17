@@ -88,9 +88,11 @@ register_theme_callbacks(app)
 # Registrar callbacks de gestión de usuarios y auditoría
 from src.callbacks.user_management_callbacks import register_user_management_callbacks
 from src.callbacks.audit_callbacks import register_audit_callbacks
+from src.callbacks.export_callbacks import register_export_callbacks
 
 register_user_management_callbacks(app)
 register_audit_callbacks(app)
+register_export_callbacks(app)
 
 # ============================================================================
 # EJECUCIÓN

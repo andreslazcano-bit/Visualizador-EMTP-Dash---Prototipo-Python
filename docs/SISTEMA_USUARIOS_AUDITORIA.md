@@ -553,6 +553,11 @@ CREATE TABLE users (
 ```
 
 ### Archivo de Auditoría (JSONL)
+
+**Ubicación**: `logs/audit.jsonl`
+
+Cada línea es un evento JSON independiente:
+
 ```json
 {
   "timestamp": "2025-11-17T14:30:00",
@@ -567,16 +572,214 @@ CREATE TABLE users (
 
 ---
 
-## 🚀 Próximos Pasos (Opcionales)
+## 📊 Sistema de Auditoría Completo (Actualización Nov 2025)
 
-1. **Exportación de Logs**: Botón para descargar logs en Excel
-2. **Alertas**: Email cuando hay logins fallidos repetidos
-3. **Dashboard de Admin**: Vista resumen con KPIs del sistema
-4. **Integración AD**: Autenticación con Active Directory
-5. **API REST**: Endpoints para gestión de usuarios desde otras apps
-6. **Roles Personalizados**: Crear perfiles custom con permisos específicos
+### ✅ **Qué se registra automáticamente:**
+
+#### 1. **Autenticación**
+```json
+{
+  "action": "login",
+  "status": "success" | "failed",
+  "username": "usuario",
+  "timestamp": "2025-11-17T12:30:00"
+}
+```
+
+#### 2. **Navegación por Dashboards**
+```json
+{
+  "action": "view_dashboard",
+  "username": "analista1",
+  "details": {
+    "dashboard": "matricula",
+    "subtab": "evolucion"
+  },
+  "timestamp": "2025-11-17T12:35:00"
+}
+```
+
+**Dashboards rastreados:**
+- ✅ Inicio
+- ✅ Matrícula (evolucion, demografia, retencion, comparacion)
+- ✅ Egresados (transicion, empleabilidad)
+- ✅ Titulación (tasas, tiempo)
+- ✅ Establecimientos (geografia, infraestructura)
+- ✅ Docentes (perfil, capacitacion)
+- ✅ Mapas (regional, comunal)
+- ✅ Gestión de Usuarios
+- ✅ Auditoría
+
+#### 3. **Exportación de Datos**
+```json
+{
+  "action": "export_data",
+  "username": "usuario",
+  "details": {
+    "export_type": "csv" | "excel" | "pdf",
+    "dashboard": "matricula",
+    "subtab": "evolucion",
+    "section": "matricula-evolucion"
+  },
+  "timestamp": "2025-11-17T12:40:00"
+}
+```
+
+**Formatos de exportación rastreados:**
+- ✅ CSV
+- ✅ Excel (.xlsx)
+- ✅ PDF (en desarrollo)
+
+**Secciones con exportación:**
+- Matrícula: evolucion, demografia, retencion, comparacion
+- Egresados: transicion, empleabilidad
+- Titulación: tasas, tiempo
+- Establecimientos: geografia, infraestructura
+- Docentes: perfil, capacitacion
+
+#### 4. **Gestión de Usuarios** (Solo Admin)
+```json
+{
+  "action": "user_create" | "user_update" | "user_deactivate",
+  "username": "admin",
+  "details": {
+    "target_user": "nuevo_usuario",
+    "profile": "analista",
+    ...
+  },
+  "timestamp": "2025-11-17T12:45:00"
+}
+```
+
+### 📂 **Ubicación de Logs**
+
+```
+logs/
+├── audit.jsonl          ← Auditoría completa (JSON Lines)
+├── app.log             ← Logs generales de la aplicación
+└── app_backup_*.log    ← Backups automáticos (rotación 10 MB)
+```
+
+### � **Cómo consultar la auditoría**
+
+#### **Opción 1: Dashboard de Auditoría (Recomendada)**
+
+1. Login como Admin
+2. Ir a "Auditoría" en el menú
+3. Filtrar por:
+   - Período (últimas 24h, 7 días, 30 días)
+   - Usuario específico
+   - Tipo de acción
+   - Estado (éxito, error, denegado)
+
+**Visualizaciones disponibles:**
+- 📈 Timeline de actividad
+- 👥 Usuarios más activos
+- 📊 Distribución de acciones
+- 🗺️ Dashboards más visitados
+- 📋 Tabla detallada con todos los registros
+
+#### **Opción 2: Terminal (para TI)**
+
+```bash
+# Ver últimos 50 registros
+tail -50 logs/audit.jsonl
+
+# Buscar exportaciones
+grep "export_data" logs/audit.jsonl
+
+# Buscar por usuario específico
+grep "\"username\": \"analista1\"" logs/audit.jsonl | tail -20
+
+# Ver solo logins fallidos
+grep "\"action\": \"login\"" logs/audit.jsonl | grep "\"status\": \"failed\""
+
+# Formato legible (requiere jq)
+cat logs/audit.jsonl | jq .
+
+# Últimas 10 exportaciones
+grep "export_data" logs/audit.jsonl | tail -10 | jq .
+```
+
+#### **Opción 3: Python (para análisis avanzado)**
+
+```python
+from src.utils.audit import audit_logger
+import pandas as pd
+
+# Obtener todos los logs del último mes
+df = audit_logger.get_audit_logs(days=30)
+
+# Exportaciones de un usuario específico
+exports = df[
+    (df['action'] == 'export_data') & 
+    (df['username'] == 'analista1')
+]
+print(exports)
+
+# Estadísticas generales
+stats = audit_logger.get_audit_stats(days=7)
+print(f"Total acciones: {stats['total_actions']}")
+print(f"Usuarios únicos: {stats['unique_users']}")
+print(f"Exportaciones: {stats['exports']}")
+```
+
+### 📊 **Ejemplos de Consultas Comunes**
+
+**¿Quién exportó datos esta semana?**
+```bash
+grep "export_data" logs/audit.jsonl | \
+  jq -r '.username' | \
+  sort | uniq -c | \
+  sort -nr
+```
+
+**¿Cuántos intentos de login fallidos?**
+```bash
+grep "login" logs/audit.jsonl | \
+  grep "failed" | wc -l
+```
+
+**¿Qué dashboards son más visitados?**
+```bash
+grep "view_dashboard" logs/audit.jsonl | \
+  jq -r '.details.dashboard' | \
+  sort | uniq -c | \
+  sort -nr
+```
+
+### 🔐 **Seguridad y Retención**
+
+- **Formato**: JSONL (una línea = un evento)
+- **Tamaño**: Sin límite (monitorear crecimiento)
+- **Rotación**: Manual o con logrotate
+- **Retención recomendada**: 1 año mínimo
+- **Backup**: Incluido en backup general del sistema
+- **Permisos**: Solo lectura para TI, Admin puede ver dashboard
+
+### ⚡ **Performance**
+
+- **Overhead**: Mínimo (~1-2ms por evento)
+- **Escritura**: Asíncrona (no bloquea UI)
+- **Búsqueda**: O(n) en archivo, usar filtros en dashboard
+- **Recomendación**: Si supera 100k eventos, considerar BD separada
+
+---
+
+## �🚀 Próximos Pasos (Opcionales)
+
+1. ✅ **Sistema de Auditoría Completo** (IMPLEMENTADO)
+2. ✅ **Registro de Exportaciones** (IMPLEMENTADO)
+3. ✅ **Registro de Vistas de Dashboards** (IMPLEMENTADO)
+4. **Exportación de Logs**: Botón para descargar logs en Excel
+5. **Alertas**: Email cuando hay logins fallidos repetidos
+6. **Dashboard de Admin**: Vista resumen con KPIs del sistema
+7. **Integración AD**: Autenticación con Active Directory
+8. **API REST**: Endpoints para gestión de usuarios desde otras apps
+9. **Roles Personalizados**: Crear perfiles custom con permisos específicos
 
 ---
 
 **Última actualización**: 17 de noviembre de 2025  
+**Implementado**: Sistema completo de auditoría con registro de vistas y exportaciones  
 **Autor**: Andrés Lazcano
