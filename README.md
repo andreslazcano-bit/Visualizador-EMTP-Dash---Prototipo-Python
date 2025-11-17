@@ -33,9 +33,10 @@ Plataforma web interactiva para análisis de datos del sistema de Educación Med
 
 - **Dashboards Interactivos**: Análisis de matrícula, egresados, titulación, establecimientos y docentes
 - **Mapas Geográficos**: Visualización territorial de 16 regiones y 345 comunas
+- **Integración Power BI**: Espacio dedicado para dashboards externos (RFT 2025-2026)
 - **Gestión de Usuarios**: Sistema con perfiles (actualmente Usuario y Admin)
 - **Auditoría**: Registro completo de accesos y acciones
-- **Seguridad**: Autenticación bcrypt + SQLite
+- **Seguridad**: Autenticación bcrypt + SQLite + Timeout de sesión automático
 - **Interfaz Adaptable**: Tema claro/oscuro, responsive para desktop, tablet y móvil
 
 ## Acceso al Sistema
@@ -173,6 +174,8 @@ Para despliegue en producción, consultar la documentación completa:
 
 ### Sistemas Implementados
 - [Sistema de Usuarios y Auditoría](docs/SISTEMA_USUARIOS_AUDITORIA.md) - Implementación técnica
+- [Configuración de Timeout de Sesión](docs/CONFIGURACION_TIMEOUT_SESION.md) - Sistema de timeout automático
+- [Configuración Power BI RFT](docs/CONFIGURACION_POWERBI_RFT.md) - Integración de dashboards Power BI
 - [Actualización Automática](docs/ACTUALIZACION_AUTOMATICA.md) - Sistema de actualización
 - [Integración Completada](docs/INTEGRACION_COMPLETADA.md) - Estado del proyecto
 
@@ -187,6 +190,8 @@ Para despliegue en producción, consultar la documentación completa:
 - Encriptación de contraseñas con bcrypt (12 rounds)
 - Base de datos SQLite con protección contra SQL injection
 - Control de acceso basado en roles (Usuario, Analista, Admin)
+- **Timeout automático de sesión** (30 minutos de inactividad, configurable)
+- **Re-autenticación obligatoria** para usuarios con privilegios
 - Auditoría completa de accesos y acciones
 - Gestión de sesiones con validación
 
@@ -197,6 +202,7 @@ Para despliegue en producción, consultar la documentación completa:
 3. Configurar backups automáticos
 4. Limitar acceso por IP (firewall)
 5. Usar HTTPS en producción
+6. Ajustar timeout de sesión según política de seguridad institucional
 
 ## Datos
 
@@ -259,6 +265,14 @@ pytest --cov=src tests/
 
 ## Changelog
 
+### v2.0.1 (17 Noviembre 2025)
+- ✨ **Sistema de timeout de sesión automático** (30 min configurable)
+- ✨ **Re-autenticación para admin/analista** después de timeout
+- ✨ **Integración Power BI** para dashboard RFT 2025-2026
+- 📄 Documentación completa de timeout y Power BI
+- 🔒 Mejoras de seguridad en gestión de sesiones
+- 📋 Registro de eventos de timeout en auditoría
+
 ### v2.0.0 (Noviembre 2025)
 - Sistema de gestión de usuarios (CRUD completo)
 - Sistema de auditoría de accesos y acciones
@@ -303,4 +317,4 @@ Este proyecto combina experiencia humana en análisis de datos educacionales con
 
 ---
 
-**Última actualización**: Noviembre 2025 | **Versión**: 2.0.0
+**Última actualización**: 17 Noviembre 2025 | **Versión**: 2.0.1
