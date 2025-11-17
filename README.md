@@ -266,12 +266,12 @@ pytest --cov=src tests/
 ## Changelog
 
 ### v2.0.1 (17 Noviembre 2025)
-- ✨ **Sistema de timeout de sesión automático** (30 min configurable)
-- ✨ **Re-autenticación para admin/analista** después de timeout
-- ✨ **Integración Power BI** para dashboard RFT 2025-2026
-- 📄 Documentación completa de timeout y Power BI
-- 🔒 Mejoras de seguridad en gestión de sesiones
-- 📋 Registro de eventos de timeout en auditoría
+- **Sistema de timeout de sesión automático** (30 min configurable)
+- **Re-autenticación para admin/analista** después de timeout
+- **Integración Power BI** para dashboard RFT 2025-2026
+- Documentación completa de timeout y Power BI
+- Mejoras de seguridad en gestión de sesiones
+- Registro de eventos de timeout en auditoría
 
 ### v2.0.0 (Noviembre 2025)
 - Sistema de gestión de usuarios (CRUD completo)
