@@ -142,6 +142,22 @@ nohup.out
 *.R
 *.Rmd
 
-# Documentos Word de referencia
+# ============================================================================
+# Documentos de Presentación y Propuestas (NO COMMITEAR)
+# ============================================================================
+# Documentos Word, PowerPoint, PDF de presentaciones
 *.docx
+*.pptx
+*.ppt
 *extracted.txt
+
+# Específicamente en docs/
+docs/*PRESENTACION*.md
+docs/*PRESENTACION*.docx
+docs/*PROPUESTA*.md
+docs/*RESUMEN*.md
+docs/*GUIA_RAPIDA*.md
+docs/*MANUAL_USUARIO*.md
+
+# PDFs grandes (mantener solo SVG/PNG de diagramas)
+docs/*.pdf
