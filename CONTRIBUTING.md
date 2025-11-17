@@ -1,8 +1,8 @@
-# 🤝 Guía de Contribución
+# Guía de Contribución
 
 ¡Gracias por tu interés en contribuir al Visualizador EMTP! Este documento te guiará en el proceso de contribución al proyecto.
 
-## 📋 Tabla de Contenidos
+## Tabla de Contenidos
 
 - [Código de Conducta](#código-de-conducta)
 - [Cómo Contribuir](#cómo-contribuir)
@@ -13,7 +13,7 @@
 - [Reportar Bugs](#reportar-bugs)
 - [Sugerir Mejoras](#sugerir-mejoras)
 
-## 📜 Código de Conducta
+## Código de Conducta
 
 Este proyecto y todos los participantes están gobernados por nuestro Código de Conducta. Al participar, se espera que respetes este código. Por favor reporta comportamientos inaceptables.
 
@@ -25,7 +25,7 @@ Este proyecto y todos los participantes están gobernados por nuestro Código de
 - Enfocarse en lo que es mejor para la comunidad
 - Mostrar empatía hacia otros miembros de la comunidad
 
-## 🚀 Cómo Contribuir
+## Cómo Contribuir
 
 ### 1. Fork del Repositorio
 
@@ -196,7 +196,7 @@ Describe las pruebas realizadas.
 
 5. **Crea Pull Request**
 
-## 🎨 Guía de Estilo
+## Guía de Estilo
 
 ### Python
 
@@ -219,7 +219,7 @@ flake8 src/
 
 **Ejemplo:**
 ```python
-# ✅ Bueno
+# Bueno
 def calcular_tasa_titulacion(df_egresados, df_titulados):
     """
     Calcula la tasa de titulación por cohorte.
@@ -234,7 +234,7 @@ def calcular_tasa_titulacion(df_egresados, df_titulados):
     tasa = (len(df_titulados) / len(df_egresados)) * 100
     return round(tasa, 2)
 
-# ❌ Malo
+# Malo
 def calc(d1, d2):
     r = (len(d2) / len(d1)) * 100
     return r
@@ -287,7 +287,7 @@ def create_layout():
 
 **Consultas SQL:**
 ```python
-# ✅ Bueno - Legible y mantenible
+# Bueno - Legible y mantenible
 query = """
     SELECT 
         r.nombre_region,
@@ -300,7 +300,7 @@ query = """
     ORDER BY total_matricula DESC
 """
 
-# ❌ Malo - Difícil de leer
+# Malo - Difícil de leer
 query = "SELECT r.nombre_region, COUNT(m.id) as total_matricula, AVG(m.promedio) as promedio_notas FROM matricula m INNER JOIN regiones r ON m.id_region = r.id WHERE m.ano_lectivo = ? GROUP BY r.nombre_region ORDER BY total_matricula DESC"
 ```
 
@@ -368,7 +368,7 @@ VisualizadorEMTP-Dash/
 - Nombres descriptivos en español
 - Separación clara de responsabilidades
 
-## 🧪 Pruebas
+## Pruebas
 
 ### Ejecutar Tests
 
@@ -431,7 +431,7 @@ class TestProcesadorMatricula:
 - Callbacks: 70%
 - Utilidades: 80%
 
-## 🐛 Reportar Bugs
+## Reportar Bugs
 
 ### Antes de Reportar
 
@@ -476,7 +476,7 @@ Pega los logs relevantes aquí
 Cualquier otra información relevante.
 ```
 
-## 💡 Sugerir Mejoras
+## Sugerir Mejoras
 
 ### Template de Feature Request
 
