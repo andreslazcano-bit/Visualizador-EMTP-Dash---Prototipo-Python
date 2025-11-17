@@ -1,6 +1,87 @@
-# 📚 Documentación del Visualizador EMTP (Python/Dash)
+# 📚 Documentación Técnica - Visualizador EMTP
 
-Esta carpeta contiene documentos técnicos y funcionales del proyecto.
+Esta carpeta contiene la documentación técnica oficial del proyecto.
+
+---
+
+## 📄 Documentos Disponibles
+
+### Documentación Técnica (en GitHub)
+
+| Documento | Propósito | Última Actualización |
+|-----------|-----------|---------------------|
+| `PROPUESTA_TECNICA_INTEGRAL.md` | Propuesta técnica original (Fase I + II) | Oct 2025 |
+| `RESUMEN_EJECUTIVO.md` | Resumen ejecutivo técnico | Oct 2025 |
+| `README.md` | Este archivo (guía de navegación) | Nov 2025 |
+
+---
+
+## 📁 Documentos de Planificación (NO en GitHub)
+
+Los documentos de planificación estratégica y toma de decisiones se encuentran en:
+```
+/Users/andreslazcano/ProyectosShiny/VisualizadorEMTP-Dash/_docs-planificacion/
+```
+
+Estos incluyen:
+- Documentos para presentación a jefatura
+- Memorándum para coordinación con TI
+- Análisis de decisiones estratégicas
+- Presentaciones y checklists
+
+**Estos archivos NO se suben a GitHub** ya que son de uso interno y planificación personal.
+
+---
+
+## 🗄️ Archivo de Referencia (NO en GitHub)
+
+Documentos obsoletos y de referencia histórica en:
+```
+/Users/andreslazcano/ProyectosShiny/VisualizadorEMTP-Dash/_archive/
+```
+
+Incluye:
+- `/shiny-obsoleto/`: Archivos de la versión Shiny/R anterior
+- `/docs-referencia/`: Documentos Word de referencia y propuestas antiguas
+
+---
+
+## 🔍 Navegación Rápida
+
+### Para desarrolladores:
+- **Arquitectura del sistema**: Ver código fuente en `/src`
+- **Instalación y setup**: Ver `README.md` en raíz del proyecto
+- **Propuesta técnica completa**: `PROPUESTA_TECNICA_INTEGRAL.md`
+
+### Para gestión de proyecto:
+- **Documentos de planificación**: `/_docs-planificacion/` (local)
+- **Archivo de referencia**: `/_archive/` (local)
+
+---
+
+## 📋 Estado de la Documentación
+
+**Última actualización**: Noviembre 2025  
+**Versión del proyecto**: 2.0 (Python/Dash)
+
+### Documentos activos (en GitHub):
+✅ Propuesta técnica integral  
+✅ Resumen ejecutivo  
+✅ Documentación en código fuente  
+
+### Documentos de planificación (locales):
+📁 7 documentos estratégicos para toma de decisiones  
+📁 No se incluyen en el repositorio público  
+
+### Archivos obsoletos (archivados):
+🗄️ Versión Shiny/R anterior  
+🗄️ Documentos Word de referencia  
+🗄️ Propuestas antiguas  
+
+---
+
+**Organización del proyecto**: Noviembre 2025  
+**Responsable**: Andrés Lazcano
 
 ---
 

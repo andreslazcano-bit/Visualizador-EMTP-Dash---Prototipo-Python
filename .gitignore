@@ -129,3 +129,19 @@ secrets.json
 *.pem
 *.key
 *.crt
+
+# ============================================================================
+# Documentos de Planificación Personal (NO COMMITEAR)
+# ============================================================================
+_docs-planificacion/
+_archive/
+run_app.log
+nohup.out
+
+# Archivos obsoletos de Shiny/R
+*.R
+*.Rmd
+
+# Documentos Word de referencia
+*.docx
+*extracted.txt
