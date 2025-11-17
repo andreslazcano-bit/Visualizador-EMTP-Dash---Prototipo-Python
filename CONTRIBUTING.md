@@ -499,19 +499,11 @@ Capturas de pantalla, mockups, ejemplos de otras aplicaciones.
 - ¿Qué valor añade al proyecto?
 ```
 
-## 📞 Contacto y Ayuda
+##  Contacto y Ayuda
 
 - **Issues:** [GitHub Issues](https://github.com/USER/VisualizadorEMTP-Dash/issues)
 - **Discussions:** [GitHub Discussions](https://github.com/USER/VisualizadorEMTP-Dash/discussions)
-- **Email:** andres.lazcano@example.com
-
-## 🙏 Agradecimientos
-
-¡Gracias por contribuir al Visualizador EMTP! Tu ayuda hace que este proyecto sea mejor para todos.
-
-### Top Contributors
-
-Una vez que tengas contribuciones aceptadas, te añadiremos aquí con reconocimiento.
+- **Email:** ext.andres.lazcano@mineduc.com
 
 ---
 
