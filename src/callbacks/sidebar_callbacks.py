@@ -1295,10 +1295,9 @@ def create_proyectos_content(subtab='administrativa', filters=None):
                         dbc.Card([
                             dbc.CardBody([
                                 html.Div([
-                                    # Placeholder para URL de Power BI
-                                    # Reemplazar POWER_BI_URL con la URL real del informe
+                                    # Dashboard de ejemplo Power BI
                                     html.Iframe(
-                                        src="POWER_BI_URL_AQUI",  # ⚠️ REEMPLAZAR con URL real
+                                        src="https://app.powerbi.com/view?r=eyJrIjoiNmQ3MzkzZTgtNzRiMi00YWRhLTk2ODEtNDJjMGQxNGExMjQ3IiwidCI6IjJlNGNmZTUwLTA1ODAtNDE0MC05Mzg3LTRlY2RlMzlkZWY2MCIsImMiOjR9",
                                         style={
                                             'width': '100%',
                                             'height': '800px',
@@ -1307,7 +1306,7 @@ def create_proyectos_content(subtab='administrativa', filters=None):
                                         }
                                     ),
                                     
-                                    # Mensaje alternativo si no hay URL configurada
+                                    # Mensaje alternativo (oculto cuando está configurado)
                                     html.Div([
                                         html.I(className="fas fa-external-link-alt fa-3x mb-3", 
                                                style={"color": "var(--accent-color)", "opacity": "0.3"}),
@@ -1341,7 +1340,7 @@ def create_proyectos_content(subtab='administrativa', filters=None):
                                         ], className="text-muted mt-3")
                                     ], className="text-center p-5", 
                                        id="powerbi-placeholder",
-                                       style={"display": "block"})  # Cambiar a "none" cuando se configure la URL
+                                       style={"display": "none"})  # Oculto porque ya está configurado
                                 ], style={"position": "relative"})
                             ], className="p-0")
                         ], className="border-accent-custom shadow-sm mb-4")
