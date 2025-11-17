@@ -1,69 +1,59 @@
-# 📊 Visualizador EMTP v2.0
+# Visualizador EMTP v2.0
 
-> Sistema integral de análisis y visualización de datos del Sistema de Educación Media Técnico-Profesional de Chile
+Sistema integral de análisis y visualización de datos del Sistema de Educación Media Técnico-Profesional de Chile.
 
 [![Dash](https://img.shields.io/badge/Dash-2.14.2-blue.svg)](https://dash.plotly.com/)
 [![Python](https://img.shields.io/badge/Python-3.12+-green.svg)](https://www.python.org/)
 [![Plotly](https://img.shields.io/badge/Plotly-5.18.0-orange.svg)](https://plotly.com/)
-[![Status](https://img.shields.io/badge/Status-Producción-brightgreen.svg)]()
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)]()
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
----
-
-## 🚀 Inicio Rápido
+## Inicio Rápido
 
 ```bash
-# 1. Clonar repositorio
+# Clonar repositorio
 git clone https://github.com/andreslazcano-bit/Visualizador-EMTP-Dash---Prototipo-Python.git
 cd Visualizador-EMTP-Dash---Prototipo-Python
 
-# 2. Crear entorno virtual e instalar dependencias
+# Crear entorno virtual e instalar dependencias
 python3 -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
-# 3. Ejecutar aplicación
+# Ejecutar aplicación
 python app_v2.py
 ```
 
-✅ **¡Listo!** Abre tu navegador en: **http://localhost:8051**
+La aplicación estará disponible en: **http://localhost:8051**
 
----
+## Descripción
 
-## 📋 Descripción
+Plataforma web interactiva para análisis de datos del sistema de Educación Media Técnico-Profesional de Chile. Permite visualizar datos mediante dashboards, mapas geográficos y generar reportes exportables.
 
-El **Visualizador EMTP** es una plataforma web interactiva que permite analizar datos del sistema de Educación Media Técnico-Profesional de Chile mediante dashboards, mapas geográficos y reportes exportables.
+### Características Principales
 
-### Principales Características
+- **Dashboards Interactivos**: Análisis de matrícula, egresados, titulación, establecimientos y docentes
+- **Mapas Geográficos**: Visualización territorial de 16 regiones y 345 comunas
+- **Gestión de Usuarios**: Sistema con 3 perfiles (Usuario, Analista, Admin)
+- **Auditoría**: Registro completo de accesos y acciones
+- **Seguridad**: Autenticación bcrypt + SQLite
+- **Interfaz Adaptable**: Tema claro/oscuro, responsive para desktop, tablet y móvil
 
-- 📈 **Dashboards Interactivos**: Análisis de matrícula, egresados, titulación, establecimientos y docentes
-- 🗺️ **Mapas Geográficos**: Visualización territorial de 16 regiones y 345 comunas
-- 👥 **Gestión de Usuarios**: Sistema completo con 3 perfiles (Usuario, Analista, Admin)
-- 📋 **Auditoría**: Registro completo de accesos y acciones de usuarios
-- 🔐 **Seguridad**: Autenticación bcrypt + SQLite
-- 🎨 **Tema Claro/Oscuro**: Interfaz adaptable
-- 📱 **Responsive**: Optimizado para desktop, tablet y móvil
+## Acceso al Sistema
 
----
-
-## 🔐 Acceso al Sistema
-
-### Modo Usuario (Público)
-- **Sin contraseña** - Acceso directo
-- **Dashboards básicos**: Matrícula, Egresados, Titulación, Docentes, Establecimientos, Mapas
+### Modo Usuario
+- Acceso sin contraseña
+- Disponible: Matrícula, Egresados, Titulación, Docentes, Establecimientos, Mapas
 
 ### Modo Administrador
-- **Usuario**: `admin`
-- **Contraseña**: `admin123` ⚠️ *Cambiar en primer acceso*
-- **Funciones adicionales**: Gestión de Usuarios + Auditoría + Proyectos EMTP
+- Usuario: `admin`
+- Contraseña: `admin123` (cambiar en primer acceso)
+- Acceso adicional: Gestión de Usuarios, Auditoría, Proyectos EMTP
 
----
-
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 Visualizador-EMTP-Dash/
-├── app_v2.py                    # Aplicación principal ⭐
+├── app_v2.py                    # Aplicación principal
 ├── requirements.txt             # Dependencias Python
 ├── Dockerfile                   # Contenedor Docker
 ├── docker-compose.yml           # Orquestación Docker
@@ -96,7 +86,7 @@ Visualizador-EMTP-Dash/
 │   ├── geographic/             # GeoJSON de Chile
 │   └── raw/                    # Datos fuente
 │
-├── docs/                        # 📚 Documentación técnica
+├── docs/                        # Documentación técnica
 │   ├── ARQUITECTURA_DETALLADA.md
 │   ├── MANUAL_DESPLIEGUE.md    # Instalación y despliegue
 │   ├── MANUAL_MANTENIMIENTO.md # Operaciones y mantenimiento
@@ -116,25 +106,21 @@ Visualizador-EMTP-Dash/
     └── test_connections.py
 ```
 
----
-
-## 📊 Módulos Disponibles
+## Módulos Disponibles
 
 | Módulo | Descripción | Acceso |
 |--------|-------------|--------|
-| **📚 Matrícula** | Evolución, demografía, retención, comparación regional | Todos |
-| **🎓 Egresados** | Transición a educación superior, empleabilidad | Todos |
-| **📜 Titulación** | Tasas y tiempos de titulación por especialidad | Todos |
-| **🏫 Establecimientos** | Distribución geográfica e infraestructura | Todos |
-| **👨‍🏫 Docentes** | Perfil profesional, capacitación | Todos |
-| **🗺️ Mapas** | Visualización territorial (regiones y comunas) | Todos |
-| **📊 Proyectos EMTP** | Gestión administrativa y fortalecimiento | Solo Admin |
-| **👥 Gestión Usuarios** | Crear, editar, desactivar usuarios | Solo Admin |
-| **📋 Auditoría** | Logs de accesos, estadísticas de uso | Solo Admin |
+| Matrícula | Evolución, demografía, retención, comparación regional | Todos |
+| Egresados | Transición a educación superior, empleabilidad | Todos |
+| Titulación | Tasas y tiempos de titulación por especialidad | Todos |
+| Establecimientos | Distribución geográfica e infraestructura | Todos |
+| Docentes | Perfil profesional, capacitación | Todos |
+| Mapas | Visualización territorial (regiones y comunas) | Todos |
+| Proyectos EMTP | Gestión administrativa y fortalecimiento | Solo Admin |
+| Gestión Usuarios | Crear, editar, desactivar usuarios | Solo Admin |
+| Auditoría | Logs de accesos, estadísticas de uso | Solo Admin |
 
----
-
-## 🛠️ Instalación Detallada
+## Instalación Detallada
 
 ### Requisitos Previos
 
@@ -146,64 +132,61 @@ Visualizador-EMTP-Dash/
 ### Instalación en Desarrollo
 
 ```bash
-# 1. Clonar repositorio
+# Clonar repositorio
 git clone https://github.com/andreslazcano-bit/Visualizador-EMTP-Dash---Prototipo-Python.git
 cd Visualizador-EMTP-Dash---Prototipo-Python
 
-# 2. Crear entorno virtual
+# Crear entorno virtual
 python3 -m venv venv
 
-# 3. Activar entorno virtual
+# Activar entorno virtual
 source venv/bin/activate          # Linux/macOS
 # venv\Scripts\activate           # Windows
 
-# 4. Instalar dependencias
+# Instalar dependencias
 pip install --upgrade pip
 pip install -r requirements.txt
 
-# 5. Ejecutar
+# Ejecutar
 python app_v2.py
 ```
 
 ### Instalación en Producción
 
-Para despliegue en producción, consultar la **documentación completa**:
+Para despliegue en producción, consultar la documentación completa:
 
-📘 **[Manual de Despliegue](docs/MANUAL_DESPLIEGUE.md)** - Instalación paso a paso para TI  
-🛠️ **[Manual de Mantenimiento](docs/MANUAL_MANTENIMIENTO.md)** - Backups, logs, troubleshooting
+- [Manual de Despliegue](docs/MANUAL_DESPLIEGUE.md) - Instalación paso a paso para TI
+- [Manual de Mantenimiento](docs/MANUAL_MANTENIMIENTO.md) - Backups, logs, troubleshooting
 
----
+## Documentación
 
-## 📚 Documentación
+### Arquitectura y Diseño
+- [Arquitectura Detallada](docs/ARQUITECTURA_DETALLADA.md) - Diseño completo del sistema
+- [Arquitectura - Visión General](docs/ARQUITECTURA_VISION_GENERAL.md) - Vista de alto nivel
+- [Diagramas de Flujos](docs/DIAGRAMA_FLUJOS_ARQUITECTURA.md) - Flujos de datos
 
-### Para Usuarios Finales
-- 📘 **[Manual de Usuario](docs/MANUAL_USUARIO.md)** - Cómo usar el sistema (30 páginas)
-- ⚡ **[Guía Rápida](docs/GUIA_RAPIDA.md)** - Referencia rápida (6 páginas)
+### Manuales para TI
+- [Manual de Despliegue](docs/MANUAL_DESPLIEGUE.md) - Instalación completa
+- [Manual de Mantenimiento](docs/MANUAL_MANTENIMIENTO.md) - Operaciones día a día
 
-### Para TI (sin conocimientos Python)
-- 🔧 **[Manual de Despliegue](docs/MANUAL_DESPLIEGUE.md)** - Instalación completa (25 páginas)
-- 🛠️ **[Manual de Mantenimiento](docs/MANUAL_MANTENIMIENTO.md)** - Operaciones día a día (35 páginas)
-- ⚡ **[Guía Rápida](docs/GUIA_RAPIDA.md)** - Comandos esenciales
+### Sistemas Implementados
+- [Sistema de Usuarios y Auditoría](docs/SISTEMA_USUARIOS_AUDITORIA.md) - Implementación técnica
+- [Actualización Automática](docs/ACTUALIZACION_AUTOMATICA.md) - Sistema de actualización
+- [Integración Completada](docs/INTEGRACION_COMPLETADA.md) - Estado del proyecto
 
-### Para Desarrolladores
-- 🏗️ **[Arquitectura](docs/ARQUITECTURA.md)** - Diseño técnico completo
-- 📋 **[Sistema de Usuarios y Auditoría](docs/SISTEMA_USUARIOS_AUDITORIA.md)** - Implementación técnica
-- ✅ **[Integración Completada](docs/INTEGRACION_COMPLETADA.md)** - Estado del proyecto
+### Navegación
+- [Índice de Documentación](docs/INDICE.md) - Índice general
+- [README de Documentación](docs/README.md) - Guía de navegación
 
-### Índice General
-- 📚 **[Índice de Documentación](docs/INDICE.md)** - Navegación por todos los documentos
-
----
-
-## 🔒 Seguridad
+## Seguridad
 
 ### Implementación
 
-- ✅ **Encriptación de contraseñas**: bcrypt con 12 rounds
-- ✅ **Base de datos segura**: SQLite con protección contra SQL injection
-- ✅ **Control de acceso**: Basado en roles (Usuario, Analista, Admin)
-- ✅ **Auditoría completa**: Registro de todos los accesos y acciones
-- ✅ **Sesiones seguras**: Gestión de sesiones con validación
+- Encriptación de contraseñas con bcrypt (12 rounds)
+- Base de datos SQLite con protección contra SQL injection
+- Control de acceso basado en roles (Usuario, Analista, Admin)
+- Auditoría completa de accesos y acciones
+- Gestión de sesiones con validación
 
 ### Buenas Prácticas
 
@@ -213,17 +196,15 @@ Para despliegue en producción, consultar la **documentación completa**:
 4. Limitar acceso por IP (firewall)
 5. Usar HTTPS en producción
 
----
-
-## 📊 Datos
+## Datos
 
 ### Estadísticas
 
-- **178,700+ registros** de matrícula (2014-2024)
-- **16 regiones** de Chile
-- **345 comunas** con datos detallados
-- **17 especialidades** técnicas
-- **Actualización**: Semanal (lunes 6:00 AM)
+- 178,700+ registros de matrícula (2014-2024)
+- 16 regiones de Chile
+- 345 comunas con datos detallados
+- 17 especialidades técnicas
+- Actualización: Semanal (lunes 6:00 AM)
 
 ### Formato de Datos
 
@@ -231,9 +212,7 @@ Para despliegue en producción, consultar la **documentación completa**:
 - Parquet para optimización
 - GeoJSON para mapas (desde [fcortes/Chile-GeoJSON](https://github.com/fcortes/Chile-GeoJSON))
 
----
-
-## 🚀 Deployment
+## Deployment
 
 ### Docker (Recomendado)
 
@@ -266,9 +245,7 @@ sudo systemctl start visualizador-emtp
 nssm install VisualizadorEMTP
 ```
 
----
-
-## 🧪 Testing
+## Testing
 
 ```bash
 # Ejecutar tests
@@ -278,28 +255,24 @@ pytest tests/
 pytest --cov=src tests/
 ```
 
----
-
-## 📝 Changelog
+## Changelog
 
 ### v2.0.0 (Noviembre 2025)
-- ✨ **Nuevo**: Sistema de gestión de usuarios (CRUD completo)
-- ✨ **Nuevo**: Sistema de auditoría de accesos y acciones
-- ✨ **Nuevo**: Dashboard de auditoría con estadísticas
-- ✨ **Nuevo**: Documentación completa de sostenibilidad
-- 📚 Manuales para TI, usuarios y desarrolladores
-- 🔒 Mejoras de seguridad (bcrypt, SQLite)
+- Sistema de gestión de usuarios (CRUD completo)
+- Sistema de auditoría de accesos y acciones
+- Dashboard de auditoría con estadísticas
+- Documentación completa de sostenibilidad
+- Manuales para TI, usuarios y desarrolladores
+- Mejoras de seguridad (bcrypt, SQLite)
 
 ### v1.0.0 (Octubre 2025)
-- 🚀 Lanzamiento inicial
-- 📊 7 módulos de dashboards
-- 🗺️ Mapas geográficos (regiones y comunas)
-- 🔐 Autenticación básica
-- 🎨 Tema claro/oscuro
+- Lanzamiento inicial
+- 7 módulos de dashboards
+- Mapas geográficos (regiones y comunas)
+- Autenticación básica
+- Tema claro/oscuro
 
----
-
-## 🤝 Contribuciones
+## Contribuciones
 
 Las contribuciones son bienvenidas. Por favor:
 
@@ -309,52 +282,46 @@ Las contribuciones son bienvenidas. Por favor:
 4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
 5. Crear Pull Request
 
----
-
-## 📧 Contacto
+## Contacto
 
 ### Desarrollador
 **Andrés Lazcano**  
-📧 andres.lazcano@mineduc.cl  
-🐙 [@andreslazcano-bit](https://github.com/andreslazcano-bit)
+andres.lazcano@mineduc.cl  
+[@andreslazcano-bit](https://github.com/andreslazcano-bit)
 
 ### Soporte Técnico
-📧 ti@mineduc.cl  
-📞 +56 2 XXXX XXXX  
-🕒 Lunes a Viernes, 9:00 - 18:00
+ti@mineduc.cl  
++56 2 XXXX XXXX  
+Lunes a Viernes, 9:00 - 18:00
 
 ### Soporte Funcional
 **Secretaría EMTP**  
-📧 secretaria.emtp@mineduc.cl  
-🕒 Lunes a Viernes, 9:00 - 17:00
+secretaria.emtp@mineduc.cl  
+Lunes a Viernes, 9:00 - 17:00
 
----
-
-## 📄 Licencia
+## Licencia
 
 Este proyecto está bajo la Licencia MIT. Ver archivo [LICENSE](LICENSE) para más detalles.
 
----
+## Agradecimientos
 
-## 🙏 Agradecimientos
-
-- **Ministerio de Educación de Chile** - Por los datos del sistema EMTP
-- **[fcortes/Chile-GeoJSON](https://github.com/fcortes/Chile-GeoJSON)** - Por los archivos GeoJSON de Chile
-- **Plotly/Dash** - Por el framework de visualización
-- **Bootstrap** - Por los componentes UI
+- Ministerio de Educación de Chile - Por los datos del sistema EMTP
+- [fcortes/Chile-GeoJSON](https://github.com/fcortes/Chile-GeoJSON) - Por los archivos GeoJSON de Chile
+- Plotly/Dash - Por el framework de visualización
+- Bootstrap - Por los componentes UI
 
 ---
 
-**Desarrollado con ❤️ para mejorar la educación técnico-profesional en Chile**
+Desarrollado para mejorar la educación técnico-profesional en Chile
 
 ---
 
-## 📌 Links Rápidos
+## Links Rápidos
 
-- 📚 [Documentación Completa](docs/INDICE.md)
-- 🐛 [Reportar un Bug](https://github.com/andreslazcano-bit/Visualizador-EMTP-Dash---Prototipo-Python/issues)
-- 💡 [Solicitar Feature](https://github.com/andreslazcano-bit/Visualizador-EMTP-Dash---Prototipo-Python/issues/new)
-- 📖 [Wiki del Proyecto](https://github.com/andreslazcano-bit/Visualizador-EMTP-Dash---Prototipo-Python/wiki)
+- [Documentación Completa](docs/INDICE.md)
+- [Reportar un Bug](https://github.com/andreslazcano-bit/Visualizador-EMTP-Dash---Prototipo-Python/issues)
+- [Solicitar Feature](https://github.com/andreslazcano-bit/Visualizador-EMTP-Dash---Prototipo-Python/issues/new)
+- [Wiki del Proyecto](https://github.com/andreslazcano-bit/Visualizador-EMTP-Dash---Prototipo-Python/wiki)
 
 ---
 
