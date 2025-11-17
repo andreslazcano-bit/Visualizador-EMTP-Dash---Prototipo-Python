@@ -424,13 +424,12 @@ sudo systemctl status cron
 ## 📞 Contacto
 
 **Desarrollador**: Andrés Lazcano  
+**Email**: ext.andres.lazcano@mineduc.cl  
 **Proyecto**: Visualizador EMTP Dash  
 **Versión**: 2.0  
 **Fecha**: Noviembre 2025
 
-Para solicitar credenciales de acceso a bases de datos MINEDUC, contactar a:
-- **Equipo TI MINEDUC**: ti@mineduc.cl
-- **Jefe de Proyecto**: jefatura@mineduc.cl
+Para solicitar credenciales de acceso a bases de datos MINEDUC, contactar a **Equipo TI MINEDUC**: ti@mineduc.cl
 
 ---
 

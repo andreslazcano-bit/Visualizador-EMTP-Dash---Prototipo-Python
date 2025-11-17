@@ -382,20 +382,16 @@ Agregar en README y documentación:
 ```markdown
 ## 🆘 Soporte y Contactos
 
-### Desarrollador Original
-- **Andrés Lazcano**
-- Email: andres.lazcano@mineduc.cl
-- Disponible para: Consultas puntuales, troubleshooting crítico
+### Desarrollador
+**Andrés Lazcano**  
+Email: ext.andres.lazcano@mineduc.cl  
+GitHub: @andreslazcano-bit
 
-### Soporte TI Interno
-- Email: ti@mineduc.cl
-- Responsable de: Operación diaria, backups, monitoreo
+### Soporte TI MINEDUC
+Email: ti@mineduc.cl  
+Responsable de: Infraestructura, backups, monitoreo
 
-### Desarrollador de Respaldo (Freelancer)
-- **[Por definir]**
-- Para: Nuevas features, cambios en lógica, migraciones
-- Tarifa: $XXX/hora o proyecto
-```
+---
 
 ### 5.4 Backup Automático a Cloud (1 hora desarrollo)
 
@@ -671,7 +667,7 @@ tail -100 logs/app.log | grep ERROR
 
 # Si es error de código:
 # → Copiar error completo
-# → Enviar a andres.lazcano@mineduc.cl
+# → Enviar a ext.andres.lazcano@mineduc.cl
 
 # Si persiste:
 # → Reiniciar aplicación
@@ -780,4 +776,4 @@ kill -9 <PID>
 **Documento creado:** 17 de Noviembre 2025  
 **Última actualización:** 17 de Noviembre 2025  
 **Versión:** 1.0  
-**Contacto:** andres.lazcano@mineduc.cl
+**Contacto:** ext.andres.lazcano@mineduc.cl

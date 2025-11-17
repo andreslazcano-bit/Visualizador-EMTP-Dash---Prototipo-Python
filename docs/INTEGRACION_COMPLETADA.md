@@ -473,18 +473,12 @@ register_audit_callbacks(app)
 
 ### Desarrollador
 **Nombre:** Andrés Lazcano  
-**Email:** andres.lazcano@mineduc.cl  
-**Teléfono:** +56 9 XXXX XXXX
+**Email:** ext.andres.lazcano@mineduc.cl  
+**GitHub:** @andreslazcano-bit
 
-### Soporte TI
+### Soporte TI MINEDUC
 **Email:** ti@mineduc.cl  
-**Teléfono:** +56 2 XXXX XXXX  
 **Horario:** Lunes a Viernes, 9:00 - 18:00
-
-### Soporte Funcional
-**Secretaría EMTP**  
-**Email:** secretaria.emtp@mineduc.cl  
-**Horario:** Lunes a Viernes, 9:00 - 17:00
 
 ---
 

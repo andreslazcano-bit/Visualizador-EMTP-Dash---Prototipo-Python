@@ -269,6 +269,8 @@ Para actualizar el contenido del dashboard:
 
 ## 📞 Soporte
 
-**Responsable del Dashboard Power BI**: [Nombre de la persona externa]  
-**Responsable técnico Visualizador**: Andrés Lazcano  
+**Desarrollador Visualizador EMTP**  
+Andrés Lazcano  
+ext.andres.lazcano@mineduc.cl  
+
 **Última actualización**: 17 de noviembre de 2025

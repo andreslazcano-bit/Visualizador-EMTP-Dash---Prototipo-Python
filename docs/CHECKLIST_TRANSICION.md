@@ -127,7 +127,7 @@ sqlite3 data/users.db "UPDATE users SET is_active=1 WHERE username='usuario';"
 tail -100 logs/app.log | grep ERROR
 
 # Copiar error completo y enviar a:
-# andres.lazcano@mineduc.cl
+# ext.andres.lazcano@mineduc.cl
 ```
 
 ### Problema 5: Servidor sin espacio
@@ -147,17 +147,16 @@ find backups/ -mtime +60 -delete
 
 ## 📞 Contactos de Emergencia
 
-### Desarrollador Original
+### Desarrollador
 - **Nombre:** Andrés Lazcano
-- **Email:** andres.lazcano@mineduc.cl
-- **Para:** Consultas técnicas, troubleshooting crítico
+- **Email:** ext.andres.lazcano@mineduc.cl
+- **GitHub:** @andreslazcano-bit
 
-### TI Interno
+### TI MINEDUC
 - **Email:** ti@mineduc.cl
-- **Para:** Operación diaria, backups, monitoreo
+- **Responsable de:** Infraestructura, backups, monitoreo
 
-### Desarrollador Freelancer (Futuro)
-- **Nombre:** _____________
+---
 - **Email:** _____________
 - **Para:** Nuevas features, cambios de lógica
 

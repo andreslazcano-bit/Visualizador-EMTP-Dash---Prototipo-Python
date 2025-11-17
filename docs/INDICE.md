@@ -171,8 +171,9 @@ docs/
 ## Soporte y Contacto
 
 ### Consultas Técnicas
-**Desarrollador Principal**  
-andres.lazcano@mineduc.cl
+**Desarrollador:** Andrés Lazcano  
+**Email:** ext.andres.lazcano@mineduc.cl  
+**GitHub:** @andreslazcano-bit
 
 ### Reportar Issues
 **GitHub Issues**: [Crear nuevo issue](https://github.com/andreslazcano-bit/Visualizador-EMTP-Dash---Prototipo-Python/issues)

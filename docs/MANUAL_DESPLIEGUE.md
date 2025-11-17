@@ -468,22 +468,16 @@ nssm restart VisualizadorEMTP  # Windows
 
 ## 📞 Contactos de Soporte
 
-### Soporte Técnico - Nivel 1
-**Rol:** TI - Administrador del Sistema  
+### Soporte Técnico - Desarrollo
+**Rol:** Desarrollador del Sistema  
+**Nombre:** Andrés Lazcano  
+**Email:** ext.andres.lazcano@mineduc.cl  
+**GitHub:** @andreslazcano-bit
+
+### Soporte Técnico - Infraestructura
+**Rol:** TI MINEDUC  
 **Contacto:** ti@mineduc.cl  
 **Horario:** Lunes a Viernes, 9:00 - 18:00
-
-### Soporte Técnico - Nivel 2
-**Rol:** Desarrollador Original  
-**Nombre:** Andrés Lazcano  
-**Email:** andres.lazcano@mineduc.cl  
-**Teléfono:** +56 9 XXXX XXXX  
-**Disponibilidad:** Emergencias críticas
-
-### Soporte Funcional
-**Rol:** Secretaría EMTP - Usuario Administrador  
-**Contacto:** secretaria.emtp@mineduc.cl  
-**Horario:** Lunes a Viernes, 9:00 - 17:00
 
 ---
 
