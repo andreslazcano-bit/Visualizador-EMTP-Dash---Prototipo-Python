@@ -323,10 +323,11 @@ def verificar_app():
         enviar_alerta(f"App caída: {e}")
 
 def enviar_alerta(mensaje):
+    # Configurar según sistema de alertas institucional
     msg = MIMEText(mensaje)
     msg['Subject'] = 'ALERTA: Visualizador EMTP'
     msg['From'] = 'sistema@mineduc.cl'
-    msg['To'] = 'ti@mineduc.cl'
+    msg['To'] = 'CONFIGURAR_EMAIL_SOPORTE'  # Definir email de soporte real
     
     s = smtplib.SMTP('localhost')
     s.send_message(msg)
@@ -386,10 +387,6 @@ Agregar en README y documentación:
 **Andrés Lazcano**  
 Email: ext.andres.lazcano@mineduc.cl  
 GitHub: @andreslazcano-bit
-
-### Soporte TI MINEDUC
-Email: ti@mineduc.cl  
-Responsable de: Infraestructura, backups, monitoreo
 
 ---
 

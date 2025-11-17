@@ -476,10 +476,6 @@ register_audit_callbacks(app)
 **Email:** ext.andres.lazcano@mineduc.cl  
 **GitHub:** @andreslazcano-bit
 
-### Soporte TI MINEDUC
-**Email:** ti@mineduc.cl  
-**Horario:** Lunes a Viernes, 9:00 - 18:00
-
 ---
 
 ## 📝 Notas Importantes

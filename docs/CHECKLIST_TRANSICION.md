@@ -152,14 +152,6 @@ find backups/ -mtime +60 -delete
 - **Email:** ext.andres.lazcano@mineduc.cl
 - **GitHub:** @andreslazcano-bit
 
-### TI MINEDUC
-- **Email:** ti@mineduc.cl
-- **Responsable de:** Infraestructura, backups, monitoreo
-
----
-- **Email:** _____________
-- **Para:** Nuevas features, cambios de lógica
-
 ---
 
 ## 🚀 Comandos de Uso Frecuente

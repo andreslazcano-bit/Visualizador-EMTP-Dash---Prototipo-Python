@@ -474,11 +474,6 @@ nssm restart VisualizadorEMTP  # Windows
 **Email:** ext.andres.lazcano@mineduc.cl  
 **GitHub:** @andreslazcano-bit
 
-### Soporte Técnico - Infraestructura
-**Rol:** TI MINEDUC  
-**Contacto:** ti@mineduc.cl  
-**Horario:** Lunes a Viernes, 9:00 - 18:00
-
 ---
 
 ## 📚 Documentos Relacionados
