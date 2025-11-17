@@ -1270,6 +1270,84 @@ def create_proyectos_content(subtab='administrativa', filters=None):
                     ], className="p-3")
                 ], label="Apoyo SLEP", tab_id="tab-slep",
                    label_style={"color": "#5A6E79"}, 
+                   active_label_style={"color": "#34536A", "font-weight": "bold"}),
+                
+                # Tab: Power BI RFT 2025-2026
+                dbc.Tab([
+                    html.Div([
+                        html.H4([
+                            html.I(className="fas fa-chart-line me-2", style={"color": "var(--primary-color)"}),
+                            "Dashboard RFT 2025-2026"
+                        ], className="mt-3 mb-3"),
+                        html.P([
+                            html.I(className="fas fa-info-circle me-2"),
+                            "Dashboard interactivo de Red Futuro Técnico 2025-2026. ",
+                            html.Small("(Gestionado externamente - Fácilmente removible)", className="text-muted")
+                        ], className="text-muted mb-4"),
+                        
+                        # Alerta informativa
+                        dbc.Alert([
+                            html.I(className="fas fa-lightbulb me-2"),
+                            "Este dashboard es administrado por personal externo y se actualiza de forma independiente."
+                        ], color="info", className="mb-4"),
+                        
+                        # Contenedor para el iframe de Power BI
+                        dbc.Card([
+                            dbc.CardBody([
+                                html.Div([
+                                    # Placeholder para URL de Power BI
+                                    # Reemplazar POWER_BI_URL con la URL real del informe
+                                    html.Iframe(
+                                        src="POWER_BI_URL_AQUI",  # ⚠️ REEMPLAZAR con URL real
+                                        style={
+                                            'width': '100%',
+                                            'height': '800px',
+                                            'border': 'none',
+                                            'border-radius': '8px'
+                                        }
+                                    ),
+                                    
+                                    # Mensaje alternativo si no hay URL configurada
+                                    html.Div([
+                                        html.I(className="fas fa-external-link-alt fa-3x mb-3", 
+                                               style={"color": "var(--accent-color)", "opacity": "0.3"}),
+                                        html.H5("Dashboard Power BI RFT 2025-2026", className="mb-2"),
+                                        html.P([
+                                            "Para visualizar el dashboard, configura la URL del informe Power BI en ",
+                                            html.Code("src/callbacks/sidebar_callbacks.py"),
+                                            " línea ~1290"
+                                        ], className="text-muted"),
+                                        html.Hr(className="my-3"),
+                                        html.H6("Instrucciones de configuración:", className="mb-2"),
+                                        html.Ol([
+                                            html.Li("Publica el informe en Power BI Service"),
+                                            html.Li([
+                                                "Obtén el enlace ",
+                                                html.Strong("'Insertar'"),
+                                                " desde Archivo > Insertar informe > Sitio web o portal"
+                                            ]),
+                                            html.Li("Copia la URL del iframe"),
+                                            html.Li([
+                                                "Reemplaza ",
+                                                html.Code("POWER_BI_URL_AQUI"),
+                                                " con la URL obtenida"
+                                            ]),
+                                            html.Li("Guarda y reinicia la aplicación")
+                                        ], className="text-start", style={"max-width": "600px", "margin": "0 auto"}),
+                                        html.Hr(className="my-3"),
+                                        html.P([
+                                            html.I(className="fas fa-trash-alt me-2"),
+                                            html.Small("Para remover esta pestaña: Elimina el bloque de código completo en sidebar_callbacks.py")
+                                        ], className="text-muted mt-3")
+                                    ], className="text-center p-5", 
+                                       id="powerbi-placeholder",
+                                       style={"display": "block"})  # Cambiar a "none" cuando se configure la URL
+                                ], style={"position": "relative"})
+                            ], className="p-0")
+                        ], className="border-accent-custom shadow-sm mb-4")
+                    ], className="p-3")
+                ], label="📊 Power BI RFT 2025-2026", tab_id="tab-powerbi-rft",
+                   label_style={"color": "#5A6E79"}, 
                    active_label_style={"color": "#34536A", "font-weight": "bold"})
             ], id="tabs-fortalecimiento", active_tab="tab-equipamiento-regular", className="mb-3"),
             
