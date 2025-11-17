@@ -15,12 +15,13 @@ Esta carpeta contiene la documentación técnica oficial del proyecto.
 | `Arquitectura_Vision_General.png` | Diagrama en PNG estándar | 17 KB |
 | `Arquitectura_Vision_General_HQ.png` | Diagrama en PNG alta calidad | 345 KB |
 
-### Manuales Técnicos
+### Manuales para TI
 
 | Documento | Descripción | Tamaño |
 |-----------|-------------|--------|
 | `MANUAL_DESPLIEGUE.md` | Instalación y configuración del sistema | 11 KB |
 | `MANUAL_MANTENIMIENTO.md` | Operaciones y mantenimiento | 18 KB |
+| `GUIA_SOSTENIBILIDAD.md` | Plan de sostenibilidad y transición a TI | 24 KB |
 
 ### Sistemas Implementados
 
