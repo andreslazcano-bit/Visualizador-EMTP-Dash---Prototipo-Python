@@ -33,7 +33,7 @@ Plataforma web interactiva para análisis de datos del sistema de Educación Med
 
 - **Dashboards Interactivos**: Análisis de matrícula, egresados, titulación, establecimientos y docentes
 - **Mapas Geográficos**: Visualización territorial de 16 regiones y 345 comunas
-- **Gestión de Usuarios**: Sistema con 3 perfiles (Usuario, Analista, Admin)
+- **Gestión de Usuarios**: Sistema con perfiles (actualmente Usuario y Admin)
 - **Auditoría**: Registro completo de accesos y acciones
 - **Seguridad**: Autenticación bcrypt + SQLite
 - **Interfaz Adaptable**: Tema claro/oscuro, responsive para desktop, tablet y móvil
