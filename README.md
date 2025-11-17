@@ -65,28 +65,51 @@ El **Visualizador EMTP** es una plataforma web interactiva que permite analizar 
 Visualizador-EMTP-Dash/
 ├── app_v2.py                    # Aplicación principal ⭐
 ├── requirements.txt             # Dependencias Python
+├── Dockerfile                   # Contenedor Docker
+├── docker-compose.yml           # Orquestación Docker
+│
+├── config/                      # Configuración
+│   ├── settings.py             # Variables de configuración
+│   └── database.py             # Configuración de BD
 │
 ├── src/                         # Código fuente
-│   ├── callbacks/              # Lógica de interacción
+│   ├── callbacks/              # Lógica de interacción (Dash callbacks)
+│   │   ├── auth_callbacks.py
+│   │   ├── sidebar_callbacks.py
+│   │   ├── user_management_callbacks.py
+│   │   └── audit_callbacks.py
 │   ├── layouts/                # Interfaces visuales
-│   ├── components/             # Componentes reutilizables
-│   └── utils/                  # Utilidades (auth, audit, etc.)
+│   │   ├── sidebar_layout_clean.py
+│   │   ├── login_layout.py
+│   │   ├── user_management.py
+│   │   └── audit.py
+│   ├── data/                   # Cargadores y procesadores
+│   │   └── loaders.py
+│   └── utils/                  # Utilidades
+│       ├── auth.py             # Autenticación
+│       ├── user_management.py  # Gestión de usuarios
+│       └── audit.py            # Sistema de auditoría
 │
 ├── data/                        # Datos y base de datos
 │   ├── users.db                # SQLite - Usuarios
 │   ├── processed/              # Datos procesados (CSV/Parquet)
-│   └── geographic/             # GeoJSON de Chile
+│   ├── geographic/             # GeoJSON de Chile
+│   └── raw/                    # Datos fuente
 │
-├── docs/                        # 📚 Documentación completa
-│   ├── MANUAL_USUARIO.md       # Para usuarios finales
-│   ├── MANUAL_DESPLIEGUE.md    # Para TI (instalación)
-│   ├── MANUAL_MANTENIMIENTO.md # Para TI (operaciones)
-│   ├── GUIA_RAPIDA.md          # Referencia rápida
-│   └── INDICE.md               # Índice general
+├── docs/                        # 📚 Documentación técnica
+│   ├── ARQUITECTURA_DETALLADA.md
+│   ├── MANUAL_DESPLIEGUE.md    # Instalación y despliegue
+│   ├── MANUAL_MANTENIMIENTO.md # Operaciones y mantenimiento
+│   ├── SISTEMA_USUARIOS_AUDITORIA.md
+│   └── INDICE.md               # Índice de documentación
 │
 ├── logs/                        # Logs del sistema
 │   ├── app.log                 # Logs generales
 │   └── audit.jsonl             # Auditoría de accesos
+│
+├── assets/                      # Recursos estáticos
+│   ├── custom.css              # Estilos personalizados
+│   └── theme.js                # Tema claro/oscuro
 │
 └── scripts/                     # Scripts auxiliares
     ├── actualizar_datos_semanal.py
