@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  visualizador-emtp:
+    build: .
+    container_name: visualizador-emtp-dash
+    ports:
+      - "8051:8051"
+    volumes:
+      # Persistencia de datos
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./reports/output:/app/reports/output
+    environment:
+      - PORT=8051
+      - DEBUG=False
+      - LOG_LEVEL=INFO
+      # Cambia la contraseña del admin en producción
+      - ADMIN_PASSWORD=admin123
+    restart: unless-stopped
+    networks:
+      - emtp-network
+
+networks:
+  emtp-network:
+    driver: bridge
+
+volumes:
+  data:
+  logs:
+  reports:

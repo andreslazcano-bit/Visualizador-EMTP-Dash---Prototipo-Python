@@ -372,33 +372,57 @@ def create_sidebar_navigation_filtered(hidden_sections=None):
             ], id="nav-mapas", n_clicks=0, action=True, className="fw-bold mb-1")
         )
     
-    # Monitoreo y Seguimiento de Proyectos (oculto para usuario básico)
-    if 'proyectos' not in hidden_sections:
-        nav_items.extend([
-            dbc.ListGroupItem([
-                html.Div([
-                    html.I(className="fas fa-tasks me-2", style={"color": "var(--primary-color)"}),
-                    "Monitoreo y Seguimiento de Proyectos"
-                ])
-            ], id="nav-proyectos", n_clicks=0, action=True, className="fw-bold mb-1"),
-            
-            # Sub-pestañas de Proyectos
-            dbc.ListGroupItem([
-                html.Div([
-                    html.I(className="fas fa-file-contract me-2", style={"color": "var(--text-secondary)"}), 
-                    "Gestión Administrativa y Financiera"
-                ])
-            ], id="sub-proyectos-administrativa", n_clicks=0, action=True, 
-               className="ps-4 small sub-nav", style={"display": "none"}),
-            
-            dbc.ListGroupItem([
-                html.Div([
-                    html.I(className="fas fa-tools me-2", style={"color": "var(--text-secondary)"}), 
-                    "Fortalecimiento EMTP"
-                ])
-            ], id="sub-proyectos-fortalecimiento", n_clicks=0, action=True, 
-               className="ps-4 small sub-nav", style={"display": "none"}),
-        ])
+    # Monitoreo y Seguimiento de Proyectos (siempre presente, pero oculto si no tiene permisos)
+    proyectos_style = {"display": "none"} if 'proyectos' in hidden_sections else {}
+    nav_items.extend([
+        dbc.ListGroupItem([
+            html.Div([
+                html.I(className="fas fa-tasks me-2", style={"color": "var(--primary-color)"}),
+                "Monitoreo y Seguimiento de Proyectos"
+            ])
+        ], id="nav-proyectos", n_clicks=0, action=True, className="fw-bold mb-1", style=proyectos_style),
+        
+        # Sub-pestañas de Proyectos (también ocultas si no tiene permisos)
+        dbc.ListGroupItem([
+            html.Div([
+                html.I(className="fas fa-file-contract me-2", style={"color": "var(--text-secondary)"}), 
+                "Gestión Administrativa y Financiera"
+            ])
+        ], id="sub-proyectos-administrativa", n_clicks=0, action=True, 
+           className="ps-4 small sub-nav", style={"display": "none"}),
+        
+        dbc.ListGroupItem([
+            html.Div([
+                html.I(className="fas fa-tools me-2", style={"color": "var(--text-secondary)"}), 
+                "Fortalecimiento EMTP"
+            ])
+        ], id="sub-proyectos-fortalecimiento", n_clicks=0, action=True, 
+           className="ps-4 small sub-nav", style={"display": "none"}),
+    ])
+    
+    # Gestión de Usuarios (siempre presente, pero oculto si no tiene permisos)
+    gestion_style = {"display": "none"} if 'gestion-usuarios' in hidden_sections else {}
+    nav_items.append(
+        dbc.ListGroupItem([
+            html.Div([
+                html.I(className="fas fa-users-cog me-2", style={"color": "var(--primary-color)"}),
+                "Gestión de Usuarios"
+            ])
+        ], href="/gestion-usuarios", id="nav-gestion-usuarios", n_clicks=0, 
+           action=True, className="fw-bold mb-1", style=gestion_style)
+    )
+    
+    # Auditoría (siempre presente, pero oculto si no tiene permisos)
+    auditoria_style = {"display": "none"} if 'auditoria' in hidden_sections else {}
+    nav_items.append(
+        dbc.ListGroupItem([
+            html.Div([
+                html.I(className="fas fa-clipboard-list me-2", style={"color": "var(--primary-color)"}),
+                "Auditoría"
+            ])
+        ], href="/auditoria", id="nav-auditoria", n_clicks=0, 
+           action=True, className="fw-bold mb-1", style=auditoria_style)
+    )
     
     return dbc.Card([
         dbc.CardHeader([

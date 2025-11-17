@@ -7,6 +7,8 @@ CALLBACKS DE AUTENTICACIÓN Y SELECCIÓN DE MODO
 from dash import Input, Output, State, callback_context, html, dcc, no_update
 import dash_bootstrap_components as dbc
 from src.utils.auth import AuthManager, USER_PROFILES, DEMO_USERS
+from src.utils.user_management import user_manager
+from src.utils.audit import audit_logger
 from src.layouts.welcome_screen import create_welcome_layout
 from src.layouts.login_layout import create_navbar_with_user
 from src.layouts.sidebar_layout_clean import create_new_main_layout
@@ -88,9 +90,12 @@ def register_auth_callbacks(app):
                     'username': 'usuario',
                     'profile': 'usuario', 
                     'full_name': 'Modo Usuario',
-                    'hidden_sections': ['proyectos']
+                    'hidden_sections': ['proyectos', 'gestion-usuarios', 'auditoria']
                 }
             }
+            # Registrar acceso en auditoría
+            audit_logger.log_login('usuario', success=True)
+            
             return create_authenticated_layout(user_session['user_info']), user_session
         return no_update, no_update
     
@@ -105,18 +110,16 @@ def register_auth_callbacks(app):
         prevent_initial_call=True
     )
     def access_admin_mode(n_clicks, password):
-        """Acceso al modo admin con validación de contraseña"""
+        """Acceso al modo admin con validación de contraseña usando user_manager"""
         if n_clicks and password:
-            # Validar contraseña admin
-            if password == 'admin123':
+            # Usar user_manager para autenticar
+            user_info = user_manager.authenticate_user('admin', password)
+            
+            if user_info:
+                # Autenticación exitosa
                 admin_session = {
                     'authenticated': True,
-                    'user_info': {
-                        'username': 'admin',
-                        'profile': 'admin',
-                        'full_name': 'Administrador',
-                        'hidden_sections': []  # Admin ve todo
-                    }
+                    'user_info': user_info
                 }
                 return (
                     create_authenticated_layout(admin_session['user_info']), 
@@ -126,6 +129,7 @@ def register_auth_callbacks(app):
                 )
             else:
                 # Contraseña incorrecta
+                audit_logger.log_login('admin', success=False)
                 return (
                     no_update,
                     no_update,

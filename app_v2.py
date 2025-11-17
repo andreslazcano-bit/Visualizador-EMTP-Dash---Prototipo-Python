@@ -85,6 +85,13 @@ register_auth_callbacks(app)
 register_sidebar_callbacks(app)
 register_theme_callbacks(app)
 
+# Registrar callbacks de gestión de usuarios y auditoría
+from src.callbacks.user_management_callbacks import register_user_management_callbacks
+from src.callbacks.audit_callbacks import register_audit_callbacks
+
+register_user_management_callbacks(app)
+register_audit_callbacks(app)
+
 # ============================================================================
 # EJECUCIÓN
 # ============================================================================

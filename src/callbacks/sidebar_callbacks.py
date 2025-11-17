@@ -214,6 +214,8 @@ def register_sidebar_callbacks(app):
          Input('nav-establecimientos', 'n_clicks'),
          Input('nav-docentes', 'n_clicks'),
          Input('nav-mapas', 'n_clicks'),
+         Input('nav-gestion-usuarios', 'n_clicks'),
+         Input('nav-auditoria', 'n_clicks'),
          # Sub-pestañas de Matrícula
          Input('sub-matricula-evolucion', 'n_clicks'),
          Input('sub-matricula-demografia', 'n_clicks'),
@@ -235,6 +237,7 @@ def register_sidebar_callbacks(app):
          State('filters-state', 'data')]
     )
     def handle_navigation(nav_inicio, nav_mat, nav_egr, nav_tit, nav_est, nav_doc, nav_mapas,
+                         nav_gestion, nav_audit,
                          sub_mat_evo, sub_mat_dem, sub_mat_ret, sub_mat_comp,
                          sub_egr_trans, sub_egr_emp,
                          sub_tit_tasas, sub_tit_tiempo,
@@ -309,6 +312,24 @@ def register_sidebar_callbacks(app):
                 {"label": "Mapas", "active": True}
             ])
             return {'active_main': 'nav-mapas', 'active_sub': None}, content, breadcrumb
+        
+        elif button_id == 'nav-gestion-usuarios':
+            from src.layouts.user_management import create_user_management_layout
+            content = create_user_management_layout()
+            breadcrumb = create_breadcrumb([
+                {"label": "Inicio", "href": "#"},
+                {"label": "Gestión de Usuarios", "active": True}
+            ])
+            return {'active_main': 'nav-gestion-usuarios', 'active_sub': None}, content, breadcrumb
+        
+        elif button_id == 'nav-auditoria':
+            from src.layouts.audit import create_audit_layout
+            content = create_audit_layout()
+            breadcrumb = create_breadcrumb([
+                {"label": "Inicio", "href": "#"},
+                {"label": "Auditoría", "active": True}
+            ])
+            return {'active_main': 'nav-auditoria', 'active_sub': None}, content, breadcrumb
         
         # Sub-navegación para matrícula
         elif button_id.startswith('sub-matricula-'):
