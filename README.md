@@ -198,7 +198,7 @@ Para despliegue en producción, consultar la documentación completa:
 
 ## Datos
 
-### Estadísticas
+### Estadísticas (SIMULADOS)
 
 - 178,700+ registros de matrícula (2014-2024)
 - 16 regiones de Chile
@@ -272,32 +272,12 @@ pytest --cov=src tests/
 - Autenticación básica
 - Tema claro/oscuro
 
-## Contribuciones
-
-Las contribuciones son bienvenidas. Por favor:
-
-1. Fork del proyecto
-2. Crear rama feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit cambios (`git commit -am 'Agregar nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Crear Pull Request
-
 ## Contacto
 
 ### Desarrollador
 **Andrés Lazcano**  
-andres.lazcano@mineduc.cl  
+ext.andres.lazcano@mineduc.cl  
 [@andreslazcano-bit](https://github.com/andreslazcano-bit)
-
-### Soporte Técnico
-ti@mineduc.cl  
-+56 2 XXXX XXXX  
-Lunes a Viernes, 9:00 - 18:00
-
-### Soporte Funcional
-**Secretaría EMTP**  
-secretaria.emtp@mineduc.cl  
-Lunes a Viernes, 9:00 - 17:00
 
 ## Licencia
 
@@ -309,17 +289,6 @@ Este proyecto está bajo la Licencia MIT. Ver archivo [LICENSE](LICENSE) para m�
 **Con colaboración de:** GitHub Copilot (GPT-4o) y Claude 3.5 Sonnet
 
 Este proyecto combina experiencia humana en análisis de datos educacionales con asistencia de IA para arquitectura de software, documentación técnica y optimización de código.
-
-## Agradecimientos
-
-- Ministerio de Educación de Chile - Por los datos del sistema EMTP
-- [fcortes/Chile-GeoJSON](https://github.com/fcortes/Chile-GeoJSON) - Por los archivos GeoJSON de Chile
-- Plotly/Dash - Por el framework de visualización
-- Bootstrap - Por los componentes UI
-
----
-
-Desarrollado para mejorar la educación técnico-profesional en Chile
 
 ---
 
