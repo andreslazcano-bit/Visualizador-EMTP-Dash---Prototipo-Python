@@ -92,7 +92,7 @@ def register_auth_callbacks(app):
                     'username': 'usuario',
                     'profile': 'usuario', 
                     'full_name': 'Modo Usuario',
-                    'hidden_sections': ['proyectos', 'gestion-usuarios', 'auditoria']
+                    'hidden_sections': ['proyectos', 'gestion-usuarios', 'auditoria', 'indicadores-mds']
                 }
             }
             # Registrar acceso en auditoría

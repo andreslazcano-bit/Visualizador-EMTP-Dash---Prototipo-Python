@@ -224,6 +224,7 @@ def register_sidebar_callbacks(app):
          Input('nav-mapas', 'n_clicks'),
          Input('nav-gestion-usuarios', 'n_clicks'),
          Input('nav-auditoria', 'n_clicks'),
+         Input('nav-indicadores-mds', 'n_clicks'),
          # Sub-pestañas de Matrícula
          Input('sub-matricula-evolucion', 'n_clicks'),
          Input('sub-matricula-demografia', 'n_clicks'),
@@ -246,7 +247,7 @@ def register_sidebar_callbacks(app):
          State('session-store', 'data')]
     )
     def handle_navigation(nav_inicio, nav_mat, nav_egr, nav_tit, nav_est, nav_doc, nav_mapas,
-                         nav_gestion, nav_audit,
+                         nav_gestion, nav_audit, nav_indicadores_mds,
                          sub_mat_evo, sub_mat_dem, sub_mat_ret, sub_mat_comp,
                          sub_egr_trans, sub_egr_emp,
                          sub_tit_tasas, sub_tit_tiempo,
@@ -281,7 +282,8 @@ def register_sidebar_callbacks(app):
             'nav-docentes': 'docentes',
             'nav-mapas': 'mapas',
             'nav-gestion-usuarios': 'gestion_usuarios',
-            'nav-auditoria': 'auditoria'
+            'nav-auditoria': 'auditoria',
+            'nav-indicadores-mds': 'indicadores_mds'
         }
         
         # Registrar vista de dashboard si es navegación principal
@@ -378,6 +380,15 @@ def register_sidebar_callbacks(app):
                 {"label": "Auditoría", "active": True}
             ])
             return {'active_main': 'nav-auditoria', 'active_sub': None}, content, breadcrumb
+        
+        elif button_id == 'nav-indicadores-mds':
+            from src.layouts.indicadores_mds import create_indicadores_mds_layout
+            content = create_indicadores_mds_layout()
+            breadcrumb = create_breadcrumb([
+                {"label": "Inicio", "href": "#"},
+                {"label": "Indicadores MDS", "active": True}
+            ])
+            return {'active_main': 'nav-indicadores-mds', 'active_sub': None}, content, breadcrumb
         
         # Sub-navegación para matrícula
         elif button_id.startswith('sub-matricula-'):

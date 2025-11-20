@@ -33,6 +33,7 @@ Este documento sirve como índice central para toda la documentación técnica d
 | [**Sistema de Usuarios y Auditoría**](SISTEMA_USUARIOS_AUDITORIA.md) | Gestión de usuarios + logs de auditoría | ~30 |
 | [**Configuración de Timeout de Sesión**](CONFIGURACION_TIMEOUT_SESION.md) | Sistema de timeout automático y re-autenticación | ~15 |
 | [**Configuración Power BI RFT**](CONFIGURACION_POWERBI_RFT.md) | Integración de dashboards Power BI | ~12 |
+| [**Indicadores MDS**](INDICADORES_MDS.md) | Sistema de indicadores del Ministerio de Desarrollo Social | ~20 |
 | [**Actualización Automática**](ACTUALIZACION_AUTOMATICA.md) | Sistema de actualización semanal de datos | ~18 |
 | [**Integración Completada**](INTEGRACION_COMPLETADA.md) | Estado del proyecto v2.0 | ~22 |
 

@@ -128,11 +128,13 @@ from src.callbacks.user_management_callbacks import register_user_management_cal
 from src.callbacks.audit_callbacks import register_audit_callbacks
 from src.callbacks.export_callbacks import register_export_callbacks
 from src.callbacks.session_callbacks import register_session_callbacks
+from src.callbacks.indicadores_mds_callbacks import register_indicadores_mds_callbacks
 
 register_user_management_callbacks(app)
 register_audit_callbacks(app)
 register_export_callbacks(app)
 register_session_callbacks(app)
+register_indicadores_mds_callbacks(app)
 
 # ============================================================================
 # EJECUCIÓN

@@ -424,6 +424,18 @@ def create_sidebar_navigation_filtered(hidden_sections=None):
            action=True, className="fw-bold mb-1", style=auditoria_style)
     )
     
+    # Indicadores MDS (siempre presente, pero oculto si no tiene permisos)
+    indicadores_mds_style = {"display": "none"} if 'indicadores-mds' in hidden_sections else {}
+    nav_items.append(
+        dbc.ListGroupItem([
+            html.Div([
+                html.I(className="fas fa-chart-line me-2", style={"color": "var(--primary-color)"}),
+                "Indicadores MDS"
+            ])
+        ], href="/indicadores-mds", id="nav-indicadores-mds", n_clicks=0, 
+           action=True, className="fw-bold mb-1", style=indicadores_mds_style)
+    )
+    
     return dbc.Card([
         dbc.CardHeader([
             html.H5([

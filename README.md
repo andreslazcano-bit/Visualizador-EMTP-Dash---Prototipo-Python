@@ -34,6 +34,7 @@ Plataforma web interactiva para análisis de datos del sistema de Educación Med
 - **Dashboards Interactivos**: Análisis de matrícula, egresados, titulación, establecimientos y docentes
 - **Mapas Geográficos**: Visualización territorial de 16 regiones y 345 comunas
 - **Integración Power BI**: Espacio dedicado para dashboards externos (RFT 2025-2026)
+- **Indicadores MDS**: Sistema de seguimiento de indicadores del Ministerio de Desarrollo Social (admin)
 - **Gestión de Usuarios**: Sistema con perfiles (actualmente Usuario y Admin)
 - **Auditoría**: Registro completo de accesos y acciones
 - **Seguridad**: Autenticación bcrypt + SQLite + Timeout de sesión automático
@@ -118,6 +119,9 @@ Visualizador-EMTP-Dash/
 | Docentes | Perfil profesional, capacitación | Todos |
 | Mapas | Visualización territorial (regiones y comunas) | Todos |
 | Proyectos EMTP | Gestión administrativa y fortalecimiento | Solo Admin |
+| Indicadores MDS | Indicadores del Ministerio de Desarrollo Social | Solo Admin |
+| Gestión de Usuarios | Administración de usuarios y permisos | Solo Admin |
+| Auditoría | Registro de accesos y acciones del sistema | Solo Admin |
 | Gestión Usuarios | Crear, editar, desactivar usuarios | Solo Admin |
 | Auditoría | Logs de accesos, estadísticas de uso | Solo Admin |
 
@@ -176,6 +180,7 @@ Para despliegue en producción, consultar la documentación completa:
 - [Sistema de Usuarios y Auditoría](docs/SISTEMA_USUARIOS_AUDITORIA.md) - Implementación técnica
 - [Configuración de Timeout de Sesión](docs/CONFIGURACION_TIMEOUT_SESION.md) - Sistema de timeout automático
 - [Configuración Power BI RFT](docs/CONFIGURACION_POWERBI_RFT.md) - Integración de dashboards Power BI
+- [Indicadores MDS](docs/INDICADORES_MDS.md) - Sistema de indicadores ministeriales
 - [Actualización Automática](docs/ACTUALIZACION_AUTOMATICA.md) - Sistema de actualización
 - [Integración Completada](docs/INTEGRACION_COMPLETADA.md) - Estado del proyecto
 
@@ -264,6 +269,15 @@ pytest --cov=src tests/
 ```
 
 ## Changelog
+
+### v2.0.2 (20 Noviembre 2025)
+- **Sistema de Indicadores MDS** (Ministerio de Desarrollo Social)
+- 5 indicadores con seguimiento y visualizaciones:
+  - Indicadores de Propósito (2): Ingreso ES, Competencias Docentes
+  - Indicadores Complementarios (3): Equipamiento, SLEP UAT-TP, Redes Colaborativas
+- Acceso exclusivo para perfil admin
+- KPIs interactivos y gráficos de evolución
+- Documentación técnica completa
 
 ### v2.0.1 (17 Noviembre 2025)
 - **Sistema de timeout de sesión automático** (30 min configurable)
